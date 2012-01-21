@@ -1,0 +1,1234 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE xbel PUBLIC "+//IDN python.org//DTD XML Bookmark Exchange Language 1.0//EN//XML" "http://www.python.org/topics/xml/dtds/xbel-1.0.dtd">
+
+<xbel version='1.0'>
+  <folder><title>Lectures</title><folder>
+        <title>Week 0</title>
+        <desc>Introduction. Bits. Binary. ASCII. Programming. Algorithms. Scratch. Statements.
+            Boolean expressions. Conditions. Loops. Variables. Threads. Events. C.</desc>
+        <folder folded="yes">
+            <title>Demos</title>
+            <bookmark href="http://scratch.mit.edu/projects/cs50/37413">
+                <title>Gol</title>
+            </bookmark>
+            <bookmark href="http://scratch.mit.edu/projects/cs50/37414">
+                <title>Knight in Shining Armor</title>
+            </bookmark>
+            <bookmark href="http://scratch.mit.edu/projects/cs50/37415">
+                <title>Oscartime</title>
+            </bookmark>
+            <bookmark href="http://scratch.mit.edu/projects/cs50/37412">
+                <title>Raining Men</title>
+            </bookmark>
+        </folder>
+        <folder folded="yes">
+            <title>Notes</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/0/notes0w.pdf">
+                <title>Wednesday</title>
+            </bookmark>
+        </folder>
+        <bookmark href="http://cdn.cs50.net/2007/fall/lectures/0/week0.pdf">
+            <title>Slides</title>
+        </bookmark>
+        <folder folded="yes">
+            <title>Source Code</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/0/src/">
+                <title>index</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/0/src0.pdf">
+                <title>PDF</title>
+            </bookmark>
+        </folder>
+        <bookmark href="http://cdn.cs50.net/2007/fall/lectures/0/syllabus.pdf">
+            <title>Syllabus</title>
+        </bookmark>
+        <folder folded="yes">
+            <title>Videos</title>
+            <folder folded="yes">
+                <title>Monday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/0/week0m.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/0/week0m.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/0/week0m.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+            <folder folded="yes">
+                <title>Wednesday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/0/week0w.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/0/week0w.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/0/week0w.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+            <folder folded="yes">
+                <title>Friday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/0/week0f.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/0/week0f.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/0/week0f.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+        </folder>
+    </folder><folder>
+        <title>Week 1</title>
+        <desc>C, continued. Source code. Compilers. Object code. SSH. SFTP. GCC. Functions.
+            Comments. Standard output. Arithmetic operators. Precedence. Associativity. Local
+            variables. Types. Casting. Standard input. Libraries. Boolean expressions, continued.
+            Conditions, continued. Loops, continued.</desc>
+        <folder folded="yes">
+            <title>Notes</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/1/notes1m.pdf">
+                <title>Monday</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/1/notes1w.pdf">
+                <title>Wednesday</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/1/notes1f.pdf">
+                <title>Friday</title>
+            </bookmark>
+        </folder>
+        <bookmark href="http://cdn.cs50.net/2007/fall/lectures/1/week1.pdf">
+            <title>Slides</title>
+        </bookmark>
+        <folder folded="yes">
+            <title>Source Code</title>
+        </folder>
+        <folder folded="yes">
+            <title>Videos</title>
+            <folder folded="yes">
+                <title>Monday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/1/week1m.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/1/week1m.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/#/week1m.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+            <folder folded="yes">
+                <title>Wednesday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/1/week1w.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/1/week1w.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/1/week1w.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+            <folder folded="yes">
+                <title>Friday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/1/week1f.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/1/week1f.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/1/week1f.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+        </folder>
+    </folder><folder>
+        <title>Week 2</title>
+        <desc>Functions, continued. Global variables. Parameters. Return Values. Stack. Frames.
+            Scope. Arrays. Strings. Command-line arguments. Cryptography.</desc>
+        <bookmark href="http://cdn.cs50.net/2007/fall/lectures/2/week2.pdf">
+            <title>Slides</title>
+        </bookmark>
+        <folder folded="yes">
+            <title>Source Code</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/2/src/">
+                <title>index</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/2/src2.pdf">
+                <title>PDF</title>
+            </bookmark>
+        </folder>
+        <folder folded="yes">
+            <title>Videos</title>
+            <folder folded="yes">
+                <title>Monday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/2/week2m.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/2/week2m.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/2/week2m.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+            <folder folded="yes">
+                <title>Wednesday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/2/week2w.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/2/week2w.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/2/week2w.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+            <folder folded="yes">
+                <title>Friday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/2/week2f.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/2/week2f.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/2/week2f.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+        </folder>
+    </folder><folder>
+        <title>Week 3</title>
+        <desc>Linear search. Binary search. Asymptotic notation. Recursion. Bubble sort. Selection
+            sort. Merge sort.</desc>
+        <folder folded="yes">
+            <title>Awards</title>
+            <bookmark href="http://scratch.mit.edu/projects/jumsmuj/40290">
+                <title>The Cutest</title>
+            </bookmark>
+            <bookmark href="http://scratch.mit.edu/projects/V-Man/39789">
+                <title>The Funniest</title>
+            </bookmark>
+            <bookmark href="http://scratch.mit.edu/projects/lindorniel/40241">
+                <title>The Most Amazing</title>
+            </bookmark>
+        </folder>
+        <folder folded="yes">
+            <title>Notes</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/3/notes3w.pdf">
+                <title>Wednesday</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/3/notes3f.pdf">
+                <title>Friday</title>
+            </bookmark>
+        </folder>
+        <bookmark href="http://cdn.cs50.net/2007/fall/lectures/3/week3.pdf">
+            <title>Slides</title>
+        </bookmark>
+        <folder folded="yes">
+            <title>Source Code</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/3/src/">
+                <title>index</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/3/src3.pdf">
+                <title>PDF</title>
+            </bookmark>
+        </folder>
+        <folder folded="yes">
+            <title>Star Wars: A New Hope</title>
+            <bookmark href="telnet://towel.blinkenlights.nl">
+                <title>ASCIIMATION</title>
+            </bookmark>
+        </folder>
+        <folder folded="yes">
+            <title>Videos</title>
+            <folder folded="yes">
+                <title>Wednesday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/3/week3w.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/3/week3w.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/3/week3w.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+            <folder folded="yes">
+                <title>Friday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/3/week3f.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/3/week3f.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/3/week3f.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+        </folder>
+    </folder><folder>
+        <title>Week 4</title>
+        <desc>Debugging software. Designing software.</desc>
+        <folder folded="yes">
+            <title>About Professor Margo I. Seltzer</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/4/seltzer.pdf">
+                <title>PDF</title>
+            </bookmark>
+        </folder>
+        <folder folded="yes">
+            <title>Debugging with GDB</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/4/debugging.pdf">
+                <title>PDF</title>
+            </bookmark>
+        </folder>
+        <folder folded="yes">
+            <title>GDB Quick Reference</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/4/gdb_quickref.pdf">
+                <title>PDF</title>
+            </bookmark>
+        </folder>
+        <folder folded="yes">
+            <title>Notes</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/4/notes4m.pdf">
+                <title>Monday</title>
+            </bookmark>
+        </folder>
+        <folder folded="yes">
+            <title>Slides</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/4/week4m.pdf">
+                <title>Monday</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/4/week4f.pdf">
+                <title>Friday</title>
+            </bookmark>
+        </folder>
+        <folder folded="yes">
+            <title>Source Code</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/4/src/">
+                <title>index</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/4/src4f.pdf">
+                <title>PDF</title>
+            </bookmark>
+        </folder>
+        <folder folded="yes">
+            <title>Videos</title>
+            <folder folded="yes">
+                <title>Monday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/4/week4m.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/4/week4m.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/4/week4m.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+            <folder folded="yes">
+                <title>Friday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/4/week4f.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/4/week4f.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/4/week4f.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+        </folder>
+    </folder><folder>
+        <title>Week 5</title>
+        <desc>Structures. Dynamic memory allocation. Pointers. Heap. Digital forensics. File
+            I/O.</desc>
+        <folder folded="yes">
+            <title>Notes</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/5/notes5m.pdf">
+                <title>Monday</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/5/notes5w.pdf">
+                <title>Wednesday</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/5/notes5f.pdf">
+                <title>Friday</title>
+            </bookmark>
+        </folder>
+        <bookmark href="http://cdn.cs50.net/2007/fall/lectures/5/week5.pdf">
+            <title>Slides</title>
+        </bookmark>
+        <folder folded="yes">
+            <title>Source Code</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/5/src/">
+                <title>index</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/5/src5.pdf">
+                <title>PDF</title>
+            </bookmark>
+        </folder>
+        <folder folded="yes">
+            <title>Videos</title>
+            <folder folded="yes">
+                <title>Monday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/5/week5m.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+            <folder folded="yes">
+                <title>Wednesday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/5/week5w.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+            <folder folded="yes">
+                <title>Friday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/5/week5f.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/5/week5f.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/#/week5f.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+        </folder>
+    </folder><folder>
+        <title>Week 6</title>
+        <folder folded="yes">
+            <title>Notes</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/6/notes6m.pdf">
+                <title>Monday</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/6/notes6w.pdf">
+                <title>Wednesday</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/6/notes6f.pdf">
+                <title>Friday</title>
+            </bookmark>
+        </folder>
+        <bookmark href="http://cdn.cs50.net/2007/fall/lectures/6/week6.pdf">
+            <title>Slides</title>
+        </bookmark>
+        <folder folded="yes">
+            <title>Source Code</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/6/src/">
+                <title>index</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/6/src6.pdf">
+                <title>PDF</title>
+            </bookmark>
+        </folder>
+        <folder folded="yes">
+            <title>Videos</title>
+            <folder folded="yes">
+                <title>Wednesday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/6/week6w.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/6/week6w.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/6/week6w.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+            <folder folded="yes">
+                <title>Friday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/6/week6f.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/6/week6f.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/6/week6f.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+        </folder>
+    </folder><folder>
+        <title>Week 7</title>
+        <folder folded="yes">
+            <title>Notes</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/7/notes7m.pdf">
+                <title>Monday</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/7/notes7f.pdf">
+                <title>Friday</title>
+            </bookmark>
+        </folder>
+        <bookmark href="http://cdn.cs50.net/2007/fall/lectures/7/week7.pdf">
+            <title>Slides</title>
+        </bookmark>
+        <folder folded="yes">
+            <title>Videos</title>
+            <folder folded="yes">
+                <title>Monday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/7/week7m.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/7/week7m.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/7/week7m.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+            <folder folded="yes">
+                <title>Friday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/7/week7f.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/7/week7f.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+        </folder>
+    </folder><folder>
+        <title>Week 8</title>
+        <folder folded="yes">
+            <title>Notes</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/8/notes8w.pdf">
+                <title>Wednesday</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/8/notes8f.pdf">
+                <title>Friday</title>
+            </bookmark>
+        </folder>
+        <bookmark href="http://cdn.cs50.net/2007/fall/lectures/8/week8.pdf">
+            <title>Slides</title>
+        </bookmark>
+        <folder folded="yes">
+            <title>Source Code</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/8/src/">
+                <title>index</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/8/src8.pdf">
+                <title>PDF</title>
+            </bookmark>
+        </folder>
+        <folder folded="yes">
+            <title>Videos</title>
+            <folder folded="yes">
+                <title>Wednesday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/8/week8w.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/8/week8w.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/8/week8w.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+            <folder folded="yes">
+                <title>Friday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/8/week8f.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/8/week8f.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/8/week8f.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+        </folder>
+    </folder><folder>
+        <title>Week 9</title>
+        <desc>Secure coding.</desc>
+        <folder folded="yes">
+            <title>Notes</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/9/notes9m.pdf">
+                <title>Monday</title>
+            </bookmark>
+        </folder>
+        <bookmark href="http://cdn.cs50.net/2007/fall/lectures/9/week9.pdf">
+            <title>Slides</title>
+        </bookmark>
+        <folder folded="yes">
+            <title>Source Code</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/9/src/">
+                <title>index</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/9/src9.pdf">
+                <title>PDF</title>
+            </bookmark>
+        </folder>
+        <folder folded="yes">
+            <title>Video</title>
+            <folder folded="yes">
+                <title>Monday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/9/week9m.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/9/week9m.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/9/week9m.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+        </folder>
+    </folder><folder>
+        <title>Week 10</title>
+        <desc>TCP/IP. HTTP. XHTML. PHP. SQL.</desc>
+        <folder folded="yes">
+            <title>Quick References</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/10/qrg0007.pdf">
+                <title>CSS</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/10/html-cheat-sheet.pdf">
+                <title>XHTML</title>
+            </bookmark>
+        </folder>
+        <folder folded="yes">
+            <title>Notes</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/10/notes10m.pdf">
+                <title>Monday</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/10/notes10w.pdf">
+                <title>Wednesday</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/10/notes10f.pdf">
+                <title>Friday</title>
+            </bookmark>
+        </folder>
+        <bookmark href="http://cdn.cs50.net/2007/fall/lectures/10/week10.pdf">
+            <title>Slides</title>
+        </bookmark>
+        <folder folded="yes">
+            <title>Source Code</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/10/src/">
+                <title>index</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/10/src10.pdf">
+                <title>PDF</title>
+            </bookmark>
+        </folder>
+        <folder folded="yes">
+            <title>Videos</title>
+            <folder folded="yes">
+                <title>Monday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/10/week10m.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/10/week10m.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/10/week10m.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+            <folder folded="yes">
+                <title>Wednesday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/10/week10w.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/10/week10w.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/10/week10w.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+            <folder folded="yes">
+                <title>Friday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/10/week10f.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/10/week10f.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/10/week10f.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+        </folder>
+    </folder><folder>
+        <title>Week 11</title>
+        <desc>Designing Web-based software. Cybersecurity. Sneak preview of CS 51.</desc>
+        <folder folded="yes">
+            <title>Demos</title>
+            <bookmark href="http://isitchristmas.com/">
+                <title>Is It Christmas?</title>
+            </bookmark>
+            <bookmark href="http://www.prangstgrup.com/lecturemusical/">
+                <title>Lecture Musical</title>
+            </bookmark>
+            <bookmark href="http://www.turnofftheinternet.com/">
+                <title>Shutdown the Internet</title>
+            </bookmark>
+            <bookmark href="http://www.hcs.harvard.edu/cs50tfs/dramos/">
+                <title>Top Breads</title>
+            </bookmark>
+            <bookmark href="http://zombo.com/">
+                <title>ZOMBO</title>
+            </bookmark>
+        </folder>
+        <folder folded="yes">
+            <title>Slides</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/11/week11.pdf">
+                <title>Monday, Wednesday</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/11/week11f.pdf">
+                <title>Friday</title>
+            </bookmark>
+        </folder>
+        <folder folded="yes">
+            <title>Source Code</title>
+            <folder folded="yes">
+                <title>Monday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/11/src/monday/">
+                    <title>index</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/11/src11m.pdf">
+                    <title>PDF</title>
+                </bookmark>
+            </folder>
+            <folder folded="yes">
+                <title>Friday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/11/src/friday/">
+                    <title>index</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/11/src11f.pdf">
+                    <title>PDF</title>
+                </bookmark>
+            </folder>
+        </folder>
+        <folder folded="yes">
+            <title>Videos</title>
+            <folder folded="yes">
+                <title>Monday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/11/week11m.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/11/week11m.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/11/week11m.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+            <folder folded="yes">
+                <title>Wednesday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/11/week11w.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/11/week11w.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/11/week11w.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+            <folder folded="yes">
+                <title>Friday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/11/week11f.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/11/week11f.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/11/week11f.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+        </folder>
+    </folder><folder>
+        <title>Week 12</title>
+        <desc>Sneak preview of CS 61. Fun. Exciting conclusion.</desc>
+        <bookmark href="http://cdn.cs50.net/2007/fall/lectures/12/p761-thompson.pdf">
+            <title>Reflections on Trusting Trust</title>
+        </bookmark>
+        <folder folded="yes">
+            <title>Slides</title>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/12/week12m.pdf">
+                <title>Monday</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/12/week12f1.pdf">
+                <title>Friday (Malan)</title>
+            </bookmark>
+            <bookmark href="http://cdn.cs50.net/2007/fall/lectures/12/week12f2.pdf">
+                <title>Friday (Pfister)</title>
+            </bookmark>
+        </folder>
+        <folder folded="yes">
+            <title>Videos</title>
+            <folder folded="yes">
+                <title>Monday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/12/week12m.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/12/week12m.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/12/week12m.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+            <folder folded="yes">
+                <title>Friday</title>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/12/week12f.flv">
+                    <title>Flash</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/12/week12f.mp3">
+                    <title>MP3</title>
+                </bookmark>
+                <bookmark href="http://cdn.cs50.net/2007/fall/lectures/12/week12f.mov">
+                    <title>QuickTime</title>
+                </bookmark>
+            </folder>
+        </folder>
+    </folder></folder><folder><title>Supersections</title><folder folded="no">
+    <title>Week 1</title>
+    <folder folded="no">
+      <title>Video</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection1.flv">
+        <title>Flash</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection1.mp3">
+       <title>MP3</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection1.mov">
+        <title>QuickTime</title>
+      </bookmark>
+    </folder>
+  </folder><folder folded="no">
+    <title>Week 2</title>
+    <folder folded="no">
+      <title>Video</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection2.flv">
+        <title>Flash</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection2.mp3">
+       <title>MP3</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection2.mov">
+        <title>QuickTime</title>
+      </bookmark>
+    </folder>
+  </folder><folder folded="no">
+    <title>Week 3</title>
+    <folder folded="no">
+      <title>Video</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection3.flv">
+        <title>Flash</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection3.mp3">
+       <title>MP3</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection3.mov">
+        <title>QuickTime</title>
+      </bookmark>
+    </folder>
+  </folder><folder folded="no">
+    <title>Week 4</title>
+    <folder folded="no">
+      <title>Video</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection4.flv">
+        <title>Flash</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection4.mp3">
+       <title>MP3</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection4.mov">
+        <title>QuickTime</title>
+      </bookmark>
+    </folder>
+  </folder><folder folded="no">
+    <title>Week 5</title>
+    <folder folded="no">
+      <title>Video</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection5.flv">
+        <title>Flash</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection5.mp3">
+       <title>MP3</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection5.mov">
+        <title>QuickTime</title>
+      </bookmark>
+    </folder>
+  </folder><folder folded="no">
+    <title>Week 6</title>
+    <folder folded="no">
+      <title>Video</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection6.flv">
+        <title>Flash</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection6.mp3">
+       <title>MP3</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection6.mov">
+        <title>QuickTime</title>
+      </bookmark>
+    </folder>
+  </folder><folder folded="no">
+    <title>Week 7</title>
+    <folder folded="no">
+      <title>Video</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection7.flv">
+        <title>Flash</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection7.mp3">
+       <title>MP3</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection7.mov">
+        <title>QuickTime</title>
+      </bookmark>
+    </folder>
+  </folder><folder folded="no">
+    <title>Week 8</title>
+    <folder folded="no">
+      <title>Video</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection8.flv">
+        <title>Flash</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection8.mp3">
+       <title>MP3</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection8.mov">
+        <title>QuickTime</title>
+      </bookmark>
+    </folder>
+  </folder><folder folded="no">
+    <title>Week 9</title>
+    <desc>No supersection this week</desc>
+  </folder><folder folded="no">
+    <title>Week 10</title>
+    <desc>No supersection this week</desc>
+  </folder><folder folded="no">
+    <title>Week 11</title>
+    <folder folded="no">
+      <title>Video</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection11.flv">
+        <title>Flash</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection11.mp3">
+       <title>MP3</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/supersections/supersection11.mov">
+        <title>QuickTime</title>
+      </bookmark>
+    </folder>
+  </folder></folder><folder><title>Problem Sets</title><folder folded="yes">
+    <title>Problem Set 0: Scratch</title>
+    <desc>Create your own animation, game, or interactive art.</desc>
+    <bookmark href="http://cdn.cs50.net/2007/fall/ps/0/ps0.pdf">
+      <title>standard edition</title>
+    </bookmark>
+  </folder><folder folded="yes">
+    <title>Problem Set 1: C</title>
+    <desc>Meet Linux and C.</desc>
+    <bookmark href="http://cdn.cs50.net/2007/fall/ps/1/ps1.pdf">
+      <title>standard edition</title>
+    </bookmark>
+    <bookmark href="http://cdn.cs50.net/2007/fall/ps/1/ps1hacker.pdf">
+      <title>Hacker Edition</title>
+    </bookmark>
+  </folder><folder folded="yes">
+    <title>Problem Set 2: Crypto</title>
+    <desc>Encrypt and decrypt sensitive information.</desc>
+    <bookmark href="http://cdn.cs50.net/2007/fall/ps/2/ps2.pdf">
+      <title>standard edition</title>
+    </bookmark>
+    <bookmark href="http://cdn.cs50.net/2007/fall/ps/2/ps2hacker.pdf">
+      <title>Hacker Edition</title>
+    </bookmark>
+  </folder><folder folded="yes">
+    <title>Problem Set 3: The Game of Fifteen</title>
+    <desc>Implement a childhood classic.</desc>
+    <folder folded="yes">
+      <title>standard edition</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/ps/3/ps3.pdf">
+        <title>PDF</title>
+      </bookmark>
+      <folder folded="yes">
+        <title>Source Code</title>
+        <bookmark href="http://cdn.cs50.net/2007/fall/ps/3/ps3/">
+          <title>index</title>
+        </bookmark>
+        <bookmark href="http://cdn.cs50.net/2007/fall/ps/3/ps3.zip">
+          <title>ZIP</title>
+        </bookmark>
+      </folder>
+    </folder>
+    <folder folded="yes">
+      <title>Hacker Edition</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/ps/3/ps3hacker.pdf">
+        <title>PDF</title>
+      </bookmark>
+      <folder folded="yes">
+        <title>Source Code</title>
+        <bookmark href="http://cdn.cs50.net/2007/fall/ps/3/ps3hacker/">
+          <title>index</title>
+        </bookmark>
+        <bookmark href="http://cdn.cs50.net/2007/fall/ps/3/ps3hacker.zip">
+          <title>ZIP</title>
+        </bookmark>
+      </folder>
+    </folder>
+  </folder><folder folded="yes">
+    <title>Problem Set 4: Forensics</title>
+    <desc>Recover lost photos. Solve a murder mystery.</desc>
+    <folder folded="yes">
+      <title>standard edition</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/ps/4/article.pdf">
+        <title>article.pdf</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/ps/4/card.raw">
+        <title>card.raw</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/ps/4/ps4.pdf">
+        <title>PDF</title>
+      </bookmark>
+      <folder folded="yes">
+        <title>Source Code</title>
+        <bookmark href="http://cdn.cs50.net/2007/fall/ps/4/ps4/">
+          <title>index</title>
+        </bookmark>
+        <bookmark href="http://cdn.cs50.net/2007/fall/ps/4/ps4.zip">
+          <title>ZIP</title>
+        </bookmark>
+      </folder>
+    </folder>
+    <folder folded="yes">
+      <title>Hacker Edition</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/ps/4/ps4hacker.pdf">
+        <title>PDF</title>
+      </bookmark>
+      <folder folded="yes">
+        <title>Source Code</title>
+        <bookmark href="http://cdn.cs50.net/2007/fall/ps/4/ps4hacker/">
+          <title>index</title>
+        </bookmark>
+        <bookmark href="http://cdn.cs50.net/2007/fall/ps/4/ps4hacker.zip">
+          <title>ZIP</title>
+        </bookmark>
+      </folder>
+    </folder>
+  </folder><folder folded="yes">
+    <title>Problem Set 5: Mispellings</title>
+    <desc>Implement a spell-checker that’s faster than your classmates'.</desc>
+    <folder folded="yes">
+      <title>standard edition</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/ps/5/ps5.pdf">
+        <title>PDF</title>
+      </bookmark>
+      <folder folded="yes">
+        <title>Source Code</title>
+        <bookmark href="http://cdn.cs50.net/2007/fall/ps/5/ps5/">
+          <title>index</title>
+        </bookmark>
+        <bookmark href="http://cdn.cs50.net/2007/fall/ps/5/ps5.zip">
+          <title>ZIP</title>
+        </bookmark>
+      </folder>
+      <bookmark href="http://cdn.cs50.net/2007/fall/ps/5/words">
+        <title>words</title>
+      </bookmark>
+    </folder>
+  </folder><folder folded="yes">
+    <title>Problem Set 6: Huff'n Puff </title>
+    <desc>Compress your own files.</desc>
+    <folder folded="yes">
+      <title>standard edition</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/ps/6/ps6.pdf">
+        <title>PDF</title>
+      </bookmark>
+      <folder folded="yes">
+        <title>Source Code</title>
+        <bookmark href="http://cdn.cs50.net/2007/fall/ps/6/ps6/">
+          <title>index</title>
+        </bookmark>
+        <bookmark href="http://cdn.cs50.net/2007/fall/ps/6/ps6.zip">
+          <title>ZIP</title>
+        </bookmark>
+      </folder>
+    </folder>
+    <folder folded="yes">
+      <title>Hacker Edition</title>
+      <bookmark href="http://cdn.cs60.net/2007/fall/ps/6/ps6hacker.pdf">
+        <title>PDF</title>
+      </bookmark>
+      <folder folded="yes">
+        <title>Source Code</title>
+        <bookmark href="http://cdn.cs60.net/2007/fall/ps/6/ps6hacker/">
+          <title>index</title>
+        </bookmark>
+        <bookmark href="http://cdn.cs60.net/2007/fall/ps/6/ps6hacker.zip">
+          <title>ZIP</title>
+        </bookmark>
+      </folder>
+    </folder>
+  </folder><folder folded="yes">
+    <title>Problem Set 7: C$50 Finance</title>
+    <desc>Design a database. Build a website.</desc>
+    <folder folded="yes">
+      <title>standard edition</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/ps/7/ps7.pdf">
+        <title>PDF</title>
+      </bookmark>
+      <folder folded="yes">
+        <title>Source Code</title>
+        <bookmark href="http://cdn.cs50.net/2007/fall/ps/7/ps7/">
+          <title>index</title>
+        </bookmark>
+        <bookmark href="http://cdn.cs50.net/2007/fall/ps/7/ps7.zip">
+          <title>ZIP</title>
+        </bookmark>
+      </folder>
+    </folder>
+  </folder></folder><folder><title>Quizzes</title><folder folded="no">
+    <title>Quiz 0</title>
+    <desc>Covers weeks 0 through 2.</desc>
+    <bookmark href="http://cdn.cs50.net/2007/fall/quizzes/0/quiz0.pdf">
+      <title>questions</title>
+    </bookmark>
+    <bookmark href="http://cdn.cs50.net/2007/fall/quizzes/0/quiz0s.pdf">
+      <title>answers</title>
+    </bookmark>
+  </folder><folder>
+    <title>Quiz 1</title>
+    <desc>Covers weeks 0 through 5 with emphasis on 3 onward.</desc>
+    <bookmark href="http://cdn.cs50.net/2007/fall/quizzes/1/quiz1.pdf">
+      <title>questions</title>
+    </bookmark>
+    <bookmark href="http://cdn.cs50.net/2007/fall/quizzes/1/quiz1s.pdf">
+      <title>answers</title>
+    </bookmark>
+  </folder><folder>
+    <title>Quiz 1</title>
+    <desc>Covers weeks 0 through 10 with emphasis on 6 onward.</desc>
+    <bookmark href="http://cdn.cs50.net/2007/fall/quizzes/2/quiz2.pdf">
+      <title>questions</title>
+    </bookmark>
+    <bookmark href="http://cdn.cs50.net/2007/fall/quizzes/2/quiz2s.pdf">
+      <title>answers</title>
+    </bookmark>
+  </folder></folder><folder><title>Seminars</title><folder folded="no">
+    <title>C++/Object Oriented Programming</title>
+    <desc>by Thomas Carriero '08</desc>
+    <folder folded="no">
+      <title>Video</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_OOP.flv">
+        <title>Flash</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_OOP.mp3">
+        <title>MP3</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_OOP.mov">
+        <title>QuickTime</title>
+      </bookmark>
+    </folder>
+  </folder><folder folded="no">
+    <title>Choosing the Right Languages/Libraries</title>
+    <desc>by Kelly Heffner and Paul Govereau</desc>
+    <folder folded="no">
+      <title>Video</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_LL.flv">
+        <title>Flash</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_LL.mp3">
+        <title>MP3</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_LL.mov">
+        <title>QuickTime</title>
+      </bookmark>
+    </folder>
+  </folder><folder folded="no">
+    <title>Event-Driven Programming</title>
+    <desc>by Kelly Heffner</desc>
+    <folder folded="no">
+      <title>Video</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_EDP.flv">
+        <title>Flash</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_EDP.mp3">
+        <title>MP3</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_EDP.mov">
+        <title>QuickTime</title>
+      </bookmark>
+    </folder>
+  </folder><folder folded="no">
+    <title>How to Write SMS-Based Programs</title>
+    <desc>by Chris Power</desc>
+    <folder folded="no">
+      <title>Video</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_SMS.flv">
+        <title>Flash</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_SMS.mp3">
+        <title>MP3</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_SMS.mov">
+        <title>QuickTime</title>
+      </bookmark>
+    </folder>
+  </folder><folder folded="no">
+    <title>Intro to Ruby on Rails</title>
+    <desc>by Kevin Bombino '08</desc>
+    <folder folded="no">
+      <title>Video</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_ROR.flv">
+        <title>Flash</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_ROR.mp3">
+        <title>MP3</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_ROR.mov">
+        <title>QuickTime</title>
+      </bookmark>
+    </folder>
+  </folder><folder folded="no">
+    <title>Network Programming</title>
+    <desc>by Paul Govereau</desc>
+    <folder folded="no">
+      <title>Video</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_NP.flv">
+        <title>Flash</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_NP.mp3">
+        <title>MP3</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_NP.mov">
+        <title>QuickTime</title>
+      </bookmark>
+    </folder>
+  </folder><folder folded="no">
+    <title>OpenGL (Graphics Library)</title>
+    <desc>by Paul Govereau</desc>
+    <folder folded="no">
+      <title>Video</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_OpenGL.flv">
+        <title>Flash</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_OpenGL.mp3">
+        <title>MP3</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_OpenGL.mov">
+        <title>QuickTime</title>
+      </bookmark>
+    </folder>
+  </folder><folder folded="no">
+    <title>SDL (Graphics Library)</title>
+    <desc>by Thomas Carriero '08</desc>
+    <folder folded="no">
+      <title>Video</title>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_SDL.flv">
+        <title>Flash</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_SDL.mp3">
+        <title>MP3</title>
+      </bookmark>
+      <bookmark href="http://cdn.cs50.net/2007/fall/seminars/seminar_SDL.mov">
+        <title>QuickTime</title>
+      </bookmark>
+    </folder>
+  </folder></folder></xbel>
