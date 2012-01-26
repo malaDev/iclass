@@ -10,6 +10,8 @@ html-eigen tags zoals <a>, <div> enz kunnen zonder # of . ervoor benaderd worden
 }
 
 body {
+    overflow: -moz-scrollbars-vertical;
+    overflow: scroll;
 	text-align: center;
 	font-family: Arial, Helvetica, Sans-serif; /* probeer Arial, lukt niet? -> helvetica. Lukt niet? -> sans-serif*/
 	font-size: 14px;
@@ -17,12 +19,13 @@ body {
 	color: #5B5B5B;
 }
 
-a:link, a:visited, a:active {
+a,a :link, a:visited, a:active {
 	color: #d36c00;
 	text-decoration: none;
 }
 a:hover {
 	color: #ff8300;
+	cursor:pointer;
 }
 
 h1{
@@ -37,6 +40,7 @@ h2{
 h3{
 	font-size: 100%;
 	color: #d36c00;
+	text-decoration:underline;
 }
 .black {
 	color:black;
@@ -47,11 +51,32 @@ h3{
 	padding: 5px;
 	background-color: #efefef;
 	border: 1px #dddddd solid;
+	cursor: pointer;
 }
 .button:hover {
 	background-color: #ff8300;
 	color: white;
 	border: 1px #ff8300 solid;
+}
+
+.delete-link, .save-link {
+  width: 30px;
+  height: 16px;
+  display: block;
+  float: left;
+  cursor: pointer;
+}
+
+.delete-link {
+  background:url("images/delete_icon.png") no-repeat;
+}
+
+.save-link {
+  background:url("images/save_icon.gif") no-repeat;
+}
+
+.messages_course_name {
+  color: #FF0000;
 }
 
 .crossline {
@@ -64,72 +89,86 @@ h3{
 }
 
 
-#comments input{
-	border: 1px solid #ababab;
+.info, .success, .warning, .error, .standout {
+    border: 1px solid;
+    margin: 10px 0px;
+    padding:15px 10px 15px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    width:570px;
+}
+.info {
+    color: #00529B;
+    background-color: #BDE5F8;
+    background-image: url('images/info.png');
 }
 
-#comments textarea{
-	border: 1px solid #ababab;
-	overflow:hidden;
+.standout {
+    color: #00529B;
+    background-color: #effaff;
+    padding-left:10px;
 }
-/* ----------- My Form ----------- */
 
+.success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    background-image:url('images/success.png');
+}
+.warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+    background-image: url('images/warning.png');
+}
+.error {
+    color: #D8000C;
+    background-color: #FFBABA;
+    background-image: url('images/error.png');
+}
 
-/* ----------- stylized ----------- */
-#stylized{
+.comments{
 border:solid 2px #b7ddf2;
 background:#ebf4fb;
+width:600px;
+padding:5px 14px 14px 14px;
+
 }
-#stylized h1 {
-font-size:14px;
-font-weight:bold;
-margin-bottom:8px;
+
+.comments textarea{
+padding:4px 4px;
+border:solid 1px #aacfe4;
+margin:2px 0 20px 10px;
+overflow:hidden;
 }
-#stylized p{
-font-size:11px;
-color:#666666;
-margin-bottom:20px;
-border-bottom:solid 1px #b7ddf2;
-padding-bottom:10px;
-}
-#stylized label{
+
+
+.comments label{
 display:block;
 font-weight:bold;
 text-align:right;
-width:140px;
+min-width:160px;
 float:left;
 }
-#stylized .small{
-color:#666666;
+.comments .small{
+color: #858585;
 display:block;
 font-size:11px;
 font-weight:normal;
 text-align:right;
-width:140px;
 }
-#stylized input{
-float:left;
+.comments .input{
 font-size:12px;
-padding:4px 2px;
+padding:4px 4px;
 border:solid 1px #aacfe4;
 width:200px;
 margin:2px 0 20px 10px;
 }
-#stylized button{
-clear:both;
-margin-left:150px;
-width:125px;
-height:31px;
-background:#666666 url(img/button.png) no-repeat;
-text-align:center;
-line-height:31px;
-color:#FFFFFF;
-font-size:11px;
-font-weight:bold;
+
+.message {
+	padding: 5px 0 0 25px;
 }
 
-
 .submit {
+float:right;
 	font-weight: bold;
 	padding: 5px;
 	background-color: #4682B4;
@@ -140,6 +179,23 @@ font-weight:bold;
 	background-color: #ff8300;
 	color: white;
 	border: 1px #ff8300 solid;
+}
+
+.delete_comment {
+	width:16px;
+	height:16px;
+	float:right;
+	margin-top:-9px;
+	margin-right:-18px;
+	background-image:url('images/delete_icon.png')	
+}
+.delete_reply {
+	width:16px;
+	height:16px;
+	float:right;
+	margin-top:-5px;
+	margin-right:-13px;
+	background-image:url('images/delete_icon.png')	
 }
 
 
@@ -181,6 +237,12 @@ font-weight:bold;
   color:#ffffff;
 
 }
+.transbox img {
+  float: right;
+  width: 75px;
+  height: 75px;
+  margin-left: 3px;
+}
 
 #titletrans
   {
@@ -189,11 +251,9 @@ font-weight:bold;
   font-weight:bold;
   }
 
-#title {
-	font-size: 30px;
-	padding-bottom: 5px;
-	border-bottom: 1px solid #e3e3e3;
-	font-weight: normal;
+.title {
+	font-size: 16px;
+	font-weight: bold;
 }
 
 #slogan {
@@ -307,4 +367,137 @@ font-weight:bold;
 
 .clearfix {
 	clear: both; /* Fix van clearboth */
+}
+
+#top {
+	text-align: center;	
+}
+
+/* Here you will find the css for the previous and next buttons.
+This is done by using images. A different image is used for the normal view,
+the mouse over, and the onclick (active) image. Also is inluded a span tag,
+this way when a person's browser does not support the images for some reason
+it will show the text decalred in the span tag in the html file. */
+#previousbtn
+{
+	display: block;
+	width: 40px;
+	height: 40px;
+	background: url("images/previousbtn.png") no-repeat 0 0;
+}
+
+#previousbtn:hover
+{ 
+	background: url("images/previousbtnhover.png") no-repeat 0 0;
+}
+
+#previousbtn:active
+{
+	background: url("images/previousbtnclick.png") no-repeat 0 0;
+}
+
+#previousbtn span
+{
+	position: absolute;
+	top: -999em;
+}
+
+
+#nextbtn
+{
+	float: right;
+  	display: block;
+  	width: 40px;
+  	height: 40px;
+  	background: url("images/nextbtn.png") no-repeat 0 0;
+}
+
+#nextbtn:hover
+{ 
+	background: url("images/nextbtnhover.png") no-repeat 0 0;
+}
+
+#nextbtn:active
+{
+	background: url("images/nextbtnclick.png") no-repeat 0 0;
+}
+
+#nextbtn span
+{
+	position: absolute;
+	top: -999em;
+}
+
+ul#tabs {
+	list-style-type: none;
+	margin: 30px 0 0 0;
+	padding: 0 0 0.3em 0;
+}
+
+ul#tabs li {
+	display: inline;
+}
+
+ul#tabs li a {
+	color: #42454a;
+	background-color: #dedbde;
+	border: 1px solid #c9c3ba;
+	border-bottom: none;
+	padding: 0.3em;
+	text-decoration: none;
+}
+
+ul#tabs li a:hover {
+	background-color: #f1f0ee;
+}
+
+ul#tabs li a.selected {
+	color: #000;
+	background-color: #f1f0ee;
+	font-weight: bold;
+	padding: 0.7em 0.3em 0.38em 0.3em;
+}
+
+div.tabContent {
+	border: 1px solid #c9c3ba;
+	padding: 0.5em;
+	background-color: #f1f0ee;
+}
+
+div.tabContent.hide {
+	display: none;
+}
+
+th {
+  text-align: left;
+}
+
+#course_overview tr {
+  position: relative;
+  height: 30px;
+}
+
+div.inhoud {
+	border: 5px solid #f1f0ee;
+}
+
+.done, .notdone {
+    border: 1px solid;
+    margin: 10px 0px;
+    padding:15px 10px 15px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    width:570px;
+	height:60;
+}
+
+.done {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    background-image:url('images/success.png');
+}
+.notdone {
+    color: #9F6000;
+    background-color: #FEEFB3;
+    background-image: url('images/warning.png');
 }

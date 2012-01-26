@@ -26,17 +26,15 @@ while ($row = mysql_fetch_array($result)) {
 	//dropdown
 	$resultsub = mysql_query("SELECT * FROM ".DB_COURSE_FOLDERS." WHERE parent=".$row['folder_id']);
 	//resultsub zijn alle folders van db parent=".$row['folder_id']);
-	$pagecount = 0;
-	
-	while($pagecount < 10) {
 	while ($rowsub = mysql_fetch_array($resultsub)) {
-			//ok... id halen van user
-			if (isset($uvanetid)){
-				$useridresult = mysql_query("SELECT id FROM users WHERE uvanetid = $uvanetid");
-				$userid = mysql_fetch_array($useridresult);
-				$foldersresult = mysql_query("SELECT folder_id FROM progress WHERE id =".$userid['id']);
-				$match = false;
-				while ($rowfolders = mysql_fetch_array($foldersresult)){
+	
+		//ok... id halen van user
+		if (isset($uvanetid)){
+			$useridresult = mysql_query("SELECT id FROM users WHERE uvanetid = $uvanetid");
+			$userid = mysql_fetch_array($useridresult);
+			$foldersresult = mysql_query("SELECT folder_id FROM progress WHERE id =".$userid['id']);
+			$match = false;
+			while ($rowfolders = mysql_fetch_array($foldersresult)){
 					if($rowfolders['folder_id'] == $rowsub['folder_id']) {
 					//testen of folder_id van de gebruiker overeenkomt met de folder_id
 						echo '<li class="green"><a href="index.php?p=content&folder='.$rowsub['folder_id'].'">'.$rowsub['title'].'</a></li>';
@@ -48,17 +46,12 @@ while ($row = mysql_fetch_array($result)) {
 						echo '<li class="orange"><a  href="index.php?p=content&folder='.$rowsub['folder_id'].'">'.$rowsub['title'].'</a></li>';
 					}
 			
-			} else {
-				echo '<li><a href="index.php?p=content&folder='.$rowsub['folder_id'].'">'.$rowsub['title'].'</a></li>';
-			}
-			$pagecount++;
+		} else {
+			echo '<li><a href="index.php?p=content&folder='.$rowsub['folder_id'].'">'.$rowsub['title'].'</a></li>';
 		}
-		if($pagecount >= 10) {
-			echo '<li><a href="index.php?p=overview&folder='.$row['folder_id'].'">more...</a>';
-		}
+
 	}
 	echo '</ul></li></li>';
-	
 }
 	
 	
