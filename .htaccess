@@ -2,7 +2,7 @@ Options +FollowSymlinks
 
 RewriteEngine on
 
-RewriteRule ^xml$ /webdb1233/pages/xml.php [L]
+RewriteRule ^xml$ pages/xml.php [L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -11,11 +11,11 @@ RewriteRule ^(.*)$ $1/
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)/(.*)/ /webdb1233/index.php?p=$1&folder=$2 [L]
+RewriteRule ^(.*)/(.*)/ index.php?p=$1&folder=$2 [L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)/ /webdb1233/index.php?p=$1 [L]
+RewriteRule ^(.*)/ /Users/martijn/Websites/cs164/index.php?p=$1 [L]
 
 php_value upload_max_filesize 8M
 php_value post_max_size 8M

@@ -81,7 +81,7 @@ $page = "pages/{$pagebase}.php";
 					} else {
 						/* not logged in: show login button */
 						echo "Log in met je UvAnetID: ";
-						echo '<a class="button" href="https://bt-lap.ic.uva.nl/cas/login?service=' . urlencode('http://websec.science.uva.nl' . BASE . 'index.php') . '">Inloggen</a>';
+						echo '<a class="button" href="https://bt-lap.ic.uva.nl/cas/login?service=' . urlencode('http://' . $_SERVER['SERVER_NAME'] . BASE . 'index.php') . '">Inloggen</a>';
 					}
 					?>
 				</div>
@@ -91,7 +91,7 @@ $page = "pages/{$pagebase}.php";
 				/* Show progress bar if user is in database */
 				if (isset($uvanetid) && $pagebase != 'nieuweUser') {
 					echo '<span class="smallfont">Voortgang: </span>';
-					progress($uvanetid, true);
+				// FIXME	progress($uvanetid, true);
 				} else {
 					echo "<div style='margin-right:210px'></div>"; 
 				}
@@ -112,7 +112,7 @@ $page = "pages/{$pagebase}.php";
 				<!-- transparant box placed on the banner -->
 				<div class="transbox">
 					<?php
-					require("include/uitgelicht.php");
+					//require("include/uitgelicht.php");
 					?>
 				</div>
 			</div>

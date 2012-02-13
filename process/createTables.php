@@ -1,7 +1,7 @@
 <?php 
 
 require("../include/config.php");
-require("../include/preprocess.php");
+//require("../include/preprocess.php");
 mysql_connect(DB_SERVER, DB_USER, DB_PASS);
 mysql_select_db(DB_NAME);
 //Insert tables according to database schema per table if it does not exist

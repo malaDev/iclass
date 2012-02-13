@@ -61,7 +61,8 @@ h2 {
 <div class="text">
 <p>Deze website is nog niet juist geconfigureerd. Open het bestand in /include/config.php en vul daar de constanten in zoals aangegeven in de comments in het bestand.</p>
 <p>Als u deze stap denkt te hebben voltooid, laad dan deze pagina opnieuw. Wanneer ditzelfde bericht vervolgens nog steeds verschijnt, kan er nog steeds geen verbinding gemaakt worden met de database en is er iets mis. Probeer dan na te gaan of de gegevens die u heeft ingevuld wel correct zijn, zowel in config.php als in de database.</p>
-</div.
+<p>Error: <?= mysql_error() ?></p>
+</div>
 </div>
 </div>
 </body>

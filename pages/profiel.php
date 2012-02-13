@@ -51,7 +51,7 @@ if (isset($_GET['user'])) {
 			<td>
 				<h3>Voortgang: </h3>
 			</td>
-			<td><?php progress($uvanetid_profile, true); ?></td>
+			<td><?php // FIXME progress($uvanetid_profile, true); ?></td>
 		</tr>
     </table>
     <?php

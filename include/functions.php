@@ -1,17 +1,18 @@
 <?php
 /* start session in order to create a session for the uvanetid of the user who is logged in */
 session_start();
+$_SESSION['UvANetID'] = '<cas:user>mstegem1</cas:user>';
 
 /* Redirect to secure https */
-if ($_SERVER['HTTPS'] != "on") {
-	$redirect = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-	header("Location:$redirect");
-}
+//if ($_SERVER['HTTPS'] != "on") {
+//	$redirect = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+//	header("Location:$redirect");
+//}
 
 /* Validate the ticket gain from logging in on the CAS server */
 if (isset($_GET["ticket"])) {
 	$ticket = $_GET["ticket"];
-	$validateURL = "https://bt-lap.ic.uva.nl/cas/serviceValidate?ticket=" . $ticket . "&service=http://websec.science.uva.nl" . BASE . "index.php";
+	$validateURL = "https://bt-lap.ic.uva.nl/cas/serviceValidate?ticket=" . $ticket . "&service=" . $_SERVER['SERVER_NAME'] . BASE . "index.php";
 	$file = file_get_contents($validateURL);
 	$_SESSION['UvANetID'] = $file;
 	header("Location: index.php");
