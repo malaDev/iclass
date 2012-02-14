@@ -24,7 +24,7 @@ while ($comment = mysql_fetch_array($result)) {
 	$uvanetid_poster = $poster['uvanetid'];
 	$type_poster = $poster['type'];
 
-	$query_type = mysql_query("SELECT type FROM users WHERE uvanetid = $uvanetid");
+	$query_type = mysql_query("SELECT type FROM users WHERE uvanetid = '$uvanetid'");
 	$type_self = mysql_fetch_array($query_type);
 
 	// If type of the replier equals "Docent" or if reply is of urself, show delete link
@@ -60,7 +60,7 @@ while ($comment = mysql_fetch_array($result)) {
 		<table width="600px">
 			<tr>
 				<td class="title" width="400px"><?php echo $title; ?> </td>
-				<td width="200px" style="text-align:right"><?php echo $del; ?>Auteur: <?php echo "<a href='" . BASE . "profiel&user=" . $uvanetid_poster . "'><b>" . $name_poster . "</b></a>"; ?><span class="small">[<?php echo $date; ?>]</span>
+				<td width="200px" style="text-align:right"><?php echo $del; ?>Auteur: <?php echo "<a href='" . BASE . "index.php?p=profiel&user=" . $uvanetid_poster . "'><b>" . $name_poster . "</b></a>"; ?><span class="small">[<?php echo $date; ?>]</span>
 					<?php echo $attachement; ?></td>
 			</tr>
 		</table>

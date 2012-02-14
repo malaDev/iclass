@@ -25,7 +25,7 @@ $reply = embed_youtube($reply);
 
 $uvanetid_newreplier = $_GET["u"];
 
-$sql = "SELECT * FROM users WHERE uvanetid = '{$uvanetid_newreplier}'";
+$sql = "SELECT * FROM users WHERE uvanetid = '$uvanetid_newreplier'";
 $result = mysql_query($sql);
 $user = mysql_fetch_array($result);
 $user_id = $user['id'];

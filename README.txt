@@ -1,36 +1,19 @@
- _      ______          _____  _   _  _____  _____          _____  ______ 
-| |    |  ____|   /\   |  __ \| \ | |/ ____|/ ____|   /\   |  __ \|  ____|
-| |    | |__     /  \  | |__) |  \| | (___ | |       /  \  | |__) | |__   
-| |    |  __|   / /\ \ |  _  /| . ` |\___ \| |      / /\ \ |  ___/|  __|  
-| |____| |____ / ____ \| | \ \| |\  |____) | |____ / ____ \| |    | |____ 
-|______|______/_/    \_\_|  \_\_| \_|_____/ \_____/_/    \_\_|    |______|
-
-Authors:
-Hidde Hensel
-Laurens Verspeek
-Ruben Janssen
-Diederik Beker
-Merijn van Wouden
-
-UNIVERSITY OF AMSTERDAM
-NETHERLANDS
-
----------------------------------------------------------
-DESCRIPTION:
-
-Web based system that integrates with the Harvard video courses. Content from
-their site is stored locally and presented for UVA students who can login with
-their UVA login, and once logged in dicuss below the videos. Teachers have
-moderative permissions.
----------------------------------------------------------
-INSTALLATION:
-
-You need a MySQL database and PHP5+ running to install LearnScape. After
-uploading these files to your server, open /include/config.php and ensure that
-the constants defined there are correct (see the comments there for
-instructions). When these are filled in correctly, go to your website in a web
-browser. You will be asked wether to automatically install the required database
-tables. After this step is completed, your site is running! 
+ _      ______          _____  _   _  _____  _____          _____  ______ | |    |  ____|   /\   |  __ \| \ | |/ ____|/ ____|   /\   |  __ \|  ____|| |    | |__     /  \  | |__) |  \| | (___ | |       /  \  | |__) | |__   | |    |  __|   / /\ \ |  _  /| . ` |\___ \| |      / /\ \ |  ___/|  __|  | |____| |____ / ____ \| | \ \| |\  |____) | |____ / ____ \| |    | |____ |______|______/_/    \_\_|  \_\_| \_|_____/ \_____/_/    \_\_|    |______|
+
+group:
+webdb1233
+
+Authors:
+Hidde Hensel 6379176
+Laurens Verspeek 10184465
+Ruben Janssen 10252657
+Diederik Beker 10190848
+Merijn van Wouden 6306632
+UNIVERSITY OF AMSTERDAM NETHERLANDS
+---------------------------------------------------------
+DESCRIPTION:Web based system that integrates with the Harvard video courses. Content fromtheir site is stored locally and presented for UVA students who can login withtheir UVA login, and once logged in dicuss below the videos. Teachers havemoderative permissions.
+---------------------------------------------------------
+INSTALLATION:You need a MySQL database and PHP5+ running to install LearnScape. Afteruploading these files to your server, open /include/config.php and ensure thatthe constants defined there are correct (see the comments there forinstructions). When these are filled in correctly, go to your website in a webbrowser. You will be asked wether to automatically install the required databasetables. After this step is completed, your site is running! 
 
 ---------------------------------------------------------
 
@@ -55,4 +38,4 @@ Copyright (c) by Merijn van Wouden, Diederik Beker, Ruben Janssen, Laurens Versp
  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
- OTHER DEALINGS IN THE SOFTWARE.
+ OTHER DEALINGS IN THE SOFTWARE.

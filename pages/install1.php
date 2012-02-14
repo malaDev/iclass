@@ -28,23 +28,43 @@ div.content{
   top: -170px;
   background-color: #FFF;
   width: 600px;
-  height: 340px;
+  height: 300px;
   margin: auto;
   border: 1px solid #B3B4B4;
-}
-
-.content img {
-  margin-top: 30px;
 }
 
 .text {
   width: 550px;
   margin: auto;
-  text-align: left;
+  text-align: center;
 }
 
 p{
-  margin: 5px 0;
+  margin: 10px 0;
+}
+.button, .button:link, .button:visited, .button:active {
+	font-weight: bold;
+	padding: 5px;
+	background-color: #efefef;
+	border: 1px #dddddd solid;
+	cursor: pointer;
+}
+.button:hover {
+	background-color: #ff8300;
+	color: white;
+	border: 1px #ff8300 solid;
+}
+.center {
+  text-align: center;
+  margin-top: 20px;
+}
+a,a:link, a:visited, a:active {
+	color: #d36c00;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #ff8300;
 }
 
 h2 {
@@ -56,12 +76,43 @@ h2 {
 </head>
 <body>
 <div class="vertcenter">
-<div class="content"><img src="images/logo2.png" alt="logo" />
-<h2>Installatie: stap 1 van 2</h2>
+<div class="content">
+<h2>Installatie:</h2>
 <div class="text">
-<p>Deze website is nog niet juist geconfigureerd. Open het bestand in /include/config.php en vul daar de constanten in zoals aangegeven in de comments in het bestand.</p>
+<?php
+if ($case == 'database_connect'){
+?>
+<p><b>Deze website is nog niet juist geconfigureerd!</b></p><br />
+<p>Er kan geen connectie met de database worden gemaakt.</p>
+<p>Open het bestand in /include/config.php en vul daar de constanten in zoals aangegeven in de comments in het bestand.</p>
 <p>Als u deze stap denkt te hebben voltooid, laad dan deze pagina opnieuw. Wanneer ditzelfde bericht vervolgens nog steeds verschijnt, kan er nog steeds geen verbinding gemaakt worden met de database en is er iets mis. Probeer dan na te gaan of de gegevens die u heeft ingevuld wel correct zijn, zowel in config.php als in de database.</p>
-<p>Error: <?= mysql_error() ?></p>
+<?php
+} else if ($case == 'database_select') {
+?>
+<p><b>Deze website is nog niet juist geconfigureerd!</b></p><br />
+<p>Er is wel connectie met de database, maar de database '<?php echo DB_NAME; ?>' bestaat niet.</p>
+<p>Open het bestand in /include/config.php en vul daar de juiste naam in van de database, of maak database '<?php echo DB_NAME; ?>' inclusief bijbehorende tabellen door op onderstaande knop te klikken:</p>
+<div class="center"><a class="button" href="process/createDatabase.php">Maak Database</a></div>
+<?php
+} else if ($case == 'database_tables'){
+?>
+<p>Er kan verbinding worden gemaakt met de database. De database is echter nog leeg of anderszins nog incompleet en moet dus worden aangevuld tot alle benodigde tabellen aanwezig zijn. De volgende tabellen missen op dit moment:</p>
+<b><?php 
+foreach($required as $key => $table){
+  echo $table.'<br />';
+}
+?></b>
+<p>Deze tabellen kunnen automatisch aangemaakt worden, wanneer u op onderstaande knop drukt. U wordt vervolgens automatisch doorverwezen naar de dan werkende site.</p>
+<div class="center"><a class="button" href="process/createDatabase.php">Maak Tabellen</a></div>
+<?php
+} else if ($case == 'base'){
+?>
+<p><b>Deze website is nog niet juist geconfigureerd!</b></p><br />
+<p>De base van deze website is niet correct ingesteld. Als uw website in de root staat, vul dan als BASE in config.php alleen een '/' in. <br />Staat uw website in een submap vul dan '/naamvansubmap/' in.</p>
+<p>De base is op dit moment: <?php echo BASE; ?>.<br />Suggestie voor correcte base (kan verkeerd zijn): <br /><b><?php echo strstr($_SERVER["REQUEST_URI"], 'index', true); ?></b></p>
+<?php
+}
+?>
 </div>
 </div>
 </div>

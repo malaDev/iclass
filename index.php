@@ -13,7 +13,7 @@
 require("include/config.php");
 require("include/preprocess.php");
 require("include/functions.php");
-include("include/lookforavatar.php");
+require_once("include/lookforavatar.php");
 
 /* get the page to be included in the content */
 if (isset($_GET['p'])) {
@@ -63,25 +63,25 @@ $page = "pages/{$pagebase}.php";
 					<?php
 					/* Check if user is logged in */
 					if (isset($uvanetid)) {
-						echo "Je bent ingelogd  als <a href='" . BASE . "profiel&user=" . $uvanetid . "'><b>" . $name . "</b></a>";
+						echo "Je bent ingelogd  als <a href='" . BASE . "index.php?p=profiel&user=" . $uvanetid . "'><b>" . $name . "</b></a>";
 						if ($pagebase != 'nieuweUser') {
 							/* Check if current user is in the list of admin's */
 							foreach ($admin_users as $admin_user) {
 								if ($uvanetid == $admin_user) {
 									/* Admin options */
-									echo " <a class='button' href='" . BASE . "configuratie'>Configuratie</a>";
+									echo " <a class='button' href='" . BASE . "index.php?p=configuratie'>Configuratie</a>";
 									break;
 								}
 							}
 						}
 						?>
-						<a class="button" href="<?php echo BASE; ?>settings">Settings</a>
+						<a class="button" href="<?php echo BASE; ?>index.php?p=settings">Settings</a>
 						<a class="button" href="<?php echo BASE; ?>?logout=true">Uitloggen</a>
 						<?php
 					} else {
 						/* not logged in: show login button */
 						echo "Log in met je UvAnetID: ";
-						echo '<a class="button" href="https://bt-lap.ic.uva.nl/cas/login?service=' . urlencode('http://' . $_SERVER['SERVER_NAME'] . BASE . 'index.php') . '">Inloggen</a>';
+						echo '<a class="button" href="https://bt-lap.ic.uva.nl/cas/login?service=' . urlencode($url) . '">Inloggen</a>';
 					}
 					?>
 				</div>
@@ -89,16 +89,16 @@ $page = "pages/{$pagebase}.php";
 				<div class="underUserbar">
 				<?php
 				/* Show progress bar if user is in database */
-				if (isset($uvanetid) && $pagebase != 'nieuweUser') {
+				if (isset($uvanetid) && $pagebase != 'nieuweUser' && DB_COURSE_FOLDERS != false && DB_COURSE_ITEMS != false) {
 					echo '<span class="smallfont">Voortgang: </span>';
-				// FIXME	progress($uvanetid, true);
+					progress($uvanetid, true);
 				} else {
 					echo "<div style='margin-right:210px'></div>"; 
 				}
 				?>
 				<br /><br />
 				<!-- xml export link -->
-				<a href="<?php echo BASE; ?>xml"><img src="<?php echo BASE; ?>images/xml_icon.gif" alt="xml feed" /></a>
+				<a href="<?php echo BASE; ?>pages/xml.php"><img src="<?php echo BASE; ?>images/xml_icon.gif" alt="xml feed" /></a>
 				</div>
 				<!-- include navigation menu -->
 				<ul id="nav">
@@ -111,9 +111,7 @@ $page = "pages/{$pagebase}.php";
 			<div id="banner">
 				<!-- transparant box placed on the banner -->
 				<div class="transbox">
-					<?php
-					//require("include/uitgelicht.php");
-					?>
+					transbox
 				</div>
 			</div>
 
@@ -131,10 +129,10 @@ $page = "pages/{$pagebase}.php";
 			<!-- footer at bottom of the page -->
 			<div id="footer">
 				&copy; <?php echo date("Y") . " " . TITLE . " - " . SLOGAN . " -"; ?>
-				<a href="<?php echo BASE; ?>over">over ons</a> |
-				<a href="<?php echo BASE; ?>faq">veel gestelde vragen</a> |
-				<a href="<?php echo BASE; ?>contact">contact</a> |
-				<a href="<?php echo BASE; ?>disclaimer">disclaimer</a>
+				<a href="<?php echo BASE; ?>index.php?p=over">over ons</a> |
+				<a href="<?php echo BASE; ?>index.php?p=faq">veel gestelde vragen</a> |
+				<a href="<?php echo BASE; ?>index.php?p=contact">contact</a> |
+				<a href="<?php echo BASE; ?>index.php?p=disclaimer">disclaimer</a>
 				<div class="clearfix"></div>
 			</div>
 		</div>

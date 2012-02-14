@@ -10,7 +10,7 @@ header("Pragma: no-cache");
 require("../include/config.php");
 require("../include/preprocess.php");
 require("../include/functions.php");
-include("../include/lookforavatar.php");
+require_once("../include/lookforavatar.php");
 
 // Comment id
 $id = $_GET["q"];

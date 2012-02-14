@@ -1,8 +1,8 @@
 <?php
 /* Get and show the replies linked to the comment_id */
 
-include("../include/lookforavatar.php");
 
+require_once("../include/lookforavatar.php");
 // Set time names to dutch
 mysql_query("SET lc_time_names=nl_NL");
 
@@ -28,7 +28,7 @@ while ($reply = mysql_fetch_array($result_selectreplies)) {
 	if ($type_replier == "Docent") {
 		$type_replier = "<b>" . $type_replier . "</b>";
 	}
-	$query_type_r = mysql_query("SELECT type FROM users WHERE uvanetid = $uvanetid");
+	$query_type_r = mysql_query("SELECT type FROM users WHERE uvanetid = '$uvanetid'");
 	$type_self_r = mysql_fetch_array($query_type_r);
 
 	// If type of the replier equals "Docent" or if reply is of urself, show delete link
@@ -43,7 +43,7 @@ while ($reply = mysql_fetch_array($result_selectreplies)) {
 		<tr>
 			<td valign="top" width="400px" style="padding-left: 10px"><?php echo $body_reply; ?></td>
 			<td style="text-align:right;" valign="top">
-				<?php echo $del; ?><?php echo "<a href='" . BASE . "profiel&user=" . $uvanetid_replier . "'><b>" . $name_replier . "</b></a>"; ?><span class="small">[<?php echo $date_reply; ?>]</span>
+				<?php echo $del; ?><?php echo "<a href='" . BASE . "index.php?p=profiel&user=" . $uvanetid_replier . "'><b>" . $name_replier . "</b></a>"; ?><span class="small">[<?php echo $date_reply; ?>]</span>
 				<span class="smallfont">Voortgang: </span><?php progress($uvanetid_replier, false); ?><br />
 				<?php echo $type_replier; ?> &nbsp;&nbsp;<img style="float:right" src='<?php echo lookforavatar($uvanetid_replier, "../"); ?>' width="50" height="50" alt="avatar" /></td>
 		</tr>

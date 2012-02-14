@@ -1,18 +1,18 @@
 <?php
 /* start session in order to create a session for the uvanetid of the user who is logged in */
 session_start();
-$_SESSION['UvANetID'] = '<cas:user>mstegem1</cas:user>';
 
-/* Redirect to secure https */
-//if ($_SERVER['HTTPS'] != "on") {
-//	$redirect = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-//	header("Location:$redirect");
-//}
+/* Redirect to secure https 
+if ($_SERVER['HTTPS'] != "on") {
+	$redirect = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+	header("Location:$redirect");
+}*/
 
 /* Validate the ticket gain from logging in on the CAS server */
 if (isset($_GET["ticket"])) {
 	$ticket = $_GET["ticket"];
-	$validateURL = "https://bt-lap.ic.uva.nl/cas/serviceValidate?ticket=" . $ticket . "&service=" . $_SERVER['SERVER_NAME'] . BASE . "index.php";
+	$validateURL = "https://bt-lap.ic.uva.nl/cas/serviceValidate?ticket=" . $ticket . "&service=" . $url;
+	// make sure extension=php_openssl.dll is added to php.ini in order to make this work
 	$file = file_get_contents($validateURL);
 	$_SESSION['UvANetID'] = $file;
 	header("Location: index.php");
@@ -37,12 +37,12 @@ if (isset($_SESSION['UvANetID']) && !isset($_GET["logout"]) && !isset($_GET["tic
 	$length = $endUser - $startUser;
 	$uvanetid = substr($uvanetid, $startUser, $length);
 	$name = $uvanetid;
-	$sql = "SELECT * FROM users WHERE uvanetid = '{$uvanetid}'";
+	$sql = "SELECT * FROM users WHERE uvanetid = '$uvanetid'";
 	$result = mysql_query($sql);
 	/* uvanetid not found in database? redirect to nieuweUser.php */
 	$rows = mysql_num_rows($result);
 	if ($rows == 0 && $_GET['p'] != "nieuweUser")
-		header("Location: " . BASE . "nieuweUser");
+		header("Location: " . BASE . "index.php?p=nieuweUser");
 	/* uvanetid found in database? Get name and id of user */
 	if ($rows == 1) {
 		$user = mysql_fetch_array($result);
@@ -66,7 +66,7 @@ function progress($uvanetid, $bar) {
 	}
 	if ($episodeCount > 0){
 		//total number of episodes done 
-		$useridresult = mysql_query("SELECT id FROM users WHERE uvanetid =" . $uvanetid);
+		$useridresult = mysql_query("SELECT id FROM users WHERE uvanetid = '$uvanetid'");
 		$userid = mysql_fetch_array($useridresult);
 		$resultuser = mysql_query("SELECT COUNT(id) FROM progress WHERE id =" . $userid['id']) or die(mysql_error());
 		$resultuser2 = mysql_result($resultuser, 0);
@@ -102,7 +102,7 @@ function percentage($uvanetid) {
 	}
 	if ($episodeCount > 0){
 		//total number of episodes done 
-		$useridresult = mysql_query("SELECT id FROM users WHERE uvanetid =" . $uvanetid);
+		$useridresult = mysql_query("SELECT id FROM users WHERE uvanetid = '$uvanetid'");
 		$userid = mysql_fetch_array($useridresult);
 		$resultuser = mysql_query("SELECT COUNT(id) FROM progress WHERE id =" . $userid['id']) or die(mysql_error());
 		$resultuser2 = mysql_result($resultuser, 0);
@@ -115,15 +115,5 @@ function percentage($uvanetid) {
 	}
 	return round($percentage);
 }
-
-/* Select a new user each day for the focus_user area in the transparant box (uitgelicht box) */
-$usercount = mysql_fetch_row(mysql_query("SELECT count(*) FROM users WHERE type='Student'"));
-// As we can't set cronjobs, this is a cron workaround that works fine aswell.
-srand(date('z')); // Seed pseudorandom nr generator with day of the year
-$focus_uid = rand(1, $usercount[0]) - 1;
-$focus_user_row = mysql_fetch_row(mysql_query("SELECT firstname, lastname, id FROM users WHERE type='Student' LIMIT {$focus_uid}, 1"));
-$focus_user_firstn = $focus_user_row[0];
-$focus_user_lastn = $focus_user_row[1];
-$focus_user_id = $focus_user_row[2];
 ?>
 

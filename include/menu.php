@@ -9,7 +9,7 @@ function menuItem($path, $name, $single, $folder, $subitem) {
 		$pageExtra = '';
 	}
 	$path_ext = $path ? $path : '';
-	$link = '<a href="' . BASE . $path_ext . '">' . $name . '</a>';
+	$link = '<a href="' . BASE . 'index.php?p='.$path_ext . '">' . $name . '</a>';
 	if (!$subitem) {
 		if ($single) {
 			$extra = $pageExtra == $path ? ' id="active"' : '';
@@ -42,11 +42,11 @@ function menuItem($path, $name, $single, $folder, $subitem) {
 }
 
 //This creates the home button
-menuItem("", "Home", TRUE, FALSE, FALSE);
+menuItem("index_main", "Home", TRUE, FALSE, FALSE);
 
 //It checks to see if this is an existing user, and if it is it executes the code below.
 //Otherwise it will ask the user to input a name.
-if($pagebase != 'nieuweUser'){
+if($pagebase != 'nieuweUser' && DB_COURSE_FOLDERS != false && DB_COURSE_ITEMS != false){
 	//first it will select everything from the correct table that is specified
 	//in config.php, where the folder has parent 1. This means that it will
 	//select all the main menu items.
@@ -57,7 +57,7 @@ if($pagebase != 'nieuweUser'){
 	while ($row = mysql_fetch_array($result)) {
 		$episode_folderid = $row['folder_id'];
 		$episode_title = $row['title'];
-		menuItem("overview/$episode_folderid/", "$episode_title", FALSE, "$episode_folderid", FALSE);
+		menuItem("overview&folder=$episode_folderid", "$episode_title", FALSE, "$episode_folderid", FALSE);
 		echo '<ul>';
 		
 		//Here it selects the sub menu item, this is done by using the parent structure.
@@ -73,7 +73,7 @@ if($pagebase != 'nieuweUser'){
 			
 			//If a user is logged in it will need to check the progress.
 			if (isset($uvanetid)) {
-				$useridresult = mysql_query("SELECT id FROM users WHERE uvanetid = $uvanetid");
+				$useridresult = mysql_query("SELECT id FROM users WHERE uvanetid = '$uvanetid'");
 				$userid = mysql_fetch_array($useridresult);
 				$foldersresult = mysql_query("SELECT folder_id FROM progress WHERE id =" . $userid['id']);
 				$match = false;
@@ -82,7 +82,7 @@ if($pagebase != 'nieuweUser'){
 				while ($rowfolders = mysql_fetch_array($foldersresult)) {
 					if ($rowfolders['folder_id'] == $rowsub['folder_id']) {
 						echo '<li class="green">';
-						menuItem("content/$subitemFolder/", "$subitemTitle", FALSE, FALSE, TRUE);
+						menuItem("content&folder=$subitemFolder", "$subitemTitle", FALSE, FALSE, TRUE);
 						echo '</li>';
 						$match = true;
 						break;
@@ -90,13 +90,13 @@ if($pagebase != 'nieuweUser'){
 				}
 				if ($match == false) {
 					echo '<li>';
-					menuItem("content/$subitemFolder/", "$subitemTitle", FALSE, FALSE, TRUE);
+					menuItem("content&folder=$subitemFolder", "$subitemTitle", FALSE, FALSE, TRUE);
 					echo '</li>';
 				}
 			//If a user has not logged in all the items will be shown in black.
 			} else {
 				echo '<li>';
-				menuItem("content/$subitemFolder/", "$subitemTitle", FALSE, FALSE, TRUE);
+				menuItem("content&folder=$subitemFolder", "$subitemTitle", FALSE, FALSE, TRUE);
 				echo '</li>';
 			}
 			$pagecount++;
@@ -104,7 +104,7 @@ if($pagebase != 'nieuweUser'){
 		
 		//This makes sure that the 'more...' option is shown after ten items.
 		if ($pagecount >= 10) {
-			echo '<li><a href="'.BASE.'overview/' . $row['folder_id'] . '/">more...</a>';
+			echo '<li><a href="'.BASE.'index.php?p=overview&folder=' . $row['folder_id'] . '">more...</a>';
 		}
 		echo '</ul></li></li>';
 	}

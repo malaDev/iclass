@@ -3,7 +3,6 @@
 <?php
 /* if user is logged in: */
 } else {
-	include("include/lookforavatar.php");
 	?>
 
 	<h1>Settings</h1><br />

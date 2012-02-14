@@ -77,15 +77,30 @@ function sub_xml($xml,$parent,$course_dbname,&$updatecount,$cur_weight){
   
 }
 
-function create_course($course_name,$xml,$action,$teacher_id,$course_id){
-$xmltree = simplexml_load_file($xml);
+function create_course($course_name,$xml,$paste,$action,$teacher_id,$course_id){
+$real_xml = false;
+if (!$paste){
+	if (@$xmltree = simplexml_load_file($xml))
+		$real_xml = true;
+} else {
+	if (@$xmltree = simplexml_load_string($xml))
+		$real_xml = true;
+	$fh = fopen('xml_'.$course_id.'.txt', 'w') or die("can't create xml file");
+	fwrite($fh, $xml);
+	fclose($fh);
+	$xml = "xml_".$course_id.".txt";
+
+}
 $updatecount=Array('folders'=>0,'items'=>0);
 if($action=='update'){
   //update-action
   if($course_id>0){
     $course_dbname="course__".$course_id;
 	mysql_query("UPDATE courses SET course_name='{$course_name}', update_date=NOW(), teacher_id={$teacher_id}, xml_feed='{$xml}' WHERE course_id={$course_id}");
-	parse_xml($xmltree,$course_dbname,$updatecount);
+	if ($real_xml)
+		parse_xml($xmltree,$course_dbname,$updatecount);
+	else
+	  echo "<div class='error'>xml file niet gevonden!</div>";
   }else{
     echo <<<SCRIPT
 <script type="text/javascript">document.getElementById("messages").innerHTML = "<p>Cursus bestaat niet!</p>";</script>
@@ -115,8 +130,11 @@ SCRIPT;
 	weight INT,
 	parent INT,
 	title VARCHAR(200))");
-	}	
-  parse_xml($xmltree,$course_dbname,$updatecount);
+	}
+  if ($real_xml)
+	parse_xml($xmltree,$course_dbname,$updatecount);
+  else
+	  echo "<div class='error'>xml file niet gevonden!</div>";
 }
 
 }
@@ -125,7 +143,7 @@ function parse_xml($xmltree,$course_dbname,$updatecount){
 sub_xml($xmltree,0,$course_dbname,$updatecount,0);
 echo <<<SCRIPT
 <script type="text/javascript">
-document.getElementById("messages").innerHTML = "<p><b>Nieuwe mappen:</b> {$updatecount['folders']}<br /> <b>Nieuwe items:</b> {$updatecount['items']}</p>";
+document.getElementById("messages").innerHTML = "<div class='success'><b>Nieuwe mappen:</b> {$updatecount['folders']}<br /> <b>Nieuwe items:</b> {$updatecount['items']}</div>";
 </script>
 SCRIPT;
 }

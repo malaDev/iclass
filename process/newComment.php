@@ -33,7 +33,7 @@ $uvanetid_commenter = $_GET["u"];
 // folderid of the episode where the comment was posted
 $folderid= $_GET["fid"];
 
-$sql = "SELECT * FROM users WHERE uvanetid = '{$uvanetid_commenter}'";
+$sql = "SELECT * FROM users WHERE uvanetid = '$uvanetid_commenter'";
 $result4 = mysql_query($sql);
 $user = mysql_fetch_array($result4);
 $user_id = $user['id'];

@@ -47,12 +47,18 @@ if (isset($_GET['user'])) {
                <img src='<?php echo lookforavatar($uvanetid_profile, ""); ?>' width="100" height="100" alt="avatar" /> 
 			</td>
         </tr>
+		<?php
+		if (DB_COURSE_FOLDERS != false && DB_COURSE_ITEMS != false) {
+		?>
 		<tr>
 			<td>
 				<h3>Voortgang: </h3>
 			</td>
-			<td><?php // FIXME progress($uvanetid_profile, true); ?></td>
+			<td><?php progress($uvanetid_profile, true); ?></td>
 		</tr>
+		<?php
+		}
+		?>
     </table>
     <?php
     }

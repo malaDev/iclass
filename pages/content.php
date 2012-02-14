@@ -77,7 +77,7 @@ if (isset($_GET['folder'])) {
 	if (isset($numericFolder)) {
 		// logged in? show done/not done checkbox for progress
 		if (isset($uvanetid)) {
-			$useridresult = mysql_query("SELECT id FROM users WHERE uvanetid = $uvanetid");
+			$useridresult = mysql_query("SELECT id FROM users WHERE uvanetid = '$uvanetid'");
 			$userid = mysql_fetch_array($useridresult);
 			$id = $userid['id'];
 			$foldersResult = mysql_query("SELECT * FROM progress WHERE id = $id AND folder_id = $folderid");
@@ -104,13 +104,13 @@ if (isset($_GET['folder'])) {
 						if (isset($current)) {
 							$nextid = $episode['folder_id'];
 							$nexttitle = $episode['title'];
-							echo '<a href="' . BASE . 'content/' . $nextid . '/">' . $nexttitle . '</a>';
+							echo '<a href="' . BASE . 'index.php?p=content&folder=' . $nextid . '">' . $nexttitle . '</a>';
 							break;
 						}
 						if ($episode['folder_id'] == $folderid) {
 							$current = true;
 							if (isset($backid))
-								echo '<a href="' . BASE . 'content/' . $backid . '/">' . $backtitle . '</a>&nbsp;&nbsp;&nbsp;&nbsp;';
+								echo '<a href="' . BASE . 'index.php?p=content&folder=' . $backid . '">' . $backtitle . '</a>&nbsp;&nbsp;&nbsp;&nbsp;';
 							echo '</td><td>';
 							echo '<h2>' . $currentEpisode['title'] . '</h2>';
 							echo '</td><td width="25%">';
