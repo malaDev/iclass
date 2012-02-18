@@ -13,17 +13,18 @@ require("../include/preprocess.php");
 require("../include/functions.php");
 
 $title = $_GET["title"];
-$weight = $_GET["weight"] + 1;
+$weight = $_GET["weight"];
+$folder = $_GET["folder"];
 foreach ($admin_users as $admin_user) {
 	if (isset($uvanetid) && $uvanetid == $admin_user) {
 		// Add section
-		$sql = "INSERT INTO " . DB_COURSE_FOLDERS . " (weight, parent, title) VALUES ('$weight', '1', '$title')";
+		$sql = "INSERT INTO " . DB_COURSE_FOLDERS . " (weight, parent, title) VALUES ('$weight', '$folder', '$title')";
 		$result = mysql_query($sql);
 		if (!mysql_affected_rows() > 0) {
 			echo "<div class='error'>Sectie kan niet worden toegevoegd!</div>";
 		}
 		// Show all the sections
-		require 'getSections.php';
+		require 'getEpisodes.php';
 		break;
 	}
 }

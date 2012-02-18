@@ -11,10 +11,11 @@ if (isset($uvanetid)) {
 	$id = $userid['id'];
 }
 //Selects all the main menu items (episodes).
-$episodesResult = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=" . $folderid);
+$episodesResult = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=" . $folderid . " ORDER BY weight");
 if ($episodesResult) {
 	while ($episode = mysql_fetch_array($episodesResult)) {
 		$episode_folderid = $episode['folder_id'];
+		$weight = $episode['weight'];
 		//if user is logged in, shows which episodes are cleared. Else shows episodes without progress.
 		if (isset($uvanetid)) {
 			$progressResult = mysql_query("SELECT * FROM progress WHERE id = $id AND folder_id = $episode_folderid");
@@ -30,25 +31,25 @@ if ($episodesResult) {
 		} else {
 			echo '<div onclick="location.href=\'' . BASE . 'index.php?p=content&folder=' . $episode['folder_id'] . '\'" class="standout clickableStandout"><a href="' . BASE . 'index.php?p=content&folder=' . $episode['folder_id'] . '">' . $episode['title'] . '</a></div>';
 		}
-			foreach ($admin_users as $admin_user) {
+		foreach ($admin_users as $admin_user) {
 			if ($uvanetid == $admin_user) {
-				$episodesResult2 = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=" . $folderid);
+				$episodesResult2 = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=" . $folderid . " ORDER BY weight");
 				unset($current);
 				unset($next_id);
 				unset($prev_id);
-				while ($episodes = mysql_fetch_array($episodesResult2)) {
+				while ($episode2 = mysql_fetch_array($episodesResult2)) {
 					if (isset($current)) {
-						$next_id = $episode['folder_id'];
-						?><a class="button" onclick="swapEpisodes('<?php echo $episode_folderid; ?>', '<?php echo $next_id; ?>');">Move Down</a><?php
+						$next_id = $episode2['folder_id'];
+						?><a class="button" onclick="swapEpisodes('<?php echo $folderid; ?>', '<?php echo $episode_folderid; ?>', '<?php echo $next_id; ?>');">Move Down</a><?php
 						break;
 					}
-					if ($episode['folder_id'] == $folderid) {
+					if ($episode2['folder_id'] == $episode_folderid) {
 						$current = true;
 						if (isset($prev_id)) {
-							?><a class="button" onclick="swapEpisodes('<?php echo $episode_folderid; ?>', '<?php echo $prev_id; ?>');">Move Up</a><?php
+							?><a class="button" onclick="swapEpisodes('<?php echo $folderid; ?>', '<?php echo $episode_folderid; ?>', '<?php echo $prev_id; ?>');">Move Up</a><?php
 						}
 					} else {
-						$prev_id = $episode['folder_id'];
+						$prev_id = $episode2['folder_id'];
 					}
 				}
 				?>
@@ -56,6 +57,18 @@ if ($episodesResult) {
 				<?php
 				break;
 			}
+		}
+	}
+	foreach ($admin_users as $admin_user) {
+		if ($uvanetid == $admin_user) {
+			if (isset($weight))
+				$weight = $weight + 1;
+			else
+				$weight = 1;
+			?>
+			<br /><br /><br /><input class="inputfield" type="text" name="episode" id="episode" /><input type="submit" class="button" onclick="addEpisode('<?php echo $folderid; ?>',document.getElementById('episode').value, '<?php echo $weight; ?>')" value="Nieuw Onderdeel" />
+			<?php
+			break;
 		}
 	}
 } else {

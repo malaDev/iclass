@@ -24,7 +24,7 @@ function menuItem($path, $name, $single, $folder, $subitem) {
 				$extra = ' id="active"';
 			} else {
 				$extra = '';
-				$resultsub = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=" . $folder);
+				$resultsub = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=" . $folder . " ORDER BY weight");
 				while ($rowsub = mysql_fetch_array($resultsub)) {
 					$folder = $rowsub['folder_id'];
 					if ($currentfolder == $folder) {
@@ -62,7 +62,7 @@ if($pagebase != 'nieuweUser' && DB_COURSE_FOLDERS != false && DB_COURSE_ITEMS !=
 		
 		//Here it selects the sub menu item, this is done by using the parent structure.
 		//It finds the the folders where the parent is the main menu item.
-		$resultsub = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=" . $row['folder_id']);
+		$resultsub = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=" . $row['folder_id'] . " ORDER BY weight");
 		$pagecount = 0;
 		
 		//It then prints all the submenu items to a maximum amount of ten items.

@@ -1,0 +1,17 @@
+1,5 uur:	makkelijke configuratie website (automatisch database en tabellen maken)
+15 min:		bug gefixt: docent kan nu (hopelijk) ook correct inloggen
+1 uur:		plain text xml parser
+30 min:		xml parser configuratie page gefixt (waren paar bugs)
+1,5 uur:	secties verwijderen/toevoegen
+1 uur:		volgorde secties veranderen
+2 uur:		onderdelen (episodes) verwijderen (traden wat complicaties op met alle items verwijderen)
+30 min:		volgorde onderdelen (episodes) veranderen
+15 min:		onderdelen toevoegen
+1 uur:		info aanpassen en toevoegen per onderdeel + implementatie markdown parser
+30 min:		markitUp markdown editor met preview (markdown parser)
+30 min:		Markdown css (layout voor blockquotes en code blocks etc.)
+1 uur:		Code Highlighting in markdown output (auto-detect taal; kent 41 talen)
+30 min:		User list met sorteer functie
+
+NOTES:
+Ik let nu minder op de layout, omdat er toch een nieuwe komt

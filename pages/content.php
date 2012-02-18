@@ -10,6 +10,21 @@
 			return [curtop];
 		}
 	}
+	function editInfo()
+	{
+		var editInfo = document.getElementById("editInfo");
+		var info = document.getElementById("markdownInfo");
+		
+		if (editInfo.style.display == "block"){
+			editInfo.style.display = "none";
+			info.style.display = "block";
+			window.scroll(0,findPos(info) - 10);
+		}else{
+			editInfo.style.display = "block";
+			info.style.display = "none";
+			window.scroll(0,findPos(editInfo) - 10);
+		}
+	}
 
 	// function to navigate through the video's
 	function slideVideo(id, way, folder)
@@ -58,7 +73,11 @@
 		xmlhttp.send();
 	}
 </script>
-
+					  <link rel="stylesheet" title="Default" href="<?php echo BASE; ?>highlight/styles/vs.css" />
+					<script type="text/javascript" src="<?php echo BASE; ?>highlight/highlight.pack.js"></script>
+<script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+</script>
 <?php
 if (isset($_GET['folder'])) {
 	$folderid = $_GET['folder'];
@@ -69,14 +88,33 @@ if (isset($_GET['folder'])) {
 } else {
 	$folderid = '';
 }
-?>
+include_once "include/markdown.php";
 
+?>
+<link href="css/markdown.css" rel="stylesheet"></link>
 <div id="top">
 	<?php
 	// if folder ID is numeric (prevents sql injection):
 	if (isset($numericFolder)) {
 		// logged in? show done/not done checkbox for progress
 		if (isset($uvanetid)) {
+			if (isset($_POST['submit'])) {
+				$sqlinfo = "SELECT * FROM " . DB_COURSE_ITEMS . " WHERE folder=" . $folderid . " AND type=2";
+				$resultinfo = mysql_query($sqlinfo) or die(mysql_error());
+				$new_info = mysql_real_escape_string($_POST['markdown']);
+				if (mysql_num_rows($resultinfo) > 0) {
+					mysql_query("UPDATE " . DB_COURSE_ITEMS . " SET innerhtml = '".$new_info."' WHERE folder=" . $folderid . " AND type=2");
+				if (mysql_affected_rows() < 1){
+					echo "<div class='error'>Info is niet geupdate!</div>";
+				}
+				} else {
+					$sql_insert = "INSERT INTO " . DB_COURSE_ITEMS . " (weight, folder, type, innerhtml) VALUES ('2', '$folderid', '2', '$new_info')";
+					$result_insert = mysql_query($sql_insert);
+				if (mysql_affected_rows() != 1){
+					echo "<div class='error'>Info kan niet worden toegevoegd!</div>";
+				}
+				}
+			}
 			$useridresult = mysql_query("SELECT id FROM users WHERE uvanetid = '$uvanetid'");
 			$userid = mysql_fetch_array($useridresult);
 			$id = $userid['id'];
@@ -123,9 +161,68 @@ if (isset($_GET['folder'])) {
 				</td></tr></table></div>
 	<?php
 	// show general info of the current episode
-	echo '<div class=info><h3 class=black>Info</h3>';
-	otherinfo($folderid);
+	echo '<div id="markdownInfo">';
+	$info = otherinfo($folderid);
+	$info_markdown = Markdown($info);
+	echo $info_markdown;
+	if (isset($uvanetid) && isAdmin($uvanetid))
+		echo '<br /><button type="button" onclick="editInfo()">Aanpassen</button>';
 	echo '</div>';
+	if (isset($uvanetid) && isAdmin($uvanetid)){
+	?>
+<!-- markItUp! -->
+<script type="text/javascript" src="<?php echo BASE; ?>markitup/jquery.markitup.js"></script>
+<!-- markItUp! toolbar settings -->
+<script type="text/javascript" src="<?php echo BASE; ?>markitup/sets/markdown/set.js"></script>
+<!-- markItUp! skin -->
+<link rel="stylesheet" type="text/css" href="<?php echo BASE; ?>markitup/skins/markitup/style.css" />
+<!--  markItUp! toolbar skin -->
+<link rel="stylesheet" type="text/css" href="<?php echo BASE; ?>markitup/sets/markdown/style.css" />
+
+<script type="text/javascript">
+<!--
+$(document).ready(function()	{
+	// Add markItUp! to your textarea in one line
+	// $('textarea').markItUp( { Settings }, { OptionalExtraSettings } );
+	$('#markdown').markItUp(mySettings);
+	
+	// You can add content from anywhere in your page
+	// $.markItUp( { Settings } );	
+	$('.add').click(function() {
+ 		$.markItUp( { 	openWith:'<opening tag>',
+						closeWith:'<\/closing tag>',
+						placeHolder:"New content"
+					}
+				);
+ 		return false;
+	});
+	
+	// And you can add/remove markItUp! whenever you want
+	// $(textarea).markItUpRemove();
+	$('.toggle').click(function() {
+		if ($("#markdown.markItUpEditor").length === 1) {
+ 			$("#markdown").markItUpRemove();
+			$("span", this).text("Markdown Editor");
+		} else {
+			$('#markdown').markItUp(mySettings);
+			$("span", this).text("Plain Text");
+		}
+ 		return false;
+	});
+});
+-->
+</script>
+<div id="editInfo" style="display:none">
+	<form method="post">
+		<textarea id="markdown" style="border: 1px  #99d1f1 solid" name="markdown" rows="25" cols="85"><?php echo $info; ?></textarea>
+			<p style="margin-left: 600px"><a href="#" class="toggle"><span>Plain Text</span></a> - <a onclick="editInfo()">Sluit</a></p>
+		<input type="submit" name="submit" value="Update Info" class="button" />
+	</form>
+
+	
+</div>
+	<?php
+	}
 	items($folderid);
 	contritems($folderid);
 } else {
@@ -221,11 +318,12 @@ function otherinfo($id) {
 
 	if (mysql_num_rows($result) > 0) {
 		while ($row = mysql_fetch_array($result)) {
-			echo '<p>' . $row['innerhtml'] . '</p>';
+			$info = $row['innerhtml'];
 		}
 	} else {
-		echo '<p>Er is geen informatie beschikbaar</p>';
+		$info = 'Er is geen informatie beschikbaar';
 	}
+	return $info;
 }
 
 // Automatic find mp4 files and play them with JW-player

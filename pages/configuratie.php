@@ -17,36 +17,26 @@
 <div id="messages"></div>
 <span id="loading" style="display: none">&nbsp; Laden... <br /><img src="<?php echo BASE; ?>images/loader.gif" /><br />Kan even duren bij grote xml bestanden.<br/>Duurt het langer dan een paar minuten? probeer het dan opnieuw<br /><br /></span>
 <?php
-foreach ($admin_users as $admin_user) {
-//see if the logged in user is part of the admin group
-	if ($uvanetid == $admin_user) {
-
-		$admin = true;
-		if (isset($_POST['delete'])) {
-			mysql_query("DROP TABLE course__" . $_POST['delete'] . "_folders, course__" . $_POST['delete'] . "_items");
-			mysql_query("DELETE FROM courses WHERE course_id=" . $_POST['delete']);
-		}
-
-		if (isset($_POST['course_title']) && isset($_POST['course_xml']) && isset($_POST['course_action'])) {
-			require_once("include/course_xmlread.php");
-			$course_id = isset($_POST['course_id']) ? $_POST['course_id'] : 0;
-
-			if ($_POST['course_xml'] != "") {
-				$paste = false;
-				$course_xml = $_POST['course_xml'];
-			} else {
-				$paste = true;
-				$course_xml = $_POST['course_xml_paste'];
-			}
-			create_course($_POST['course_title'], $course_xml, $paste, $_POST['course_action'], $user_id, $course_id);
-		}
+if (isAdmin($uvanetid)) {
+	if (isset($_POST['delete'])) {
+		mysql_query("DROP TABLE course__" . $_POST['delete'] . "_folders, course__" . $_POST['delete'] . "_items");
+		mysql_query("DELETE FROM courses WHERE course_id=" . $_POST['delete']);
 	}
-}
 
-if (!isset($admin)) { //permission check	
+	if (isset($_POST['course_title']) && isset($_POST['course_xml']) && isset($_POST['course_action'])) {
+		require_once("include/course_xmlread.php");
+		$course_id = isset($_POST['course_id']) ? $_POST['course_id'] : 0;
+
+		if ($_POST['course_xml'] != "") {
+			$paste = false;
+			$course_xml = $_POST['course_xml'];
+		} else {
+			$paste = true;
+			$course_xml = $_POST['course_xml_paste'];
+		}
+		create_course($_POST['course_title'], $course_xml, $paste, $_POST['course_action'], $user_id, $course_id);
+	}
 	?>
-	<div class="warning">U hebt niet de juiste bevoegdheden om deze pagina te bezoeken.</div>
-<?php } else { ?>
 	<p>Hier kunt u vakken toevoegen, verwijderen of updaten. Het laatst gewijzigde vak wordt op de site gepresenteerd.</p>
 	<p>Herlaad de pagina na een wijziging in de configuratie, om het verschil in de sitestructuur te zien.</p>
 	<h2>Aanwezige cursussen</h2>
@@ -65,11 +55,13 @@ if (!isset($admin)) { //permission check
 								<td>' . $row[3] . ' door ' . $row[1] . ' ' . $row[2] . '</td><td><a class="save-link" title="veranderingen opslaan" onclick="document.updateform' . $row[4] . '.submit(); showLoading()"></a><a class="delete-link" title="verwijderen" onclick="set_remove_msg(\'' . $row[0] . '\',' . $row[4] . ');"></a></td>
 							</tr>';
 				?>
-				<tr><td colspan="4"><b>XML-feed url (XBEL format): </b><input class="inputfield" onkeyup="checkEmpty()" type="text" name="course_xml" id="course_xml" value="<?php if (!preg_match("/^xml[_][0-9]+(.txt)/", $row[5]))
-					echo $row[5]; ?>" /></td></tr>
-				<tr><td colspan="4" id="course_xml_paste" <?php if (!preg_match("/^xml[_][0-9]+(.txt)/", $row[5])) echo 'style="display:none"'; ?>>of<br /><b>XML-feed plain text (XBEL format): </b><textarea name="course_xml_paste" style="border: 1px  #99d1f1 solid " cols="110" rows="30"><?php if (preg_match("/^xml[_][0-9]+(.txt)/", $row[5]))
+				<tr><td colspan="4"><b>XML-feed url (XBEL format): </b><input class="inputfield" onkeyup="checkEmpty()" type="text" name="course_xml" id="course_xml" value="<?php if (!preg_match("/^xml\/xml.txt/", $row[5]))
+				echo $row[5]; ?>" /></td></tr>
+				<tr><td colspan="4" id="course_xml_paste" <?php if (!preg_match("/^xml\/xml.txt/", $row[5]))
+				echo 'style="display:none"'; ?>>of<br /><b>XML-feed plain text (XBEL format): </b><textarea name="course_xml_paste" style="border: 1px  #99d1f1 solid " cols="110" rows="30"><?php if (preg_match("/^xml\/xml.txt/", $row[5]))
 				echo htmlspecialchars(file_get_contents($row[5])); ?></textarea></td>
-				<td colspan="4" id="course_xml_paste_hidden_msg" <?php if (preg_match("/^xml[_][0-9]+(.txt)/", $row[5])) echo 'style="display:none"'; ?>>Maak het xml url import veld leeg voor de mogelijkheid om xml als plain text te importeren</td>				
+					<td colspan="4" id="course_xml_paste_hidden_msg" <?php if (preg_match("/^xml\/xml.txt/", $row[5]))
+					echo 'style="display:none"'; ?>>Maak het xml url import veld leeg voor de mogelijkheid om xml als plain text te importeren</td>				
 				</tr>				
 				<?php
 				print '</td>
@@ -88,7 +80,7 @@ if (!isset($admin)) { //permission check
 					<td><b>Titel: </b><input class="inputfield" type="text" name="course_title" id="course_title" /></td></tr>
 				<tr><td><b>XML-feed url (XBEL format): </b><input class="inputfield" onkeyup="checkEmpty()" type="text" name="course_xml" id="course_xml" /></td></tr>
 				<tr><td colspan="4" id="course_xml_paste">of<br /><b>XML-feed plain text (XBEL format): </b><textarea name="course_xml_paste" style="border: 1px  #99d1f1 solid " cols="110" rows="30"></textarea></td>
-				<td colspan="4" id="course_xml_paste_hidden_msg" style="display:none">Maak het xml url import veld leeg voor de mogelijkheid om xml als plain text te importeren</td>
+					<td colspan="4" id="course_xml_paste_hidden_msg" style="display:none">Maak het xml url import veld leeg voor de mogelijkheid om xml als plain text te importeren</td>
 				</tr>				
 
 				<tr>
@@ -102,5 +94,7 @@ if (!isset($admin)) { //permission check
 		?>
 	</table>
 	<?php
+} else {
+	echo '<div class="warning">U hebt niet de juiste bevoegdheden om deze pagina te bezoeken.</div>';
 }
 ?>

@@ -85,10 +85,10 @@ if (!$paste){
 } else {
 	if (@$xmltree = simplexml_load_string($xml))
 		$real_xml = true;
-	$fh = fopen('xml_'.$course_id.'.txt', 'w') or die("can't create xml file");
+	$fh = fopen('xml/xml.txt', 'w') or die("can't create xml file");
 	fwrite($fh, $xml);
 	fclose($fh);
-	$xml = "xml_".$course_id.".txt";
+	$xml = "xml/xml.txt";
 
 }
 $updatecount=Array('folders'=>0,'items'=>0);

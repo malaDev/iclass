@@ -31,6 +31,7 @@ $page = "pages/{$pagebase}.php";
 		<meta name="keywords" content="" />
         <meta name="description" content="" />
 		<meta name="google" value="notranslate">
+			<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
 			<link rel="shortcut icon" href="<?php echo BASE; ?>images/favicon.ico" type="image/ico" />
 			<title><?php echo TITLE; ?></title>
 			<link type="text/css" rel="stylesheet" media="all" href="<?php echo BASE; ?>style.css" />
@@ -76,6 +77,7 @@ $page = "pages/{$pagebase}.php";
 						}
 						?>
 						<a class="button" href="<?php echo BASE; ?>index.php?p=settings">Settings</a>
+						<a class="button" href="<?php echo BASE; ?>index.php?p=users">Users</a>
 						<a class="button" href="<?php echo BASE; ?>?logout=true">Uitloggen</a>
 						<?php
 					} else {
@@ -87,18 +89,18 @@ $page = "pages/{$pagebase}.php";
 				</div>
 				<!-- div between the userbar and the menu with progressbar and xml export button -->
 				<div class="underUserbar">
-				<?php
-				/* Show progress bar if user is in database */
-				if (isset($uvanetid) && $pagebase != 'nieuweUser' && DB_COURSE_FOLDERS != false && DB_COURSE_ITEMS != false) {
-					echo '<span class="smallfont">Voortgang: </span>';
-					progress($uvanetid, true);
-				} else {
-					echo "<div style='margin-right:210px'></div>"; 
-				}
-				?>
-				<br /><br />
-				<!-- xml export link -->
-				<a href="<?php echo BASE; ?>pages/xml.php"><img src="<?php echo BASE; ?>images/xml_icon.gif" alt="xml feed" /></a>
+					<?php
+					/* Show progress bar if user is in database */
+					if (isset($uvanetid) && $pagebase != 'nieuweUser' && DB_COURSE_FOLDERS != false && DB_COURSE_ITEMS != false) {
+						echo '<span class="smallfont">Voortgang: </span>';
+						progress($uvanetid, true);
+					} else {
+						echo "<div style='margin-right:210px'></div>";
+					}
+					?>
+					<br /><br />
+					<!-- xml export link -->
+					<a href="<?php echo BASE; ?>pages/xml.php"><img src="<?php echo BASE; ?>images/xml_icon.gif" alt="xml feed" /></a>
 				</div>
 				<!-- include navigation menu -->
 				<ul id="nav">
@@ -125,7 +127,7 @@ $page = "pages/{$pagebase}.php";
 				}
 				?>
 			</div>
-			
+
 			<!-- footer at bottom of the page -->
 			<div id="footer">
 				&copy; <?php echo date("Y") . " " . TITLE . " - " . SLOGAN . " -"; ?>

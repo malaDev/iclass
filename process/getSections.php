@@ -63,13 +63,18 @@ if (DB_COURSE_FOLDERS != false && DB_COURSE_ITEMS != false) {
 			}
 		}
 	}
-	if (isset($weight))
-		$weight = $weight + 1;
-	else
-		$weight = 1;
-	?>
-	<br /><br /><br /><input class="inputfield" type="text" name="section" id="section" /><input type="submit" class="button" onclick="addSection(document.getElementById('section').value, '<?php echo $weight; ?>')" value="Nieuwe Sectie" />
-	<?php
+	foreach ($admin_users as $admin_user) {
+		if ($uvanetid == $admin_user) {
+			if (isset($weight))
+				$weight = $weight + 1;
+			else
+				$weight = 1;
+			?>
+			<br /><br /><br /><input class="inputfield" type="text" name="section" id="section" /><input type="submit" class="button" onclick="addSection(document.getElementById('section').value, '<?php echo $weight; ?>')" value="Nieuwe Sectie" />
+			<?php
+			break;
+		}
+	}
 } else {
 	echo '<div class="standout"><b>Er wordt op dit moment nog geen vak op deze site aangeboden.</b><br />Kom later terug.</div>';
 }

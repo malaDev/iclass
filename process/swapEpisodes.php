@@ -17,7 +17,7 @@ $prev_id = $_GET["previd"];
 
 foreach ($admin_users as $admin_user) {
 	if (isset($uvanetid) && $uvanetid == $admin_user) {
-		// Add section
+		// Add episode
 		$sql = "SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE folder_id = $cur_id";
 		$result = mysql_query($sql);
 		if (mysql_num_rows($result) == 1) {
@@ -30,23 +30,24 @@ foreach ($admin_users as $admin_user) {
 				$cur_weight = $cur_section['weight'];
 				mysql_query("UPDATE " . DB_COURSE_FOLDERS . " SET weight = $prev_weight WHERE folder_id = $cur_id");
 				if (mysql_affected_rows() != 1){
-					echo "<div class='error'>Secties kunnen niet correct worden omgedraait!</div>";
+					echo "<div class='error'>Onderdelen kunnen niet correct worden omgedraait!</div>";
 				}
 				mysql_query("UPDATE " . DB_COURSE_FOLDERS . " SET weight = $cur_weight WHERE folder_id = $prev_id");
 				if (mysql_affected_rows() != 1){
-					echo "<div class='error'>Secties kunnen niet correct worden omgedraait!</div>";
+					echo "<div class='error'>Onderdelen kunnen niet correct worden omgedraait!</div>";
 				}
 			} else {
-				echo "<div class='error'>één van de secties die omgedraait moet worden kan niet worden gevonden</div>";
+				echo "<div class='error'>één van de onderdelen die omgedraait moet worden kan niet worden gevonden</div>";
 			}
 		} else {
-			echo "<div class='error'>één van de secties die omgedraait moet worden kan niet worden gevonden</div>";
+			echo "<div class='error'>één van de onderdelen die omgedraait moet worden kan niet worden gevonden</div>";
 		}
 		if (!mysql_affected_rows() > 0) {
-			echo "<div class='error'>Secties kunnen niet worden omgedraait!!</div>";
+			echo "<div class='error'>Onderdelen kunnen niet worden omgedraait!!</div>";
 		}
 		// Show all the sections
-		require 'getSections.php';
+
+		require 'getEpisodes.php';
 		break;
 	}
 }

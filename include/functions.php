@@ -1,12 +1,13 @@
 <?php
+
 /* start session in order to create a session for the uvanetid of the user who is logged in */
 session_start();
 
 /* Redirect to secure https 
-if ($_SERVER['HTTPS'] != "on") {
-	$redirect = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-	header("Location:$redirect");
-}*/
+  if ($_SERVER['HTTPS'] != "on") {
+  $redirect = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+  header("Location:$redirect");
+  } */
 
 /* Validate the ticket gain from logging in on the CAS server */
 if (isset($_GET["ticket"])) {
@@ -64,7 +65,7 @@ function progress($uvanetid, $bar) {
 		$numRows = mysql_num_rows($resultsub);
 		$episodeCount = $episodeCount + $numRows;
 	}
-	if ($episodeCount > 0){
+	if ($episodeCount > 0) {
 		//total number of episodes done 
 		$useridresult = mysql_query("SELECT id FROM users WHERE uvanetid = '$uvanetid'");
 		$userid = mysql_fetch_array($useridresult);
@@ -77,7 +78,7 @@ function progress($uvanetid, $bar) {
 	} else {
 		$percentage = 0;
 	}
-	
+
 
 	if ($bar == true) {
 		//show progress bar
@@ -100,13 +101,13 @@ function percentage($uvanetid) {
 		$numRows = mysql_num_rows($resultsub);
 		$episodeCount = $episodeCount + $numRows;
 	}
-	if ($episodeCount > 0){
+	if ($episodeCount > 0) {
 		//total number of episodes done 
 		$useridresult = mysql_query("SELECT id FROM users WHERE uvanetid = '$uvanetid'");
 		$userid = mysql_fetch_array($useridresult);
 		$resultuser = mysql_query("SELECT COUNT(id) FROM progress WHERE id =" . $userid['id']) or die(mysql_error());
 		$resultuser2 = mysql_result($resultuser, 0);
-	
+
 		//percentage done
 		$percentage = $resultuser2 / $episodeCount;
 		$percentage = $percentage * 100;
@@ -114,6 +115,17 @@ function percentage($uvanetid) {
 		$percentage = 0;
 	}
 	return round($percentage);
+}
+
+function isAdmin($uvanetid) {
+	global $admin_users;
+	foreach ($admin_users as $admin_user) {
+//see if the logged in user is part of the admin group
+		if ($uvanetid == $admin_user) {
+			return true;
+		}
+	}
+	return false;
 }
 ?>
 
