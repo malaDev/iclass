@@ -12,6 +12,7 @@
 /* Include important constants and functions and processes */
 require("include/config.php");
 require("include/preprocess.php");
+require("include/sanity_checks.php");
 require("include/functions.php");
 require_once("include/lookforavatar.php");
 
