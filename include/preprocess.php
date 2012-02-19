@@ -13,29 +13,6 @@ if (!@mysql_select_db(DB_NAME)) {
 	die();
 }
 
-/* Define required tables */
-$tables = mysql_query("SHOW TABLES FROM " . DB_NAME);
-$required = Array('comments', 'courses', 'progress', 'replies', 'users');
-while ($table = mysql_fetch_row($tables)) {
-	$key = array_search($table[0], $required);
-	if (is_numeric($key)) {
-		unset($required[$key]);
-	}
-}
-
-/* Table is missing? show install2.php */
-if (count($required) > 0) {
-	$case = 'database_tables';
-	require("pages/install1.php");
-	die();
-}
-
-if (!file_exists('..'. BASE .'index.php') && !file_exists(BASE .'index.php') && !file_exists('../..'. BASE .'index.php')) {
-	$case = 'base';
-	require("pages/install1.php");
-	die();
-}
-
 $query_course = mysql_query("SELECT course_id, course_name FROM courses ORDER BY update_date DESC");
 if (mysql_num_rows($query_course) > 0) {
 	$row_course = mysql_fetch_row($query_course);
