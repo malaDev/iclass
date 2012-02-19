@@ -12,6 +12,7 @@
 30 min:		Markdown css (layout voor blockquotes en code blocks etc.)
 1 uur:		Code Highlighting in markdown output (auto-detect taal; kent 41 talen)
 30 min:		User list met sorteer functie
+10 min:		Base check gefixt (werkt nu voor subfolders en de root)
 
 NOTES:
 Ik let nu minder op de layout, omdat er toch een nieuwe komt

@@ -1,5 +1,4 @@
 <?php
-
 /* Define required tables */
 $tables = mysql_query("SHOW TABLES FROM " . DB_NAME);
 $required = Array('comments', 'courses', 'progress', 'replies', 'users');
@@ -17,8 +16,7 @@ if (count($required) > 0) {
         die();
 }
 
-if ((BASE == '/' && BASE != trim(dirname($_SERVER['SCRIPT_NAME']), '/') . '/') ||
-     BASE != dirname($_SERVER['SCRIPT_NAME'])) {
+if (BASE != strstr($_SERVER['SCRIPT_NAME'], 'index', true)) {
         $case = 'base';
         require("pages/install1.php");
         die();

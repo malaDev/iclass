@@ -109,7 +109,7 @@ foreach($required as $key => $table){
 ?>
 <p><b>Deze website is nog niet juist geconfigureerd!</b></p><br />
 <p>De base van deze website is niet correct ingesteld. Als uw website in de root staat, vul dan als BASE in config.php alleen een '/' in. <br />Staat uw website in een submap vul dan '/naamvansubmap/' in.</p>
-<p>De base is op dit moment: <?php echo BASE; ?>.<br />Suggestie voor correcte base (kan verkeerd zijn): <br /><b><?php echo strstr($_SERVER["REQUEST_URI"], 'index', true); ?></b></p>
+<p>De base is op dit moment: <?php echo BASE; ?>.<br />Suggestie voor correcte base: <br /><b><?php echo strstr($_SERVER['SCRIPT_NAME'], 'index', true); ?></b></p>
 <?php
 }
 ?>
