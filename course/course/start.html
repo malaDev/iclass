@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block contents %}
+<section id="content" class="markdown">
+	<h1>{{page_name}}</h1>
+	{% if not logged_in %}
+	<div class="alert fade in">
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+		<h4 class="alert-heading">Not logged in!</h4>
+		<p>In order to see and post comments and keep track of your progress and other extra functions, you have to be logged in with your UvAnetID</p>
+		<p>
+			<a class="btn" href="#">Sign in</a>
+		</p>
+	</div>
+	{% endif %}
+	{% for section, pages in page_links %}
+	<h2>{{ section }}</h2>
+	<table class="course-items table table-bordered table-striped">
+		<tr>
+			{% if logged_in %}
+			<th>done</th>
+			{% endif %}
+			<th style="text-align: left;">course item</th>
+		</tr>
+		{% for page, link in pages %}
+		<tr>
+			{% if logged_in %}
+			<td><input type="checkbox"></td>
+			{% endif %}
+			<td style="text-align: left;"><a href="{{ link }}">{{ page }}</a></td>
+		</tr>
+		{% endfor %}
+	</table>
+	{% endfor %}
+</section>
+{% endblock %}

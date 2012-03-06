@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block contents %}
+
+<section id="content" class="markdown">
+	<h1>Student overview</h1>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<th><b>UvAnetID</b></th>
+			<th><b>Firstname</b></th>
+			<th><b>Lastname</b></th>
+			<th><b>Type</b></th>
+			<th><b>Progress</b></th>
+			<th><b>Last login</b></th>
+		</tr>
+		{% for uvanetid, user in users|sort %}
+		{% if uvanetid != "flow" %}
+		<tr>
+			<td>{{uvanetid}}</td>
+			<td>{{user[0]}}</td>
+			<td>{{user[1]}}</td>
+			<td>{{user[2]}}</td>
+			<td><div class="progress"><div class="bar" style="width: {{user[3]}}%;"></div></div></td>
+			<td>{{user[4]}}</td>
+		</tr>
+		{% endif %}
+		{% endfor %}
+	</table>
+</section>
+
+{% endblock %}

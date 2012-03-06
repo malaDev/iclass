@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>{{ page_name }} - {{ 'Mobile software engineering' }}</title>
+	<link href="{{ url('assets/prettify/prettify.css') }}" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" href="{{ url('assets/css/bootstrap.css') }}">
+	<link rel="stylesheet" href="{{ url('assets/css/vakkensite.css') }}">
+	<script type="text/javascript" src="{{ url('assets/prettify/prettify.js') }}"></script>
+	<script type="text/javascript" charset="utf-8" src="{{ url('assets/js/jquery-1.7.1.min.js') }}"></script>
+	<script type="text/javascript" charset="utf-8" src="{{ url('assets/js/jquery.autosize.js') }}"></script>
+	<script type="text/javascript" charset="utf-8" src="{{ url('assets/js/bootstrap.js') }}"></script>
+	<script type="text/javascript" charset="utf-8" src="{{ url('assets/js/vakkensite.js') }}"></script>
+</head>
+<body>
+
+	{% include "_navbar.html" %}
+	{% include "_header.html" %}
+	
+	{% block contents %}
+	{% endblock %}
+
+	<footer>
+		<small>This content is available under the <a href="">Creative Commons BY-NC-SA license</a>. The website code is <a href="http://github.com/uva/iclass">available</a> under the MIT license.</small>
+	</footer>
+
+	{% if page_editable %}
+	{%   include "_editor.html" %}
+	{% endif %}
+	
+	<script type="text/javascript" charset="utf-8">
+		$(function()
+		{
+			$('a[rel=tooltip]').tooltip({ animation:false, placement:'bottom' })
+		})
+	</script>
+	
+
+</body>
+</html>

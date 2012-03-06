@@ -1,0 +1,48 @@
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<nav class="container">
+			<a class="brand" href="{{ url('') }}"><h3>Website Title</h3></a>
+			<ul class="nav">
+				{% for section, pages in page_links %}
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ section }} <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						{% for page, link in pages %}
+						<li><a href="{{ url( link ) }}">{{ page }}</a></li>
+						{% endfor %}
+					</ul>
+				{% endfor %}
+				</li>
+			</ul>
+			
+			<ul class="nav pull-right">
+				{% if logged_in %}
+				{% if page_editable and admin %}
+				<li>
+					<a href="#" onclick="editpage(); return(false);"><i class="icon-edit icon-white"></i> Edit</a>
+				</li>
+				{% endif %}
+				<li class="dropdown">
+					
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i> {{ username[0] }} {{ username[1] }}</a>
+					<ul class="dropdown-menu" style="min-width:200px;">
+						<li style="padding:6px 10px; background-color:white; margin-bottom:0;">
+							<div class="progress" style="margin-bottom:0;">
+						  		<div class="bar" style="width: {{ progress }}%;"></div>
+							</div>
+						</li>
+						<li class="divider"></li>
+						<li><a href="{{ url('admin/settings') }}">Settings</a></li>
+						<li><a href="{{ url('?logout=true') }}">Sign out</a></li>
+					</ul>
+				</li>
+				{% else %}
+				<li><a href="https://bt-lap.ic.uva.nl/cas/login?service={{ url }}"><i class="icon-user icon-white"></i> Sign in</a></li>
+				{% endif %}
+			</ul>
+			
+
+			
+		</nav>
+	</div>
+</div>

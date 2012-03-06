@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<link rel="stylesheet" title="Default" href="../assets/highlight/styles/vs.css" />
+<script type="text/javascript" src="../assets/highlight/highlight.pack.js"></script>
+<script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+</script>
+<section id="content" class="markdown">
+	{{ info | raw}}
+</section>
+{% if logged_in %}
+{% include "_comments.html" %}
+{% else %}
+<section>
+	<div class="alert fade in">
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+		<h4 class="alert-heading">Not logged in!</h4>
+		<p>In order to see comments and files of other students or to post comments or files yourself, you have to be logged in with your UvAnetID</p>
+		<p>
+			<a class="btn" href="#">Sign in</a>
+		</p>
+	</div>
+</section>
+{% endif %}
+{% endblock %}

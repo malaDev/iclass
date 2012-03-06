@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block contents %}
+
+<section id="content" class="markdown">
+	{% if logged_in %}
+	<form enctype="multipart/form-data" method="POST" action="{{url('admin/settings')}}" class="form-horizontal well">
+		<fieldset>
+		    <legend>Profile</legend>
+			{% if new %}
+			<div class="alert alert-info"><a class="close" data-dismiss="alert">×</a><b>Because this is the first time you log in, we need your name and emailadress.</b></div>
+			{% endif %}
+			{% if message_user != "" %}
+			{% if message_user == 0 %}
+				<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><b>Something went wrong with updating your settings, please try again.</b></div>
+			{% endif %}
+			{% if message_user == 1 %}
+				<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><b>Settings successfully changed!</b></div>
+			{% endif %}
+			{% if message_user == 2 %}
+				<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><b>Please fill in all required fields!</b></div>
+			{% endif %}
+			{% endif %}
+			{% if message_avatar != "" %}
+			{% if message_avatar == 0 %}
+				<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><b>Something went wrong with uploading your avatar, please try again.</b></div>
+			{% endif %}
+			{% if message_avatar == 1 %}
+				<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><b>Avatar successfully uploaded!</b></div>
+			{% endif %}
+			{% if message_avatar == 2 %}
+				<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><b>Avatar file size is too big! maximum allowed size is 400 kb</b></div>
+			{% endif %}
+			{% if message_avatar == 3 %}
+				<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><b>Avatar extension not allowed! please upload a image</b></div>
+			{% endif %}
+			{% endif %}
+			<div class="control-group">
+				<label class="control-label" for="name">Name <font color="red">*</font></label>
+				<div class="controls">
+					<input type="text" class="input-medium" id="firstname" name="firstname" value="{{username[0]}}" placeholder="firstname" required>
+					<input type="text" class="input-medium" id="lastname" name="lastname" value="{{username[1]}}" placeholder="lastname" required>
+				</div>
+				<div class="controls">
+					
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="email">E-mail <font color="red">*</font></label>
+				<div class="controls">
+					<input type="email" class="input-xlarge" id="email" name="email" value="{{email}}" placeholder="email" required>
+				</div>
+			</div>
+			{% if not new %}
+			<div class="control-group">
+				<label class="control-label" for="type">Type</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge" id="type" name="type" value="{{type}}" disabled>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="type">UvAnetID</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge" id="type" name="type" value="{{uvanetid}}" disabled>
+				</div>
+			</div>
+			{% endif %}
+			<div class="control-group">
+				<label class="control-label" for="avatar">Avatar</label>
+				<div class="controls">
+					<img src="http://cs164.stgm.nl/images/no-avatar.gif"><br>
+					<input type="file" class="input-xlarge" id="avatar" name="avatar" placeholder="avatar">
+				</div>
+			</div>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary">Save changes</button>
+			</div>
+		</fieldset>
+		<input type="hidden" name="MAX_FILE_SIZE" value="200000" />
+		<input name="uvanetid" type="hidden" value="{{uvanetid}}" /><br />
+	</form>
+	{% else %}
+	<div class="alert alert-error"><b>U are not logged in and therefore not authorized to see this page</b></div>
+	{% endif %}
+</section>
+
+{% endblock %}

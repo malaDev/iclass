@@ -1,0 +1,11 @@
+Options FollowSymLinks
+RewriteEngine On
+
+# to route the base path
+RewriteRule ^$ router.php [L,QSA]
+
+# to route anything below the base path
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteBase /learnscape/course
+RewriteRule ^(.*)$ router.php [L,QSA]
