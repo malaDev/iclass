@@ -1,15 +1,11 @@
 <?php
-// get path info relative to directory this router is in
-// "page/2", "admin/sections"
-$clean_path = trim(substr($_SERVER['REQUEST_URI'], 1+strlen(dirname($_SERVER['SCRIPT_NAME']))), '/');
-$request = explode('/', $clean_path);
 
-include('include/config.php');
-include('include/process.php');
-include('util.php');
-include('include/functions.php');
+include('lib/config.php');
+include('lib/process.php');
+include('lib/util.php');
+include('lib/functions.php');
 
-
+$request = parse_request();
 
 // select page type
 // $request is avaiable in all controllers and not modified before passing control
@@ -39,3 +35,4 @@ switch($request[0])
 		}
 		return;
 }
+

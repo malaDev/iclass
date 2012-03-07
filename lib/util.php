@@ -1,8 +1,17 @@
 <?php
 
+function parse_request()
+{
+// get path info relative to directory this router is in
+// "page/2", "admin/sections"
+$clean_path = trim(substr($_SERVER['REQUEST_URI'], 1+strlen(dirname($_SERVER['SCRIPT_NAME']))), '/');
+$request = explode('/', $clean_path);
+}
+
 // This is a filter that may be used in templates. It is used in the navbar
 // to find the icon name given a descriptive string.
-function icon_from_text($text) {
+function icon_from_text($text)
+{
 	switch ($text) {
 		case 'Video':
 		case 'Videos':
@@ -22,7 +31,8 @@ function icon_from_text($text) {
 	}
 }
 
-function icon_tag_from_text($text) {
+function icon_tag_from_text($text)
+{
 	if ($i = icon_from_text($text)) {
 		return "<i class=\"$i\"></i>";
 	} else {
@@ -30,20 +40,22 @@ function icon_tag_from_text($text) {
 	}
 }
 
-function rebase_path($path) {
-	$base = dirname($_SERVER['SCRIPT_NAME']) . '/';
+function rebase_path($path)
+{
+	$base = trim(dirname($_SERVER['SCRIPT_NAME']),'/') . '/';
 	return $base . $path;
 }
 
 // To boot Twig from our router
-function start_twig($folder) {
+function start_twig($folder)
+{
 	// Hardcoded path
 	require_once 'lib/Twig/lib/Twig/Autoloader.php';
 	Twig_Autoloader::register();
 
 	// Name of folder where html is found
 	// always add 'views' folder as second path for base components
-	$loader = new Twig_Loader_Filesystem(array($folder, 'views'));
+	$loader = new Twig_Loader_Filesystem(array($folder, 'lib/views'));
 	$twig = new Twig_Environment($loader, array(
 				// Cache could be set to a folder name or false
 				'cache' => false,

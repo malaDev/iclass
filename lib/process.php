@@ -1,8 +1,4 @@
 <?php
-function rebase_path($path) {
-	$base = dirname($_SERVER['SCRIPT_NAME']) . '/';
-	return $base . $path;
-}
 if (isset($request[0]) && $request[0] == 'create'){
 	require('process/createDatabase.php');
 die();

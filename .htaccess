@@ -7,7 +7,7 @@ RewriteRule ^$ router.php [L,QSA]
 # to route anything below the base path
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-#RewriteBase /
+RewriteBase /
 RewriteRule ^(.*)$ router.php [L,QSA]
 
 php_value upload_max_filesize 8M
