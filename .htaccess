@@ -1,4 +1,17 @@
+Options FollowSymLinks
+RewriteEngine On
+
+# to route the base path
+RewriteRule ^$ router.php [L,QSA]
+
+# to route anything below the base path
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteBase /learnscape/course
+RewriteRule ^(.*)$ router.php [L,QSA]
+
 php_value upload_max_filesize 8M
 php_value post_max_size 8M
 php_value max_execution_time 250
 php_value max_input_time 250
+
