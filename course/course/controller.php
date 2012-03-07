@@ -12,7 +12,8 @@ switch ($request[0]) {
 		if (DB_COURSE_FOLDERS && DB_COURSE_ITEMS && isset($page_links)) {
 			reset($page_links);
 			echo $twig->render('start.html', array(
-				'page_name' => SLOGAN,
+				'page_title' => TITLE,
+				'page_slogan' => SLOGAN,
 				'page_links' => $page_links,
 				'page_next' => array(key(current($page_links)), current(current($page_links))),
 				'page_items' => array(),
@@ -24,7 +25,8 @@ switch ($request[0]) {
 			));
 		} else {
 			echo $twig->render('start.html', array(
-				'page_name' => SLOGAN,
+				'page_title' => TITLE,
+				'page_slogan' => SLOGAN,
 				'page_links' => '',
 				'page_next' => '',
 				'page_items' => array(),
@@ -47,8 +49,9 @@ switch ($request[0]) {
 			require_once('ajax/get_comments.php');
 			echo $twig->render('page.html', array(
 				'page_name' => $request[1],
+				'page_title' => TITLE,
 				'page_links' => $page_links,
-				'page_editable' => $edit,
+				'page_editable' => false,
 				'page_prev' => array($backtitle, 'page/' . $backid),
 				'page_next' => array($nexttitle, 'page/' . $nextid),
 				'page_doneable' => true,

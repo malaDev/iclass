@@ -24,6 +24,12 @@ switch($request[0])
 		// admin pages
 		include('admin/controller.php');
 		return;
+	case "comments":
+		include('comments/controller.php');
+		return;
+	case "replies":
+		include('comments/controller.php');
+		return;
 	default:
 		if (isset($_GET['logout']))
 			echo "logging out, please wait..";

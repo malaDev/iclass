@@ -1,0 +1,41 @@
+			<div id="comments_ajax">
+				{% for id, comment in comments %}
+				<div class="row">
+					<div class="span2">
+						<div class="pull-left">
+							<a href="#delete_comment" data-toggle="modal" onclick="commentID='{{id}}'" class="close">&times;</a> 
+						</div>					
+						<img src="http://cs164.stgm.nl/images/no-avatar.gif">
+						<h4><strong>{{ comment[2][0] }}</strong><br> <small>{{ comment[1] }}</small></h4>
+					</div>
+					<div class="span8">
+						{% if not comment[3] == '' %}
+						<a href="{{ url('course/uploads/')}}{{comment[3][0]}}"><i class="icon-file"></i> {{comment[3][1]}}</a>
+						{% endif %}
+						<div class="markdown">
+							<p>{{ comment[0] | raw }}</p>
+						</div>
+						<div class='comments'>
+						<div id="0{{id}}">
+{% include "_replies_ajax.html" %}
+						</div>
+													<div class="row form">
+								<div class="span8">
+									<div class="comment-form comment-answer-form">
+										<textarea id="new-reply{{id}}" rows="1" onfocus="$('#submit{{id}}').show();" placeholder="Post a new reply"></textarea>
+										<div class="submit" id="submit{{id}}">
+											You can use <a href="mdown">Markdown</a> to style your posts!
+											<input class="btn btn-info pull-right" type="submit" onclick="newReply({{id}}, document.getElementById('new-reply{{id}}').value)" value="Reply" />
+										</div>
+									</div>
+								</div>
+							</div>
+							</div>
+						</div>
+				</div>
+				<hr />
+				{% else %}
+				<br />
+				<div class="alert alert-info span4"><a class="close" data-dismiss="alert">&times;</a><b>Be the first one to post a comment!</b></div>
+				{% endfor %}
+			</div>

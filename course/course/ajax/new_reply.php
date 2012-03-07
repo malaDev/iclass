@@ -43,6 +43,6 @@ if (!$result_updateComment){
 }
 
 // show all the replies of this comment including the new posted reply
-echo 'Hier moet dan met behulp van ajax alle replies weer worden laten zien, maar weet nog niet hoe ik dat ga doen<br>';
-echo 'misschien door hier een controller neer te zetten voor de replies, maar dat is ook lastig, want door AJAX heeft hij een verkeerde BASE (goedeBASE/course/ajax neemt hij nu als base)'
+$url = explode('/course/ajax', $url);
+echo file_get_contents($url[0].'/replies/'.$id);
 ?>

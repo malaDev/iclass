@@ -23,17 +23,22 @@ if (isAdmin($uvanetid))
 else
 	$page_items = null;
 
+	$courses = null;
+	$message = null;
+if (!isset($page_links))
+	$page_links = null;
 if (!isset($new))
 	$new = null;
 switch ($request[1]) {
 	// all four pages share common information so we group them early on
 	// http://www.learnscape.nl/admin/*
-	case "import": require 'php/configuratie.php'; break;
+	case "import": require 'php/configuratie.php';
 	case "settings":
 	case "sections":
 	case "users":
 		echo $twig->render($request[1] . '.html', array(
 			'page_name' => $request[1],
+			'page_title' => TITLE,
 			'page_links' => $page_links,
 			'page_items' => $page_items,
 			'logged_in' => $loggedIn,
@@ -47,7 +52,9 @@ switch ($request[1]) {
 			'new' => $new,
 			'message_avatar' => $resultavatar,
 			'message_user' => $resultuser,
-			'uvanetid' => $uvanetid
+			'uvanetid' => $uvanetid,
+			'courses' => $courses,
+			'message' => $message
 		));
 		return;
 	default:

@@ -20,12 +20,12 @@ if ($_GET['done'] == 'notdone') {
 	$numRowsDone = mysql_num_rows($foldersResult);
 	if ($numRowsDone == 0) 
 		mysql_query("INSERT INTO progress (id, folder_id) VALUES ($id, $folderid)");
-	echo "<label onclick=\"change_progress($id, $folderid, 'done')\" class=\"checkbox\"><input type=\"checkbox\" checked> Done</label>";
+	echo "<label onclick=\"change_progress($id, $folderid, 'done')\" class=\"checkbox\"><input type=\"checkbox\" checked> Changed to Done!</label>";
 //Change from done to not done (Detele from database)
 } else {
 	$id = $_GET['id'];
 	$folderid = $_GET['fid'];
 	mysql_query("DELETE FROM progress WHERE id = $id AND folder_id = $folderid");
-	echo "<label onclick=\"change_progress($id, $folderid, 'notdone')\" class=\"checkbox\"><input type=\"checkbox\"> Done</label>";
+	echo "<label onclick=\"change_progress($id, $folderid, 'notdone')\" class=\"checkbox\"><input type=\"checkbox\"> Changed to  not Done</label>";
 }
 ?>

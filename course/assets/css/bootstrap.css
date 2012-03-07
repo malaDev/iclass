@@ -526,6 +526,9 @@ textarea {
   font-weight: normal;
   line-height: 18px;
 }
+.largetextarea{
+	width: 650px;
+}
 label {
   display: block;
   margin-bottom: 5px;

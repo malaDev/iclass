@@ -2,21 +2,76 @@
 {% block contents %}
 
 <section id="content" class="markdown">
+<div class="modal hide fade" id="delete_course">
+		<div class="modal-header">
+			<a class="close" data-dismiss="modal">&times;</a>
+			<h4>Confirm delete course</h4>
+		</div>
+		<div class="modal-body">
+			<p>Are u sure u want to delete this course?</p>
+		</div>
+		<div class="modal-footer">
+			<a data-dismiss="modal" onclick="document.deleteform.submit();" class="btn btn-danger">Delete</a>
+			<a class="btn" data-dismiss="modal">Close</a>
+		</div>
+	</div>
 	<h1>Import course pack</h1>
+<script type="text/javascript">	
+	function showLoading(){
+		document.getElementById('loading').style.display = 'block';
+		return true;
+	}
+	function checkEmpty(){
+		if (document.getElementById('course_xml').value == ""){
+			document.getElementById('course_xml_paste').style.display = 'block';
+			
+			document.getElementById('course_xml_paste_hidden_msg').style.display = 'none';			
+		} else {
+			document.getElementById('course_xml_paste').style.display = 'none';
+			document.getElementById('course_xml_paste_hidden_msg').style.display = 'block';
+			
+		}
+	}
+</script>
+<div id="messages">{{message|raw}}</div>
+<span id="loading" style="display: none">&nbsp; Laden... <br /><img src="{{ url('assets/img/loader.gif')}}" /><br />Kan even duren bij grote xml bestanden.<br/>Duurt het langer dan een paar minuten? probeer het dan opnieuw<br /><br /></span>
 
-	<table class="table table-bordered table-striped">
-		<tr>
-			<th>Title</th>
-			<th>Last imported</th>
-			<th>Import</th>
-			<th>Delete</th>
-		</tr>
-		<tr>
-			<td><input type="text" value="CS164"></td>
-			<td>15 februari</td>
-			<td><i class="icon-download-alt"></i></td>
-			<td><i class="icon-remove"></i></td>
-		</tr>
+	<h2>Courses</h2>
+			<table class="table table-bordered table-striped">
+				<tr><th>Titel</th><th>Last Imported</th></tr>
+	{% for course_id,course in courses %}
+		<form method="post" name="updateform{{ course_id }}" action="{{ url('admin/import')}}">
+							<tr><td><input class="inputfield" type="text" name="course_title" value="{{ course[0] }}" /></td>
+								<td><small>{{ course[3] }} door {{ course[1] }} {{ course[2] }}</small></td>
+							</tr>
+				<tr><td colspan="2"><b>XML-feed url (XBEL format): </b><input class="inputfield" onkeyup="checkEmpty()" type="text" name="course_xml" id="course_xml" value="{% if not course[4][1] %}{{course[4][0]}}{% endif %}" /></td></tr>
+				<tr><td colspan="2" id="course_xml_paste" {% if not course[4][1] %}style="display:none"{% endif %}>
+				<b>XML-feed plain text (XBEL format):<br /></b><textarea class="largetextarea" name="course_xml_paste" style="border: 1px  #99d1f1 solid " rows="20">{% if course[4][1] %}{{course[4][0]|raw}}{% endif %}</textarea></td>
+				</tr>
+				<tr><td colspan="2" id="course_xml_paste_hidden_msg" {% if course[4][1] %}style="display:none"{% endif %}>Maak het xml url import veld leeg voor de mogelijkheid om xml als plain text te importeren</td>				
+				</tr>
+				<input type="hidden" name="course_id" value="{{ course_id }}" /><input type="hidden" name="course_action" value="update" />
+				</form>
+				<form name='deleteform' method='POST' action='{{ url('admin/import') }}'><input type='hidden' name='delete' value='{{ course_id}}' /></form>
+				<tr><td><a class="btn btn-info" title="veranderingen opslaan" onclick="document.updateform{{ course_id }}.submit(); showLoading()">update</a></td><td><a class="btn btn-danger" title="verwijderen" href="#delete_course" data-toggle="modal">delete</a></td></tr>
+<tr><td colspan="2">De huidige architectuur van de website laat maar 1 vak toe.<br /> Het is daarom niet toegestaan meerdere vakken toe te voegen.<br /> De architectuur is echter zo gemaakt dat dit gemakkelijk aangepast kan worden voor meerdere vakken</td></tr>
+				</table>
+				{% else %}
+				<table class="table table-bordered table-striped">
+				<tr><th colspan="2">Nieuw vak toevoegen</th></tr>
+		
+			<form method="post" name="createform" action="{{url('admin/import') }}"><tr>
+					<td><b>Titel: </b><input class="inputfield" type="text" name="course_title" id="course_title" /></td></tr>
+				<tr><td><b>XML-feed url (XBEL format): </b><input class="inputfield" onkeyup="checkEmpty()" type="text" name="course_xml" id="course_xml" /></td></tr>
+				<tr><td colspan="2" id="course_xml_paste"><b>XML-feed plain text (XBEL format): <br /></b><textarea class="largetextarea" name="course_xml_paste" style="border: 1px  #99d1f1 solid " rows="20"></textarea></td>
+				</tr>
+<tr><td colspan="2" id="course_xml_paste_hidden_msg" style="display: none;">Maak het xml url import veld leeg voor de mogelijkheid om xml als plain text te importeren</td></tr>				
+
+				<tr>
+
+					<td colspan="2"><a class="btn btn-success" onclick="document.createform.submit(); showLoading()">Maak Vak</a></td>
+				</tr><input type="hidden" name="course_action" value="create" /></form>
+				{% endfor %}
 	</table>
 </section>
 

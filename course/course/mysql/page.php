@@ -49,8 +49,8 @@ if (!isset($nextid)) {
 }
 $info = Markdown(otherinfo($folderid));
 //$info_markdown = Markdown($info);
-//if (isset($uvanetid) && isAdmin($uvanetid))
-$edit = true;
+if (isset($uvanetid) && isAdmin($uvanetid))
+	$edit = false;
 items($folderid);
 
 global $page_items;

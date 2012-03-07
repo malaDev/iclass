@@ -37,7 +37,8 @@ NIEUWE LAYOUT
 30 min: last login field voor users + users overview
 30 min: avatar systeem functioneel gemaakt (show + edit)
 20 min: Site laten werken als er geen 'course' of lege 'course' is.
+20 min: install gefixt (voor als config.php niet goed is ingevuld)
 20 min: xml import geimplementeerd (met php, moet nog worden omgezet naar twig)
 
-NOTES:
-Ik let nu minder op de layout, omdat er toch een nieuwe komt
+----KAN EVENTUEEL WEG, WANT IK HEB HET GEDAAN VOORDAT IK HIER WERKELIJK OPDRACHT TOE KREEG-----
+1,5 uur: ajax comments toevoegen/verwijderen en ajax replies toevoegen/verwijderen + xml import gefixt

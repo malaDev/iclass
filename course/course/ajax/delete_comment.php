@@ -38,7 +38,6 @@ $sql2 = "DELETE FROM replies WHERE comment_id = $cid";
 $result2 = mysql_query($sql2);
 
 // Show all the comments linked to current folderid (episode)
-echo 'Hier moet dan met behulp van ajax alle comments weer worden laten zien, maar weet nog niet hoe ik dat ga doen<br>';
-echo 'misschien door hier een controller neer te zetten voor de comments, maar dat is ook lastig, want door AJAX heeft hij een verkeerde BASE (goedeBASE/course/ajax neemt hij nu als base)'
-
+$url = explode('/course/ajax', $url);
+echo file_get_contents($url[0].'/comments/'.$folderid);
 ?>

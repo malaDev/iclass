@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block contents %}
+
+<section id="content" class="markdown">
+	<h1>Student progress</h1>
+
+	<table class="table table-bordered table-striped">
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Progress</th>
+			<th>Last login</th>
+		</tr>
+		<tr>
+			<td>9804730</td>
+			<td>Martijn Stegeman</td>
+			<td><div class="progress"><div class="bar" style="width: 60%;"></div></div></td>
+			<td>Yesterday</td>
+		</tr>
+		<tr>
+			<td>10192928</td>
+			<td>Laurens Verspeek</td>
+			<td><div class="progress"><div class="bar" style="width: 80%;"></div></div></td>
+			<td>2 days ago</td>
+		</tr>
+	</table>
+</section>
+
+{% endblock %}

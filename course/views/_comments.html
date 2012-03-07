@@ -43,11 +43,9 @@
 								Upload a file: <input class="input-file" name="myfile" id="myfile" type="file" /><br />
 								You can use <a href="mdown">Markdown</a> to style your posts!
 								<input type="submit" value="Post" onclick="folderid='{{page_name}}'" class="btn btn-info pull-right">
-								<a style="margin:8px 15px 0 0; cursor: pointer" class="pull-right" onclick="document.forms['form_comment'].reset();"><i class='icon-refresh'></i></a>
+								<a style="margin-right:15px; cursor: pointer" class="pull-right" onclick="document.forms['form_comment'].reset();"><i class='icon-refresh'></i></a>
 							</div>
-							<span id="upload-loading" style="display: none">&nbsp; Laden...<br/><div class="progress progress-info progress-striped active">
-									<div class="bar" style="width: 40%;"></div>
-								</div></span>
+							<span id="upload-loading" style="display: none">&nbsp; Laden...<br/><img src="{{url('assets/img/loader.gif')}}" /></span>
 							<iframe id="upload_target" name="upload_target" src="#" style="display:none"></iframe>
 						</form>
 
@@ -58,59 +56,7 @@
 			</div>
 
 			<div id="comments_ajax">
-				{% for id, comment in comments %}
-				<div class="row">
-					<div class="span2">
-						<div class="pull-left">
-							<a href="#delete_comment" data-toggle="modal" onclick="commentID='{{id}}'" class="close">&times;</a> 
-						</div>					
-						<img src="http://cs164.stgm.nl/images/no-avatar.gif">
-						<h4><strong>{{ comment[2][0] }}</strong><br> <small>{{ comment[1] }}</small></h4>
-					</div>
-					<div class="span8">
-						{% if not comment[3] == '' %}
-						<a href="{{ url('course/uploads/')}}{{comment[3][0]}}"><i class="icon-file"></i> {{comment[3][1]}}</a>
-						{% endif %}
-						<div class="markdown">
-							<p>{{ comment[0] | raw }}</p>
-						</div>
-						<div id="0{{id}}" class="comments">
-							{% for reply_id, reply in comment[5] %}
-							<div class="row comment">
-								<div class="span2">
-									<div class="pull-left">
-										<a href="#delete_reply" data-toggle="modal" onclick="commentID='{{id}}'; replyID='{{reply_id}}'" class="close">&times;</a> 
-									</div>	
-									<img src="http://cs164.stgm.nl/images/no-avatar.gif">
-									<h4><strong>{{ reply[2][0] }}</strong><br> <small>{{ reply[1] }}</small></h4>
-								</div>
-								<div class="span6">
-									<div class="markdown">
-										<p>{{ reply[0] | raw }}</p>
-									</div>
-								</div>
-							</div>
-							<hr />
-							{% endfor %}
-							<div class="row form">
-								<div class="span8">
-									<div class="comment-form comment-answer-form">
-										<textarea id="new-reply{{id}}" rows="1" onfocus="$('#submit{{id}}').show();" placeholder="Post a new reply"></textarea>
-										<div class="submit" id="submit{{id}}">
-											You can use <a href="mdown">Markdown</a> to style your posts!
-											<input class="btn-info pull-right" type="submit" onclick="newReply({{id}}, document.getElementById('new-reply{{id}}').value)" value="Reply" />
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<hr />
-				{% else %}
-				<br />
-				<div class="alert alert-info span4"><a class="close" data-dismiss="alert">&times;</a><b>Be the first one to post a comment!</b></div>
-				{% endfor %}
+{% include "_comments_ajax.html" %}
 			</div>
 		</div>
 	</div>

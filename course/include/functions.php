@@ -32,7 +32,6 @@ if (isset($_GET["logout"])) {
 }
 
 /* Get uvanetid of current user */
-$_SESSION['UvANetID'] = '<cas:user>10184465</cas:user>';
 if (isset($_SESSION['UvANetID']) && !isset($_GET["logout"]) && !isset($_GET["ticket"])) {
 	$uvanetid = $_SESSION['UvANetID'];
 	$startUser = stripos($uvanetid, "<cas:user>") + 10;
@@ -77,6 +76,8 @@ function percentage($uvanetid) {
 	//total numbers of episodes:
 	$result = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=1 ORDER BY weight");
 	$episodeCount = 0;
+	if (!$result)
+		return 0;
 	while ($row = mysql_fetch_array($result)) {
 		$resultsub = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=" . $row['folder_id']) or die(mysql_error());
 		$numRows = mysql_num_rows($resultsub);

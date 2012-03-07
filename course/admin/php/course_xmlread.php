@@ -1,5 +1,5 @@
 <?php 
-
+global $message;
 function course_id($course_name){
   // course_name (=unique too) to course_id
 	$result = mysql_query("SELECT course_id FROM courses WHERE course_name = '".$course_name."'");
@@ -78,6 +78,7 @@ function sub_xml($xml,$parent,$course_dbname,&$updatecount,$cur_weight){
 }
 
 function create_course($course_name,$xml,$paste,$action,$teacher_id,$course_id){
+global $message;
 $real_xml = false;
 if (!$paste){
 	if (@$xmltree = simplexml_load_file($xml))
@@ -100,19 +101,15 @@ if($action=='update'){
 	if ($real_xml)
 		parse_xml($xmltree,$course_dbname,$updatecount);
 	else
-	  echo "<div class='error'>xml file not given or not found</div>";
+		$message = "<div class='alert alert-warning'><a class='close' data-dismiss='alert'>&times;</a><p>no xml file given..</p></div>";	  
   }else{
-    echo <<<SCRIPT
-<script type="text/javascript">document.getElementById("messages").innerHTML = "<p>Cursus bestaat niet!</p>";</script>
-SCRIPT;
+    $message = "<div class='alert alert-error'><a class='close' data-dismiss='alert'>&times;</a><p>Cursus bestaat niet!</p></div>";
   }
 }else{
   //create-action
   $course_id=course_id($course_name);
   if(is_numeric($course_id)){
-    echo <<<SCRIPT
-<script type="text/javascript">document.getElementById("messages").innerHTML = "<p>Cursus met deze naam bestaat al!</p>";</script>
-SCRIPT;
+    echo $message = "<div class='alert alert-error'><a class='close' data-dismiss='alert'>&times;</a><p>Cursus met deze naam bestaat al!</p></div>";
   }else{
   mysql_query("INSERT INTO courses (course_name,teacher_id,xml_feed) VALUES ('{$course_name}',{$teacher_id},'{$xml}')");
   $course_dbname="course__".mysql_insert_id();
@@ -134,18 +131,15 @@ SCRIPT;
   if ($real_xml)
 	parse_xml($xmltree,$course_dbname,$updatecount);
   else
-	  echo "<div class='error'>xml file niet gevonden!</div>";
+	 $message = "<div class='alert alert-error'><a class='close' data-dismiss='alert'>&times;</a><p>xml file niet gevonden!</p></div>";
 }
 
 }
 
 function parse_xml($xmltree,$course_dbname,$updatecount){
+global $message;
 sub_xml($xmltree,0,$course_dbname,$updatecount,0);
-echo <<<SCRIPT
-<script type="text/javascript">
-document.getElementById("messages").innerHTML = "<div class='success'><b>Nieuwe mappen:</b> {$updatecount['folders']}<br /> <b>Nieuwe items:</b> {$updatecount['items']}</div>";
-</script>
-SCRIPT;
+$message = "<div class='alert alert-success'><a class='close' data-dismiss='alert'>&times;</a><b>Nieuwe mappen:</b> {$updatecount['folders']}<br /> <b>Nieuwe items:</b> {$updatecount['items']}</div>";
 }
 
 ?>
