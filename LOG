@@ -1,0 +1,44 @@
+1,5 uur:	makkelijke configuratie website (automatisch database en tabellen maken)
+15 min:		bug gefixt: docent kan nu (hopelijk) ook correct inloggen
+1 uur:		plain text xml parser
+30 min:		xml parser configuratie page gefixt (waren paar bugs)
+1,5 uur:	secties verwijderen/toevoegen
+1 uur:		volgorde secties veranderen
+2 uur:		onderdelen (episodes) verwijderen (traden wat complicaties op met alle items verwijderen)
+30 min:		volgorde onderdelen (episodes) veranderen
+15 min:		onderdelen toevoegen
+1 uur:		info aanpassen en toevoegen per onderdeel + implementatie markdown parser
+30 min:		markitUp markdown editor met preview (markdown parser)
+30 min:		Markdown css (layout voor blockquotes en code blocks etc.)
+1 uur:		Code Highlighting in markdown output (auto-detect taal; kent 41 talen)
+30 min:		User list met sorteer functie
+10 min:		Base check gefixt (werkt nu voor subfolders en de root)
+
+NIEUWE LAYOUT
+10 min: sub-navbar ook compatible gemaakt met IE en FF
+15 min: config & process (o.a. database connectie) geimplementeerd
+30 min: menu geimplementeerd
+15 min: homepage (incl. next button) geimplementeerd
+1 uur: submenu array gemaakt (moest de functies herschrijven)
+30 min: Submenu ook laten uitklappen bij meerdere lagen + onderdeel items in het menu zettens
+1,5 uur: Login systeem geimplementeerd
+20 min: markdown info + code highlighting
+30 min: done knop functioneel gemaakt
+10 min: percentage bar functioneel gemaakt
+1 uur: display comments + replies
+1 uur: delete comments + replies
+30 min: PROBLEMEN met ajax, werkt nog steeds niet
+1,5 uur: post comments functioneel gemaakt + file upload
+20 min: post replies functioneel gemaakt
+20 min: admin section werkend gemaakt (verschil in admin, ingelogd en uitgelogd gemaakt)
+20 min: user list overview
+1,5 uur: verander settings (naam, avatar, nieuw: email) (verplicht voor nieuwe gebruiker (auto redirect)) (bug: moet pagina nog refreshen voordat veranderingen te zien zijn)
+10 min: Verplichte velden ingesteld (double check: eerst met html 5, mocht dat niet werken (zoals in IE) check nogmaals met php)
+30 min: last login field voor users + users overview
+30 min: avatar systeem functioneel gemaakt (show + edit)
+20 min: Site laten werken als er geen 'course' of lege 'course' is.
+20 min: install gefixt (voor als config.php niet goed is ingevuld)
+20 min: xml import geimplementeerd (met php, moet nog worden omgezet naar twig)
+
+----KAN EVENTUEEL WEG, WANT IK HEB HET GEDAAN VOORDAT IK HIER WERKELIJK OPDRACHT TOE KREEG-----
+1,5 uur: ajax comments toevoegen/verwijderen en ajax replies toevoegen/verwijderen + xml import gefixt
