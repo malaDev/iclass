@@ -43,7 +43,7 @@ header:after, section:after, footer:after {
 
 .navbar .brand
 {
-	padding:7px 20px 9px 20px;
+	spadding:7px 20px 9px 20px;
 }
 
 .navbar .brand img
@@ -150,7 +150,7 @@ header:after, section:after, footer:after {
     -moz-border-radius: 0;
     border-radius: 0;
     -webkit-box-shadow:none;
-    border-top:1px solid #D7A00C;
+    sborder-top:1px solid #D7A00C;
 }
 
 #subnav .container

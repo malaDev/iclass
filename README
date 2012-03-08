@@ -17,7 +17,10 @@ uploading these files to your server, open /include/config.php and ensure
 that the constants defined there are correct (see the comments there for
 instructions). When these are filled in correctly, go to your website in a
 webbrowser. You will be asked wether to automatically install the required
-databasei tables. After this step is completed, your site is running! 
+databasei tables. After this step is completed, your site is running!
+
+* // make sure extension=php_openssl.dll is added to php.ini in order to make this work
+
 
 Authors
 -------

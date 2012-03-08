@@ -1,7 +1,7 @@
 <div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
 		<nav class="container">
-			<a class="brand" href="{{ url('') }}"><h3>{{page_title}}</h3></a>
+			<a class="brand" href="{{ url('') }}">{{page_title}}</a>
 			<ul class="nav">
 				{% for section, pages in page_links %}
 				<li class="dropdown">
@@ -33,11 +33,11 @@
 						</li>
 						<li class="divider"></li>
 						<li><a href="{{ url('admin/settings') }}">Settings</a></li>
-						<li><a href="{{ url('?logout=true') }}">Sign out</a></li>
+						<li><a href="{{ url('auth/logout') }}">Sign out</a></li>
 					</ul>
 				</li>
 				{% else %}
-				<li><a href="https://bt-lap.ic.uva.nl/cas/login?service={{ url }}"><i class="icon-user icon-white"></i> Sign in</a></li>
+				<li><a href="{{ url('auth/login') }}"><i class="icon-user icon-white"></i> Sign in</a></li>
 				{% endif %}
 			</ul>
 			

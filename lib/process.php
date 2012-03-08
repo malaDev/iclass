@@ -1,19 +1,9 @@
 <?php
+
+
 if (isset($request[0]) && $request[0] == 'create'){
 	require('process/createDatabase.php');
 die();
-}
-/* Connect with database. Can't connect? show install1.php */
-if (!@mysql_connect(DB_SERVER, DB_USER, DB_PASS)) {
-	$case = 'database_connect';
-	require("include/install.php");
-	die();
-}
-/* Select database */
-if (!@mysql_select_db(DB_NAME)) {
-	$case = 'database_select';
-	require("include/install.php");
-	die();
 }
 
 $query_course = mysql_query("SELECT course_id, course_name FROM courses ORDER BY update_date DESC");
@@ -59,4 +49,19 @@ if (count($required) > 0) {
         require("pages/install1.php");
         die();
 }*/
+
+// These are the pages and sections in our course
+$result = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=1 ORDER BY weight");
+while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+	$episode_title = $row['title'];
+	$resultsub = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=" . $row['folder_id'] . " ORDER BY weight");
+	while ($rowsub = mysql_fetch_array($resultsub, MYSQL_ASSOC)) {
+		$subitemTitle = $rowsub['title'];
+		$subitemFolder = $rowsub['folder_id'];
+		$subarray[$subitemTitle] = 'page/' . $subitemFolder;
+	}
+	$page_links[$episode_title] = $subarray;
+	unset($subarray);
+}
+
 ?>

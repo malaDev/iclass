@@ -2,10 +2,13 @@
 
 function parse_request()
 {
-// get path info relative to directory this router is in
-// "page/2", "admin/sections"
-$clean_path = trim(substr($_SERVER['REQUEST_URI'], 1+strlen(dirname($_SERVER['SCRIPT_NAME']))), '/');
-$request = explode('/', $clean_path);
+	// get path info relative to directory this router is in
+	// "page/2", "admin/sections"
+	$clean_path = $_SERVER['REQUEST_URI'];
+	if(strpos($clean_path, "?") > 0) $clean_path = strstr($clean_path, "?", true);
+	$clean_path = substr($clean_path, strlen(dirname($_SERVER['SCRIPT_NAME']))); 
+	$clean_path = trim($clean_path, '/');
+	return explode('/', $clean_path);
 }
 
 // This is a filter that may be used in templates. It is used in the navbar
@@ -67,16 +70,46 @@ function start_twig($folder)
 	return $twig;
 }
 
-// These are the pages and sections in our course
-$result = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=1 ORDER BY weight");
-while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-	$episode_title = $row['title'];
-	$resultsub = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=" . $row['folder_id'] . " ORDER BY weight");
-	while ($rowsub = mysql_fetch_array($resultsub, MYSQL_ASSOC)) {
-		$subitemTitle = $rowsub['title'];
-		$subitemFolder = $rowsub['folder_id'];
-		$subarray[$subitemTitle] = 'page/' . $subitemFolder;
+/* progress of user */
+function percentage($uvanetid) {
+	if ($uvanetid == '' || (!DB_COURSE_FOLDERS || !DB_COURSE_ITEMS))
+		return 0;
+	//progress bar, percentage -> pixels:(121/100)*(100-percent done) = pixels
+	//total numbers of episodes:
+	$result = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=1 ORDER BY weight");
+	$episodeCount = 0;
+	if (!$result)
+		return 0;
+	while ($row = mysql_fetch_array($result)) {
+		$resultsub = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=" . $row['folder_id']) or die(mysql_error());
+		$numRows = mysql_num_rows($resultsub);
+		$episodeCount = $episodeCount + $numRows;
 	}
-	$page_links[$episode_title] = $subarray;
-	unset($subarray);
+	if ($episodeCount > 0) {
+		//total number of episodes done 
+		$useridresult = mysql_query("SELECT id FROM users WHERE uvanetid = '$uvanetid'");
+			if (mysql_num_rows($useridresult) == 0)
+		return;
+		$userid = mysql_fetch_array($useridresult);
+		$resultuser = mysql_query("SELECT COUNT(id) FROM progress WHERE id =" . $userid['id']) or die(mysql_error());
+		$resultuser2 = mysql_result($resultuser, 0);
+
+		//percentage done
+		$percentage = $resultuser2 / $episodeCount;
+		$percentage = $percentage * 100;
+	} else {
+		$percentage = 0;
+	}
+	return round($percentage);
+}
+
+function isAdmin($uvanetid) {
+	global $admin_users;
+	foreach ($admin_users as $admin_user) {
+//see if the logged in user is part of the admin group
+		if ($uvanetid == $admin_user) {
+			return true;
+		}
+	}
+	return false;
 }

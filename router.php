@@ -1,14 +1,21 @@
 <?php
 
-include('lib/config.php');
-include('lib/process.php');
-include('lib/util.php');
-include('lib/functions.php');
+include('lib/config.php');     // base configuration settings
+include('lib/util.php');       // utility functions
+include('lib/session.php');    // user session setup handling
+include('lib/process.php');    // base site info from database
 
 $request = parse_request();
 
+/* Redirect to secure https 
+  if ($_SERVER['HTTPS'] != "on") {
+  $redirect = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+  header("Location:$redirect");
+  } */
+
+
 // select page type
-// $request is avaiable in all controllers and not modified before passing control
+// $request is available in all controllers and not modified before passing control
 switch($request[0])
 {
 	case "":
@@ -25,6 +32,9 @@ switch($request[0])
 		return;
 	case "replies":
 		include('comments/controller.php');
+		return;
+	case "auth":
+		include('auth/controller.php');
 		return;
 	default:
 		if (isset($_GET['logout']))

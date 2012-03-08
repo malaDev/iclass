@@ -44,7 +44,8 @@ switch ($request[0]) {
 			$folderid = $request[1];
 		else
 			$folderid = '';
-		if ($folderid != '' && is_numeric($folderid)) {
+		if ($folderid != '' && is_numeric($folderid))
+		{
 			require_once('mysql/page.php');
 			require_once('ajax/get_comments.php');
 			echo $twig->render('page.html', array(
@@ -66,7 +67,9 @@ switch ($request[0]) {
 				'info' => $info,
 				'comments' => $comments
 			));
-		} else {
+		}
+		else
+		{
 			header("Status: 404 Not Found");
 			echo "404";
 		}

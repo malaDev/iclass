@@ -1,6 +1,6 @@
 <?php
 
-include_once "assets/markdown/markdown.php";
+include_once "lib/markdown/markdown.php";
 if ($uvanetid != '') {
 	$useridresult = mysql_query("SELECT id FROM users WHERE uvanetid = '$uvanetid'");
 	$userid = mysql_fetch_array($useridresult);
