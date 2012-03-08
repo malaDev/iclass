@@ -20,7 +20,8 @@ webbrowser. You will be asked wether to automatically install the required
 databasei tables. After this step is completed, your site is running!
 
 * // make sure extension=php_openssl.dll is added to php.ini in order to make this work
-
+* cp lib/config.php.default lib/config.php
+* edit database settings in lib/config.php
 
 Authors
 -------
