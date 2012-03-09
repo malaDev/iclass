@@ -41,4 +41,6 @@ NIEUWE LAYOUT
 20 min: xml import geimplementeerd (met php, moet nog worden omgezet naar twig)
 
 ----KAN EVENTUEEL WEG, WANT IK HEB HET GEDAAN VOORDAT IK HIER WERKELIJK OPDRACHT TOE KREEG-----
-1,5 uur: ajax comments toevoegen/verwijderen en ajax replies toevoegen/verwijderen + xml import gefixt
+* 1,5 uur: ajax comments toevoegen/verwijderen en ajax replies toevoegen/verwijderen + xml import gefixt
+* 15 min: base fix + kleine verandering ivm reorganisatie
+----
