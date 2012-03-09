@@ -37,3 +37,5 @@ if (!$result_insertComment)
 $url = explode('/course/ajax', $url);
 // show all the comments of this episode including the new posted comment
 //echo file_get_contents($url[0].'/comments/'.$folderid);
+
+echo "huh";

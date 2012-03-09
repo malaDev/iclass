@@ -68,25 +68,14 @@ function newReply(id, body)
 // this function is called when a new comment is posted (AJAX)
 function newComment(file, body, folderid)
 {
-/*
-	xmlhttp=new XMLHttpRequest();
-	xmlhttp.onreadystatechange=function()
-	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
-		{
-			document.getElementById("comments_ajax").innerHTML=xmlhttp.responseText;
+	$.post(
+		'/comments/new', $("#form_comment").serialize(), function() {
+			alert('hi');
+			document.getElementById("message_comment").innerHTML = 
+			"<div class='alert alert-success'><a class='close' data-dismiss='alert'>&times;</a>Comment succesvol geplaatst!</div>";
+			document.forms["form_comment"].reset();
 		}
-	}
-	xmlhttp.open("POST","/comments/new?f="+file+"&b="+body+"&fid="+folderid,true);
-	xmlhttp.send();
-*/
-	$.ajax({
-		type: 'POST',
-		url: '/comments/new',
-		data: $("#form_comment").serialize()
-	});
-	document.getElementById("message_comment").innerHTML="<div class='alert alert-success'><a class='close' data-dismiss='alert'>&times;</a>Comment succesvol geplaatst!</div>";
-	document.forms["form_comment"].reset();
+	);
 }
 	
 // this function is called when a comment is deleted (AJAX)
