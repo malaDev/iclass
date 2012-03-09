@@ -16,6 +16,9 @@ function parse_request()
 function icon_from_text($text)
 {
 	switch ($text) {
+		case 'standard edition':
+		case 'Source Code':
+			return 'icon-folder-open';
 		case 'Subtitles':
 			return 'icon-font';
 		case 'Transcript':

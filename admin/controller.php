@@ -12,7 +12,7 @@ if (isAdmin($uvanetid))
 		'Personal settings' => rebase_path('admin/settings'),
 		'Edit sections' => rebase_path('admin/sections'),
 		'Import course pack' => rebase_path('admin/import'),
-		'Student overview' => rebase_path('admin/users')
+		'Student progress' => rebase_path('admin/users')
 	);
 else
 	$page_items = null;
