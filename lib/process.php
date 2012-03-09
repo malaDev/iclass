@@ -39,15 +39,9 @@ while ($table = mysql_fetch_row($tables)) {
 /* Table is missing? show install.php */
 if (count($required) > 0) {
         $case = 'database_tables';
-        require("include/install.php");
+        require("lib/install.php");
         die();
 }
-
-/*if (BASE != strstr($_SERVER['SCRIPT_NAME'], 'index', true)) {
-        $case = 'base';
-        require("pages/install1.php");
-        die();
-}*/
 
 // These are the pages and sections in our course
 $result = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=1 ORDER BY weight");

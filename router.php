@@ -2,12 +2,13 @@
 
 include('lib/config.php');     // base configuration settings
 include('lib/util.php');       // utility functions
-include('lib/session.php');    // user session setup handling
-include('lib/process.php');    // base site info from database
 
 // Find out the page type per the first URL segment and pass everything
 // to the selected controller. $request will again be available there.
 $request = parse_request();
+
+require('lib/session.php');    // user session setup handling
+require('lib/process.php');    // base site info from database
 
 switch($request[0])
 {
@@ -18,7 +19,7 @@ switch($request[0])
 		return;
 	case "admin":
 		// admin pages
-		include('admin/controller.php');
+		require('admin/controller.php');
 		return;
 	case "comments":
 		// mostly ajax for page comments
