@@ -4,14 +4,14 @@
 if (!@mysql_connect(DB_SERVER, DB_USER, DB_PASS))
 {
 	$case = 'database_connect';
-	require("include/install.php");
+	require("lib/install.php");
 	die();
 }
 /* Select database */
 if (!@mysql_select_db(DB_NAME))
 {
 	$case = 'database_select';
-	require("include/install.php");
+	require("lib/install.php");
 	die();
 }
 
