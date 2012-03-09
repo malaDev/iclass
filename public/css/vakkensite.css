@@ -188,17 +188,6 @@ header:after, section:after, footer:after {
 	background-color:#565565;
 }
 
-.nav-header {
-	display: block;
-	padding: 3px 15px;
-	cursor:default;
-	font-size: 11px;
-	font-weight: bold;
-	line-height: 18px;
-	color: #999999;
-	text-transform: uppercase;
-}
-
 /****************************************************************************
  *  main content area, divided into rows
  *
