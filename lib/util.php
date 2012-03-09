@@ -67,6 +67,14 @@ function rebase_path($path)
 	return $base . $path;
 }
 
+function checked($string)
+{
+	if($string != '')
+	{
+		return "checked";
+	}
+}
+
 // To boot Twig from our router
 function start_twig($folder)
 {
@@ -83,6 +91,7 @@ function start_twig($folder)
 			));
 	$twig->addFilter('icon', new Twig_Filter_Function('icon_from_text'));
 	$twig->addFilter('icon_tag', new Twig_Filter_Function('icon_tag_from_text'));
+	$twig->addFilter('checked', new Twig_Filter_Function('checked'));
 	$twig->addFunction('url', new Twig_Function_Function('rebase_path'));
 
 	return $twig;

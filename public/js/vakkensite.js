@@ -74,7 +74,7 @@ function change_progress(id, folderid, done)
 			document.getElementById("done-progress").innerHTML=xmlhttp.responseText;
 		}
 	}
-	xmlhttp.open("GET","../course/ajax/change_progress.php?id="+id+"&fid="+folderid+"&done="+done,true);
+	xmlhttp.open("GET","/page/change_progress?id="+id+"&fid="+folderid+"&done="+done,true);
 	xmlhttp.send();
 }
 

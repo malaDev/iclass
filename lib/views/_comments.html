@@ -1,5 +1,5 @@
 <section id="comments">
-	<script type="text/javascript" charset="utf-8" src="{{ url('assets/js/comments.js') }}"></script>
+	<script type="text/javascript" charset="utf-8" src="{{ url('public/js/comments.js') }}"></script>
 	<div class="modal hide fade" id="delete_comment">
 		<div class="modal-header">
 			<a class="close" data-dismiss="modal">×</a>
@@ -45,7 +45,7 @@
 								<input type="submit" value="Post" onclick="folderid='{{page_name}}'" class="btn btn-info pull-right">
 								<a style="margin-right:15px; cursor: pointer" class="pull-right" onclick="document.forms['form_comment'].reset();"><i class='icon-refresh'></i></a>
 							</div>
-							<span id="upload-loading" style="display: none">&nbsp; Laden...<br/><img src="{{url('assets/img/loader.gif')}}" /></span>
+							<span id="upload-loading" style="display: none">&nbsp; Laden...<br/><img src="{{url('public/img/loader.gif')}}" /></span>
 							<iframe id="upload_target" name="upload_target" src="#" style="display:none"></iframe>
 						</form>
 

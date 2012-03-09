@@ -12,7 +12,7 @@
 		</p>
 	</div>
 	{% endif %}
-	{% for section, pages in page_links %}
+	{% for section, pages in page_done_links %}
 	<h2>{{ section }}</h2>
 	<table class="course-items table table-bordered table-striped">
 		<tr>
@@ -24,9 +24,9 @@
 		{% for page, link in pages %}
 		<tr>
 			{% if logged_in %}
-			<td><input type="checkbox"></td>
+			<td><input type="checkbox" disabled="yes" {{ link[1]|checked }}></td>
 			{% endif %}
-			<td style="text-align: left;"><a href="{{ link }}">{{ page }}</a></td>
+			<td style="text-align: left;"><a href="{{ link[0] }}">{{ page }}</a></td>
 		</tr>
 		{% endfor %}
 	</table>
