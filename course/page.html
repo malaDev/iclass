@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block contents %}
-<link rel="stylesheet" title="Default" href="../assets/highlight/styles/vs.css" />
-<script type="text/javascript" src="../assets/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" title="Default" href="{{ url('public/highlight/styles/vs.css') }}" />
+<script type="text/javascript" src="{{ url('public/highlight/highlight.pack.js') }}"></script>
 <script type="text/javascript">
     hljs.initHighlightingOnLoad();
 </script>
