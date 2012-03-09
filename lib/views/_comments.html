@@ -37,11 +37,12 @@
 			<div class="row">
 				<div class="span8 offset2">
 					<div class="comment-form">
-						<form action="{{ url('course/ajax/upload.php') }}" method="post" enctype="multipart/form-data" target="upload_target" id="form_comment" name="form_comment" onsubmit="startUpload();" >
+						<form action="{{ url('comments/new') }}" method="post" enctype="multipart/form-data" target="upload_target" id="form_comment" name="form_comment" onsubmit="startUpload();" >
 							<textarea id="new-comment" name="new-comment" rows="3" onfocus="$('#submit').show();" placeholder="Post a new comment"></textarea>
 							<div class="submit" id="submit">
 								Upload a file: <input class="input-file" name="myfile" id="myfile" type="file" /><br />
 								You can use <a href="mdown">Markdown</a> to style your posts!
+								<input type="hidden" name="page_id" value="{{ page_id }}">
 								<input type="submit" value="Post" onclick="folderid='{{page_name}}'" class="btn btn-info pull-right">
 								<a style="margin-right:15px; cursor: pointer" class="pull-right" onclick="document.forms['form_comment'].reset();"><i class='icon-refresh'></i></a>
 							</div>

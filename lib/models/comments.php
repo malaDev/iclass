@@ -2,7 +2,7 @@
 
 class Comments
 {
-	public static function for_page($folderid)
+	public static function for_page($folderid, $uvanetid)
 	{
 		// Select the comments linked to the folder_id (episode)
 		$query = "SELECT *, DATE_FORMAT(timestamp, '%H:%i, %W %d %M %Y') AS timestamp FROM comments WHERE folder_id = $folderid order by latest_update desc";
@@ -55,9 +55,11 @@ class Comments
 			} else {
 				$attachement = null;
 			}
-			$replies = replies_for_comment($id);
+			$replies = Comments::replies_for_comment($id);
 			$comments[$id] = array($body, $date, array($name_poster, $uvanetid_poster, $type_poster), $attachement, $delete, $replies);
 		}
+		
+		return $comments;
 	}
 	
 	/* Get and show the replies linked to the comment_id */

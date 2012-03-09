@@ -27,7 +27,7 @@ switch($request[0])
 		return;
 	case "replies":
 		// mostly ajax for page comments
-		include('comments/controller.php');
+		include('replies/controller.php');
 		return;
 	case "auth":
 		// CAS authentication

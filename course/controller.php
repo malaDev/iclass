@@ -52,7 +52,7 @@ switch ($request[0]) {
 		return;
 	case "page":
 	
-		switch($request[1])
+		switch($page_id = $request[1])
 		{
 			case "change_progress":
 				require("change_progress.php");
@@ -70,6 +70,7 @@ switch ($request[0]) {
 				require_once("lib/models/page.php");
 				
 				echo $twig->render('page.html', array(
+					'page_id' => $page_id,
 					'page_name' => Page::title($folderid),
 					'page_title' => TITLE,
 					'page_links' => $page_links,
@@ -84,7 +85,7 @@ switch ($request[0]) {
 					'uvanetid' => $uvanetid,
 					'admin' => isAdmin($uvanetid),
 					'info' => Markdown(Page::markdown($folderid)),
-					'comments' => Comments::for_page($folderid)
+					'comments' => Comments::for_page($folderid, $uvanetid)
 				));
 				return;
 		}

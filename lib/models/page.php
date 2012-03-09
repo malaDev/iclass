@@ -42,8 +42,6 @@ class Page
 		
 		$items = array();
 		
-		error_log($id . $main);
-
 		while ($item = mysql_fetch_array($result))
 		{
 			if($main)

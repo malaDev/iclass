@@ -1,15 +1,23 @@
 <?php
 
-	// Title will be displayed to users
+	// title will be displayed to users
 	define("TITLE", "LearnScape");
 
-	// Database configuration - mysql is required
+	// database configuration - mysql is required
 	define("DB_SERVER", "localhost");
 	define("DB_USER", "root");
 	define("DB_PASS", "");
 	define("DB_NAME", "uva");
 
-	// IDs of users who have admin rights
-	$admin_users = array('10184465');
+	// CAS urls
+	define("CAS_LOGIN_URL", "https://bt-lap.ic.uva.nl/cas/login?service=");
+	define("CAS_VALIDATE_URL", "https://bt-lap.ic.uva.nl/cas/serviceValidate?ticket=");
+	define("CAS_LOGOUT_URL", "https://bt-lap.ic.uva.nl/cas/logout");
+	
+	// overrides CAS login with hardcoded username
+	define("USER_OVERRIDE", "mstegem1");
+
+	// CAS IDs of users who have admin rights
+	$admin_users = array();
 
 ?>

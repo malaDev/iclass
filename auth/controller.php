@@ -17,16 +17,24 @@ switch ($request[1])
 			$ticket = $_GET["ticket"];
 			$validateURL = CAS_VALIDATE_URL . $ticket . "&service=" . urlencode($cas_path);
 			// make sure extension=php_openssl.dll is added to php.ini in order to make this work
-			// $file = file_get_contents($validateURL);
-			// TODO haal user uit CAS
-			if(preg_match('/<cas:user>([^<]+)<\/cas:user>/', "<cas:user>mstegem1</cas:user>", $match))
+			if(defined('USER_OVERRIDE'))
 			{
-				$_SESSION['UvANetID'] = $match[1];
+				error_log('USERNAME OVERRIDE ACTIVE!');
+				$_SESSION['UvANetID'] = USER_OVERRIDE;
 				header("Location: " . rebase_path(''));
 			}
 			else
 			{
-				echo "500 - Errorrr";
+				$file = file_get_contents($validateURL);
+				if(preg_match('/<cas:user>([^<]+)<\/cas:user>/', $file, $match))
+				{
+					$_SESSION['UvANetID'] = $match[1];
+					header("Location: " . rebase_path(''));
+				}
+				else
+				{
+					echo "500 - Errorrr getting CAS response";
+				}
 			}
 		}
 		return;
