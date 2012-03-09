@@ -1,11 +1,10 @@
 <?php
 
-include('lib/config.php');     // base configuration settings
-include('lib/util.php');       // utility functions
-include('lib/session.php');    // user session setup handling
-include('lib/process.php');    // base site info from database
-
+require('lib/config.php');     // base configuration settings
+require('lib/util.php');       // utility functions
 $request = parse_request();
+require('lib/session.php');    // user session setup handling
+require('lib/process.php');    // base site info from database
 
 /* Redirect to secure https 
   if ($_SERVER['HTTPS'] != "on") {
@@ -21,20 +20,20 @@ switch($request[0])
 	case "":
 	case "page":
 		// all content pages
-		include('course/controller.php');
+		require('course/controller.php');
 		return;
 	case "admin":
 		// admin pages
-		include('admin/controller.php');
+		require('admin/controller.php');
 		return;
 	case "comments":
-		include('comments/controller.php');
+		require('comments/controller.php');
 		return;
 	case "replies":
-		include('comments/controller.php');
+		require('comments/controller.php');
 		return;
 	case "auth":
-		include('auth/controller.php');
+		require('auth/controller.php');
 		return;
 	default:
 		if (isset($_GET['logout']))
