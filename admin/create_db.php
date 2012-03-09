@@ -1,14 +1,16 @@
 <?php 
-require("../include/config.php");
+
 mysql_connect(DB_SERVER, DB_USER, DB_PASS);
+
 if (!@mysql_query("CREATE DATABASE IF NOT EXISTS ".DB_NAME)) {
 	echo "Database kon niet worden gemaakt! Maak de database met de hand aan en vul de naam in van de database in het bestand include/config.php";
 	die();
 }
+
 mysql_select_db(DB_NAME);
 //Insert tables according to database schema per table if it does not exist
-mysql_query("
-CREATE TABLE IF NOT EXISTS `comments` (
+
+mysql_query("CREATE TABLE IF NOT EXISTS `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `folder_id` int(11) NOT NULL,
@@ -54,8 +56,4 @@ mysql_query("CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17");
 
-header("Location: ".  rebase_path(''));
-
-?>
-
-
+echo "Database was created.";

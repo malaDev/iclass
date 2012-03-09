@@ -32,7 +32,7 @@
 									{{ subname | icon_tag | raw }} {{ subname }}
 								</a>
 								{% elseif subtarget == 'SUBFOLDER' %}
-								<b>{{ subname | icon_tag | raw }}&nbsp;&nbsp;{{ subname }}</b>
+								<b class="nav-header">{{ subname | icon_tag | raw }} {{ subname }}</b>
 								{% else %}
 								<a href="{{ subtarget }}">
 									{{ subname | icon_tag | raw }} {{ subname }}

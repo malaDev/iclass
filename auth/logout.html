@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block contents %}
+
+	<iframe id="logout" style="display:none" onload="window.location = '{{ redirect }}';" src="{{ cas_logout_url }}"></iframe>
+
+{% endblock %}

@@ -7,15 +7,12 @@ $twig = start_twig('course');
 switch ($request[0]) {
 	case "":
 		// http://www.learnscape.nl/
-		// mysql
-		
 		if (DB_COURSE_FOLDERS && DB_COURSE_ITEMS && isset($page_links)) {
 			reset($page_links);
 			echo $twig->render('start.html', array(
 				'page_title' => TITLE,
 				'page_slogan' => SLOGAN,
 				'page_links' => $page_links,
-				'page_next' => array(key(current($page_links)), current(current($page_links))),
 				'page_items' => array(),
 				'logged_in' => $loggedIn,
 				'progress' => percentage($uvanetid),
@@ -28,7 +25,6 @@ switch ($request[0]) {
 				'page_title' => TITLE,
 				'page_slogan' => SLOGAN,
 				'page_links' => '',
-				'page_next' => '',
 				'page_items' => array(),
 				'logged_in' => $loggedIn,
 				'progress' => percentage($uvanetid),
@@ -40,38 +36,32 @@ switch ($request[0]) {
 		return;
 	case "page":
 		// http://www.learnscape.nl/page/20
-		if (isset($request[1]))
-			$folderid = $request[1];
-		else
-			$folderid = '';
-		if ($folderid != '' && is_numeric($folderid))
-		{
-			require_once('mysql/page.php');
-			require_once('ajax/get_comments.php');
-			echo $twig->render('page.html', array(
-				'page_name' => $request[1],
-				'page_title' => TITLE,
-				'page_links' => $page_links,
-				'page_editable' => false,
-				'page_prev' => array($backtitle, 'page/' . $backid),
-				'page_next' => array($nexttitle, 'page/' . $nextid),
-				'page_doneable' => true,
-				'page_done' => $done,
-				'page_items' => $page_items,
-				'logged_in' => $loggedIn,
-				'progress' => percentage($uvanetid),
-				'url' => urlencode($url),
-				'username' => $name,
-				'uvanetid' => $uvanetid,
-				'admin' => isAdmin($uvanetid),
-				'info' => $info,
-				'comments' => $comments
-			));
-		}
-		else
-		{
-			header("Status: 404 Not Found");
-			echo "404";
-		}
+
+		if(!isset($request[1])) return error_404();
+		if(!is_numeric($request[1])) return error_404();
+		$folderid = $request[1];
+
+		require_once("lib/markdown/markdown.php");
+		require_once("lib/models/comments.php");
+		require_once("lib/models/page.php");
+		
+		echo $twig->render('page.html', array(
+			'page_name' => Page::title($folderid),
+			'page_title' => TITLE,
+			'page_links' => $page_links,
+			'page_editable' => isset($uvanetid) && isAdmin($uvanetid),
+			'page_doneable' => true,
+			'page_done' => Page::done_by_user($folderid, $uvanetid),
+			'page_items' => Page::items($folderid),
+			'logged_in' => $loggedIn,
+			'progress' => percentage($uvanetid),
+			'url' => urlencode($url),
+			'username' => $name,
+			'uvanetid' => $uvanetid,
+			'admin' => isAdmin($uvanetid),
+			'info' => Markdown(Page::markdown($folderid)),
+			'comments' => Comments::for_page($folderid)
+		));
+		
 		return;
 }

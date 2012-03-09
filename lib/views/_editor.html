@@ -2,7 +2,7 @@
 <div id="markdown-editor" style="display:none;">
 	<form action="editor/save" method="post">
 		<input type="hidden" name="page" value="">
-		<textarea id="markdown-editor-area" onkeyup="$('#content').html(converter.makeHtml($('#markdown-editor-area').val()));">{% include '_temp/syllabus.markdown' %}</textarea><br>
+		<textarea id="markdown-editor-area" onkeyup="$('#content').html(converter.makeHtml($('#markdown-editor-area').val()));"></textarea><br>
 		<button onclick="return false;" type="submit" class="btn-primary">Opslaan</button>
 	</form>
 </div>

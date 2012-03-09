@@ -5,22 +5,15 @@ include('lib/util.php');       // utility functions
 include('lib/session.php');    // user session setup handling
 include('lib/process.php');    // base site info from database
 
+// Find out the page type per the first URL segment and pass everything
+// to the selected controller. $request will again be available there.
 $request = parse_request();
 
-/* Redirect to secure https 
-  if ($_SERVER['HTTPS'] != "on") {
-  $redirect = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-  header("Location:$redirect");
-  } */
-
-
-// select page type
-// $request is available in all controllers and not modified before passing control
 switch($request[0])
 {
 	case "":
 	case "page":
-		// all content pages
+		// all course content pages as well as the home page
 		include('course/controller.php');
 		return;
 	case "admin":
@@ -28,21 +21,20 @@ switch($request[0])
 		include('admin/controller.php');
 		return;
 	case "comments":
+		// mostly ajax for page comments
 		include('comments/controller.php');
 		return;
 	case "replies":
+		// mostly ajax for page comments
 		include('comments/controller.php');
 		return;
 	case "auth":
+		// CAS authentication
 		include('auth/controller.php');
 		return;
 	default:
-		if (isset($_GET['logout']))
-			echo "logging out, please wait..";
-		else{
+		// return an error to the user
 		header("Status: 404 Not Found");
-		echo "404";
-		}
+		echo "404 - Page could not be found?!";
 		return;
 }
-

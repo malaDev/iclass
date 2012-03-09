@@ -15,6 +15,9 @@ if (!@mysql_select_db(DB_NAME))
 	die();
 }
 
+// Set time names to dutch
+mysql_query("SET lc_time_names=nl_NL");
+
 // start session in order to create a session for the uvanetid of the user who is logged in
 session_start();
 
@@ -22,10 +25,10 @@ session_start();
 if (isset($_SESSION['UvANetID']) && !isset($_GET["logout"]) && !isset($_GET["ticket"]))
 {
 	$uvanetid = $_SESSION['UvANetID'];
-	$startUser = stripos($uvanetid, "<cas:user>") + 10;
-	$endUser = stripos($uvanetid, "</cas:user>");
-	$length = $endUser - $startUser;
-	$uvanetid = substr($uvanetid, $startUser, $length);
+	// $startUser = stripos($uvanetid, "<cas:user>") + 10;
+	// $endUser = stripos($uvanetid, "</cas:user>");
+	// $length = $endUser - $startUser;
+	// $uvanetid = substr($uvanetid, $startUser, $length);
 	$name = $uvanetid;
 	$sql = "SELECT * FROM users WHERE uvanetid = '$uvanetid'";
 	$result = mysql_query($sql);
@@ -47,7 +50,7 @@ if (isset($_SESSION['UvANetID']) && !isset($_GET["logout"]) && !isset($_GET["tic
 		$name = array($user['firstname'], $user['lastname']);
 		$user_type = $user['type'];
 		$user_id = $user['id'];
-		$email = $user['email'];		
+		$email = $user['email'];
 	}
 	else
 	{

@@ -1,6 +1,5 @@
 <?php
 
-
 if (isset($request[0]) && $request[0] == 'create'){
 	require('process/createDatabase.php');
 die();

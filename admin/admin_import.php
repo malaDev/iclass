@@ -1,4 +1,5 @@
 <?php
+
 if (isAdmin($uvanetid)) {
 	if (isset($_POST['delete'])) {
 		mysql_query("DROP TABLE course__" . $_POST['delete'] . "_folders, course__" . $_POST['delete'] . "_items");
@@ -30,4 +31,3 @@ if (isAdmin($uvanetid)) {
 				}
 			}
 }
-?>

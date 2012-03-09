@@ -16,6 +16,12 @@ function parse_request()
 function icon_from_text($text)
 {
 	switch ($text) {
+		case 'Subtitles':
+			return 'icon-font';
+		case 'Transcript':
+			return 'icon-th-list';
+		case 'Specification':
+			return 'icon-list-alt';
 		case 'Video':
 		case 'Videos':
 			return 'icon-film';
@@ -42,6 +48,11 @@ function icon_tag_from_text($text)
 		return $i;
 	}
 }
+
+// function load_model($name)
+// {
+// 	require_once('../lib/models/' . $name . '.php');
+// }
 
 function rebase_path($path)
 {
@@ -112,4 +123,10 @@ function isAdmin($uvanetid) {
 		}
 	}
 	return false;
+}
+
+function error_404()
+{
+	header("Status: 404 Not Found");
+	echo "404";
 }
