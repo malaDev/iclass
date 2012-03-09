@@ -45,7 +45,7 @@ function icon_tag_from_text($text)
 
 function rebase_path($path)
 {
-	$base = trim(dirname($_SERVER['SCRIPT_NAME']),'/') . '/';
+	$base = substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], "/")+1);
 	return $base . $path;
 }
 
