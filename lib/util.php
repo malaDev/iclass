@@ -16,6 +16,10 @@ function parse_request()
 function icon_from_text($text)
 {
 	switch ($text) {
+		case 'MP3':
+			return 'icon-headphones';
+		case 'MP4':
+			return 'icon-film';
 		case 'standard edition':
 		case 'Source Code':
 			return 'icon-folder-open';
@@ -27,7 +31,7 @@ function icon_from_text($text)
 			return 'icon-list-alt';
 		case 'Video':
 		case 'Videos':
-			return 'icon-film';
+			return 'icon-facetime-video';
 		case 'Slides':
 			return 'icon-picture';
 		case 'Syllabus':
