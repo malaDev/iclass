@@ -9,7 +9,7 @@
 		</div>					
 		<strong>{{ comment[2][0] }}</strong><br>
 		{% if not comment[3] == '' %}
-		<a href="{{ url('course/uploads/')}}{{comment[3][0]}}"><i class="icon-file"></i> {{comment[3][1]}}</a>
+		<a href="{{ url('public/uploads/')}}{{comment[3][0]}}"><i class="icon-file"></i> {{comment[3][1]}}</a>
 		{% endif %}
 		<div class="markdown">
 			<p>{{ comment[0] | raw }}</p>

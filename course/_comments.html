@@ -43,13 +43,13 @@
 			<div class="row">
 				<div class="span8 offset2">
 					<div class="comment-form">
-						<form action="{{ url('comments/new') }}" method="post" enctype="multipart/form-data" id="form_comment" name="form_comment" onsubmit="return(newComment(this));">
+						<form action="{{ url('comments/new') }}" method="post" enctype="multipart/form-data" id="form_comment" name="form_comment" onsubmit="folderid='{{page_name}}'; newComment(this); return false;">
 							<textarea id="new-comment" name="new-comment" rows="3" onfocus="$('#submit').show();" placeholder="Post a new comment"></textarea>
 							<input type="hidden" name="page_id" value="{{ page_id }}">
 							<div class="submit" id="submit">
 								<input class="input-file" name="myfile" id="myfile" type="file">
 								You can use <a href="mdown">Markdown</a> to style your posts!
-								<input type="submit" value="Post" onclick="folderid='{{page_name}}'" class="btn btn-small btn-primary pull-right">
+								<input type="submit" value="Post" class="btn btn-small btn-primary pull-right">
 							</div>
 							<span id="upload-loading" style="display: none">&nbsp; Laden...<br/><img src="{{url('public/img/loader.gif')}}" /></span>
 							<iframe id="upload_target" name="upload_target" src="#" style="display:none"></iframe>

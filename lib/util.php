@@ -125,12 +125,6 @@ function rebase_path($path)
 	return $base . $path;
 }
 
-function abs_path($path)
-{
-	$base = "http://cs164.stgm.nl/";
-	return $base . $path;
-}
-
 function checked($string)
 {
 	if($string != '')

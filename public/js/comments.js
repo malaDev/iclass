@@ -42,15 +42,20 @@ function showHideComment(id)
 
 function newComment(form)
 {
+    var formData = new FormData($(form)[0]);
+    console.log(formData);
+
 	$.ajax({
 		type: "POST",
 		url: "/comments/new",
-		data: $(form).serialize(),
+		data: formData,
+		contentType: false,
+		processData: false,
+		cache: false,
 		dataType: "html",
 		complete: function(data)
 		{
 			$("#comments_ajax").html(data.responseText);
-			//$("#message_comment").html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>&times;</a>Comment succesvol geplaatst!</div>");
 			document.forms["form_comment"].reset();
 		}
 	});
