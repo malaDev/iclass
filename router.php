@@ -23,11 +23,11 @@ switch($request[0])
 		break;
 	case "comments":
 		// mostly ajax for page comments
-		include('comments/controller.php');
+		include('course/comments.php');
 		break;
 	case "replies":
 		// mostly ajax for page comments
-		include('replies/controller.php');
+		include('course/replies.php');
 		break;
 	case "auth":
 		// CAS authentication
