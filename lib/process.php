@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set(TIMEZONE);
+
 if (isset($request[0]) && $request[0] == 'create'){
 	require('process/createDatabase.php');
 die();

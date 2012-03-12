@@ -63,29 +63,33 @@ switch ($request[0]) {
 		
 				if(!isset($request[1])) return error_404();
 				if(!is_numeric($request[1])) return error_404();
-				$folderid = $request[1];
+				$id = $request[1];
 		
 				require_once("lib/markdown/markdown.php");
 				require_once("lib/models/comments.php");
 				require_once("lib/models/page.php");
 				
+				// if content is empty, return as-is, otherwise markdown it
+				if($page_contents = Page::markdown($id))
+					$page_contents = Markdown($page_contents);
+				
 				echo $twig->render('page.html', array(
 					'page_id' => $page_id,
-					'page_name' => Page::title($folderid),
+					'page_name' => Page::title($id),
 					'page_title' => TITLE,
 					'page_links' => $page_links,
 					'page_editable' => isset($uvanetid) && isAdmin($uvanetid),
 					'page_doneable' => true,
-					'page_done' => Page::done_by_user($folderid, $uvanetid),
-					'page_items' => Page::items($folderid),
+					'page_done' => Page::done_by_user($id, $uvanetid),
+					'page_items' => Page::items($id),
 					'logged_in' => $loggedIn,
 					'progress' => percentage($uvanetid),
 					'url' => urlencode($url),
 					'username' => $name,
 					'uvanetid' => $uvanetid,
 					'admin' => isAdmin($uvanetid),
-					'info' => Markdown(Page::markdown($folderid)),
-					'comments' => Comments::for_page($folderid, $uvanetid)
+					'info' => $page_contents,
+					'comments' => Comments::for_page($id, $uvanetid)
 				));
 				return;
 		}

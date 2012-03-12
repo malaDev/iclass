@@ -2,6 +2,7 @@
 var commentID = ''; 
 var replyID = ''; 
 var folderid = ''; 
+
 function expandComment(id, uvanetid)
 {
 	if (window.XMLHttpRequest)
@@ -39,87 +40,70 @@ function showHideComment(id)
 	}
 }
 
-// this function is called when a new reply is posted (AJAX)
-function newReply(id, body)
+function newComment(form)
+{
+	$.ajax({
+		type: "POST",
+		url: "/comments/new",
+		data: $(form).serialize(),
+		dataType: "html",
+		complete: function(data)
+		{
+			$("#comments_ajax").html(data.responseText);
+			//$("#message_comment").html("<div class='alert alert-success'><a class='close' data-dismiss='alert'>&times;</a>Comment succesvol geplaatst!</div>");
+			document.forms["form_comment"].reset();
+		}
+	});
+	
+	return false;
+}
+	
+function delComment(uvanetid, folderid)
+{
+	$.ajax({
+		type: "POST",
+		url: "/comments/delete?q="+commentID+"&u="+uvanetid+"&f="+folderid,
+		dataType: "html",
+		complete: function(data)
+		{
+			$("#comments_ajax").html(data.responseText);
+		}
+	});
+	
+	return false;
+}
+	
+function newReply(form, id, body)
 {
 	if (body=="")
 		return;
 	
-	if (window.XMLHttpRequest)
-	{// code for IE7+, Firefox, Chrome, Opera, Safari
-		xmlhttp=new XMLHttpRequest();
-	}
-	else
-	{// code for IE6, IE5
-		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	xmlhttp.onreadystatechange=function()
-	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+	$.ajax({
+		type: "POST",
+		url: "/replies/new?q="+id+"&b="+body,
+		data: $(form).serialize(),
+		dataType: "html",
+		complete: function(data)
 		{
-			document.getElementById("0"+id).innerHTML=xmlhttp.responseText;
+			$("#0"+id).html(data.responseText);
+			$("#new-reply"+id).value = "";
 		}
-	}
-	xmlhttp.open("GET","../course/ajax/new_reply.php?q="+id+"&b="+body,true);
-	xmlhttp.send();
-	document.getElementById("new-reply"+id).value="";
-}
+	});
 	
-// this function is called when a new comment is posted (AJAX)
-function newComment(file, body, folderid)
-{
-	$.post(
-		'/comments/new', $("#form_comment").serialize(), function() {
-			alert('hi');
-			document.getElementById("message_comment").innerHTML = 
-			"<div class='alert alert-success'><a class='close' data-dismiss='alert'>&times;</a>Comment succesvol geplaatst!</div>";
-			document.forms["form_comment"].reset();
-		}
-	);
+	return false;
 }
-	
-// this function is called when a comment is deleted (AJAX)
-function delComment(uvanetid, folderid)
-{
-		if (window.XMLHttpRequest)
-		{// code for IE7+, Firefox, Chrome, Opera, Safari
-			xmlhttp=new XMLHttpRequest();
-		}
-		else
-		{// code for IE6, IE5
-			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.onreadystatechange=function()
-		{
-			if (xmlhttp.readyState==4 && xmlhttp.status==200)
-			{
-				document.getElementById("comments_ajax").innerHTML=xmlhttp.responseText;
-			}
-		}
-		xmlhttp.open("GET","../course/ajax/delete_comment.php?q="+commentID+"&u="+uvanetid+"&f="+folderid,true);
-		xmlhttp.send();
-}
-	
-// this function is called when a reply is deleted (AJAX)
+
 function delReply(uvanetid)
 {
-		if (window.XMLHttpRequest)
-		{// code for IE7+, Firefox, Chrome, Opera, Safari
-			xmlhttp=new XMLHttpRequest();
-		}
-		else
-		{// code for IE6, IE5
-			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.onreadystatechange=function()
+	$.ajax({
+		type: "POST",
+		url: "/replies/delete?q="+commentID+"&r="+replyID+"&u="+uvanetid,
+		dataType: "html",
+		complete: function(data)
 		{
-			if (xmlhttp.readyState==4 && xmlhttp.status==200)
-			{
-				document.getElementById("0"+commentID).innerHTML=xmlhttp.responseText;
-			}
+			$("#0"+commentID).html(data.responseText);
 		}
-		xmlhttp.open("GET","../course/ajax/delete_reply.php?q="+commentID+"&r="+replyID+"&u="+uvanetid,true);
-		xmlhttp.send();
+	});
 }
 
 // this function is called when a file is being uploaded (shows a loading bar)

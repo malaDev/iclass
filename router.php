@@ -16,26 +16,26 @@ switch($request[0])
 	case "page":
 		// all course content pages as well as the home page
 		include('course/controller.php');
-		return;
+		break;
 	case "admin":
 		// admin pages
 		require('admin/controller.php');
-		return;
+		break;
 	case "comments":
 		// mostly ajax for page comments
 		include('comments/controller.php');
-		return;
+		break;
 	case "replies":
 		// mostly ajax for page comments
 		include('replies/controller.php');
-		return;
+		break;
 	case "auth":
 		// CAS authentication
 		include('auth/controller.php');
-		return;
+		break;
 	default:
 		// return an error to the user
 		header("Status: 404 Not Found");
 		echo "404 - Page could not be found?!";
-		return;
+		break;
 }

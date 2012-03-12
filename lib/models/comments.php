@@ -5,7 +5,7 @@ class Comments
 	public static function for_page($folderid, $uvanetid)
 	{
 		// Select the comments linked to the folder_id (episode)
-		$query = "SELECT *, DATE_FORMAT(timestamp, '%H:%i, %W %d %M %Y') AS timestamp FROM comments WHERE folder_id = $folderid order by latest_update desc";
+		$query = "SELECT * FROM comments WHERE folder_id = $folderid order by latest_update desc";
 		$result = mysql_query($query);
 		$comments = null;
 		while ($comment = mysql_fetch_array($result)) {
@@ -14,7 +14,7 @@ class Comments
 			$body = $comment['body'];
 			$body = wordwrap($body,60,"\n",TRUE);
 	
-		 	$date = $comment['timestamp'];
+		 	$date = strtotime($comment['timestamp']);
 	
 			// Get info of the poster of the comment (name and type)
 			$user_id = $comment['user_id'];
@@ -55,7 +55,7 @@ class Comments
 			} else {
 				$attachement = null;
 			}
-			$replies = Comments::replies_for_comment($id);
+			$replies = Comments::replies_for_comment($id, $uvanetid);
 			$comments[$id] = array($body, $date, array($name_poster, $uvanetid_poster, $type_poster), $attachement, $delete, $replies);
 		}
 		
@@ -63,9 +63,9 @@ class Comments
 	}
 	
 	/* Get and show the replies linked to the comment_id */
-	public static function replies_for_comment($id)
+	public static function replies_for_comment($id, $uvanetid)
 	{
-		$query_selectreplies = "SELECT *, DATE_FORMAT(timestamp, '%H:%i, %W %d %M %Y') AS timestamp FROM replies WHERE comment_id = $id order by id";
+		$query_selectreplies = "SELECT * FROM replies WHERE comment_id = $id order by id";
 		$result_selectreplies = mysql_query($query_selectreplies);
 		$replies = null;
 		while ($reply = mysql_fetch_array($result_selectreplies)) {
@@ -74,7 +74,7 @@ class Comments
 	
 			$id_reply = $reply['id'];
 	
-			$date_reply = $reply['timestamp'];
+		 	$date_reply = strtotime($reply['timestamp']);
 	
 			// Get info of the replier (name and type and uvanetid)
 			$user_id_reply = $reply['user_id'];

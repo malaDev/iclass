@@ -298,12 +298,13 @@ footer small
 {
 	text-align:right;
 }
+
 #posts .span2 small
 {
 	font-size: x-small;
 }
 
-#posts .span2 img
+#posts .span2 img, #posts .comments .span8 img
 {
     width:50px;
     max-height:50px;
@@ -397,7 +398,7 @@ footer small
 	border-radius: 0;
 	border:none;
 	box-sizing:border-box; 
-	width:98.7%; 
+	width:100%; 
 	font:14px monospace; 
 	border:0;
 }
@@ -409,6 +410,11 @@ footer small
 	line-height:30px;
 	overflow:auto;
 	display:none;
+}
+
+.comment-form .submit input[type=file]
+{
+	margin-bottom: 0;
 }
 
 .comment-form .submit input[type=submit]

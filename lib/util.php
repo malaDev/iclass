@@ -1,5 +1,68 @@
 <?php
 
+// from http://www.zachstronaut.com/posts/2009/01/20/php-relative-date-time-string.html
+function time_elapsed_string($ptime) {
+    $etime = time() - $ptime;
+    
+    if ($etime < 1) {
+        return 'just now';
+    }
+    
+    $a = array( 12 * 30 * 24 * 60 * 60  =>  'year',
+                30 * 24 * 60 * 60       =>  'month',
+                 7 * 24 * 60 * 60       =>  'week',
+                24 * 60 * 60            =>  'day',
+                60 * 60                 =>  'hour',
+                60                      =>  'minute',
+                1                       =>  'second'
+                );
+    
+    foreach ($a as $secs => $str) {
+        $d = $etime / $secs;
+        if ($d >= 1) {
+            $r = round($d);
+            return $r . ' ' . $str . ($r > 1 ? 's' : '') . ' ago';
+        }
+    }
+}
+
+// find urls and make them clickable links
+function make_links($text) {
+	return preg_replace(
+					array(
+				'/(?(?=<a[^>]*>.+<\/a>)
+             (?:<a[^>]*>.+<\/a>)
+             |
+             ([^="\']?)((?:https?|ftp|bf2|):\/\/[^<> \n\r]+)
+         )/iex',
+				'/<a([^>]*)target="?[^"\']+"?/i',
+				'/<a([^>]+)>/i',
+				'/(^|\s)(www.[^<> \n\r]+)/iex',
+				'/(([_A-Za-z0-9-]+)(\\.[_A-Za-z0-9-]+)*@([A-Za-z0-9-]+)
+       (\\.[A-Za-z0-9-]+)*)/iex'
+					), array(
+				"stripslashes((strlen('\\2')>0?'\\1<a href = \"\\2\" >\\2</a>\\3':'\\0'))",
+				'<a\\1',
+				'<a\\1 target="_blank" >',
+				"stripslashes((strlen('\\2')>0?'\\1<a href = \"http://\\2\" >\\2</a>\\3':'\\0'))",
+				"stripslashes((strlen('\\2')>0?'<a href = \"mailto:\\0\" >\\0</a>':'\\0'))"
+					), $text
+	);
+}
+
+// find youtube video urls and embed them at the bottom of the comment
+function embed_youtube($text) {
+	preg_match_all('#(http://www.youtube.com)?/(v/([-|~_0-9A-Za-z]+)|watch\?v\=([-|~_0-9A-Za-z]+)&?.*?)#i', $text, $output);
+	foreach ($output[4] AS $video_id) {
+		if (!isset($video[$video_id])) {
+			$video[$video_id] = true;
+			$embed_code = '<iframe width="450" height="259" src="http://www.youtube.com/embed/' . $video_id . '" frameborder="0" allowfullscreen></iframe>';
+			$text .= $embed_code;
+		}
+	}
+	return $text;
+}
+
 function parse_request()
 {
 	// get path info relative to directory this router is in
@@ -56,14 +119,15 @@ function icon_tag_from_text($text)
 	}
 }
 
-// function load_model($name)
-// {
-// 	require_once('../lib/models/' . $name . '.php');
-// }
-
 function rebase_path($path)
 {
 	$base = substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], "/")+1);
+	return $base . $path;
+}
+
+function abs_path($path)
+{
+	$base = "http://cs164.stgm.nl/";
 	return $base . $path;
 }
 
@@ -92,6 +156,7 @@ function start_twig($folder)
 	$twig->addFilter('icon', new Twig_Filter_Function('icon_from_text'));
 	$twig->addFilter('icon_tag', new Twig_Filter_Function('icon_tag_from_text'));
 	$twig->addFilter('checked', new Twig_Filter_Function('checked'));
+	$twig->addFilter('ago', new Twig_Filter_Function('time_elapsed_string'));
 	$twig->addFunction('url', new Twig_Function_Function('rebase_path'));
 
 	return $twig;

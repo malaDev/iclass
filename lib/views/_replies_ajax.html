@@ -1,17 +1,18 @@
-							{% for reply_id, reply in comment[5] %}
-							<div class="row comment">
-								<div class="span2">
-									<div class="pull-left">
-										<a href="#delete_reply" data-toggle="modal" onclick="commentID='{{id}}'; replyID='{{reply_id}}'" class="close">&times;</a> 
-									</div>	
-									<img src="http://cs164.stgm.nl/images/no-avatar.gif">
-									<h4><strong>{{ reply[2][0] }}</strong><br> <small>{{ reply[1] }}</small></h4>
-								</div>
-								<div class="span6">
-									<div class="markdown">
-										<p>{{ reply[0] | raw }}</p>
-									</div>
-								</div>
-							</div>
-							<hr />
-							{% endfor %}
+{% for reply_id, reply in comment[5] %}
+<div class="row comment">
+	<div class="span2" style="width:50px;">
+		<img src="{{ url('public/img/no-avatar.gif') }}">
+	</div>
+	<div class="span6">
+		<div class="pull-right">
+			<a href="#delete_reply" data-toggle="modal" onclick="commentID='{{id}}'; replyID='{{reply_id}}'" class="close">&times;</a> 
+		</div>	
+		<strong>{{ reply[2][0] }}</strong><br>
+		<div class="markdown">
+			<p>{{ reply[0] | raw }}</p>
+		</div>
+		<small>{{ reply[1] | ago }}</small>
+	</div>
+</div>
+<hr />
+{% endfor %}

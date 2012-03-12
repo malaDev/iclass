@@ -9,6 +9,9 @@
 	define("DB_PASS", "");
 	define("DB_NAME", "uva");
 
+	// time zone
+	define("TIMEZONE", "Europe/Amsterdam");
+	
 	// CAS urls
 	define("CAS_LOGIN_URL", "https://bt-lap.ic.uva.nl/cas/login?service=");
 	define("CAS_VALIDATE_URL", "https://bt-lap.ic.uva.nl/cas/serviceValidate?ticket=");

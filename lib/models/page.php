@@ -92,6 +92,6 @@ class Page
 				return $row['innerhtml'];
 			}
 		}
-		return;
+		return NULL;
 	}
 }

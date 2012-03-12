@@ -25,10 +25,6 @@ session_start();
 if (isset($_SESSION['UvANetID']) && !isset($_GET["logout"]) && !isset($_GET["ticket"]))
 {
 	$uvanetid = $_SESSION['UvANetID'];
-	// $startUser = stripos($uvanetid, "<cas:user>") + 10;
-	// $endUser = stripos($uvanetid, "</cas:user>");
-	// $length = $endUser - $startUser;
-	// $uvanetid = substr($uvanetid, $startUser, $length);
 	$name = $uvanetid;
 	$sql = "SELECT * FROM users WHERE uvanetid = '$uvanetid'";
 	$result = mysql_query($sql);
