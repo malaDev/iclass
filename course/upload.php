@@ -1,8 +1,5 @@
 <?php
 
-// Upload folder (make sure the permissions for this folder are 776)
-$upload_folder = "public/uploads";
-
 //maximum allowed size of the file in bytes 
 $max_size = "8000000";
 
@@ -64,8 +61,7 @@ if ($_FILES['myfile']['name'] != "" && $_POST['new-comment'] != "")
 			$result = 2;
 		else {
 			// result = 0: no errors, save the file
-			error_log($upload_folder . '/' . $file_newname);
-			if (@move_uploaded_file($_FILES['myfile']['tmp_name'], getcwd() . '/' . $upload_folder . '/' . $file_newname)) {
+			if (move_uploaded_file($_FILES['myfile']['tmp_name'], getcwd() . '/' . UPLOAD_FOLDER . '/' . $file_newname)) {
 				$result = 0;
 			}
 			else

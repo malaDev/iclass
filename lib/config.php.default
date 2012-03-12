@@ -9,6 +9,9 @@
 	define("DB_PASS", "");
 	define("DB_NAME", "uva");
 
+	// uploaded files will be put here (relative path)	
+	define("UPLOAD_FOLDER", "public/uploads");
+
 	// time zone
 	define("TIMEZONE", "Europe/Amsterdam");
 	

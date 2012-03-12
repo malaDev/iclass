@@ -133,6 +133,11 @@ function checked($string)
 	}
 }
 
+function download_link($file)
+{
+	return('/' . UPLOAD_FOLDER . '/' . $file);
+}
+
 // To boot Twig from our router
 function start_twig($folder)
 {
@@ -152,6 +157,7 @@ function start_twig($folder)
 	$twig->addFilter('checked', new Twig_Filter_Function('checked'));
 	$twig->addFilter('ago', new Twig_Filter_Function('time_elapsed_string'));
 	$twig->addFunction('url', new Twig_Function_Function('rebase_path'));
+	$twig->addFunction('download_link', new Twig_Function_Function('download_link'));
 
 	return $twig;
 }
