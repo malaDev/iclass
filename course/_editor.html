@@ -1,9 +1,9 @@
 <script type="text/javascript" charset="utf-8" src="{{ url('public/js/markdown.js') }}"></script>
 <div id="markdown-editor" style="display:none;">
-	<form action="editor/save" method="post">
-		<input type="hidden" name="page" value="">
-		<textarea id="markdown-editor-area" onkeyup="$('#content').html(converter.makeHtml($('#markdown-editor-area').val()));"></textarea><br>
-		<button onclick="return false;" type="submit" class="btn-primary">Opslaan</button>
+	<form action="/page/update" method="post" onsubmit="">
+		<input type="hidden" name="page" value="{{ page_id }}">
+		<textarea name="markdown" id="markdown-editor-area" onkeyup="$('#content').html(converter.makeHtml($('#markdown-editor-area').val()));">{{ page_source }}</textarea><br>
+		<button type="submit" class="btn-primary">Opslaan</button>
 	</form>
 </div>
 <script type="text/javascript" charset="utf-8">

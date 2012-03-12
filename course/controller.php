@@ -82,6 +82,17 @@ switch ($request[0]) {
 				}
 				return;
 			
+			case "update":
+				if(isset($_POST['markdown']))
+				{
+					$content = mysql_real_escape_string($_POST['markdown']);
+					$page_id = mysql_real_escape_string($_POST['page']);
+					mysql_query("UPDATE " . DB_COURSE_FOLDERS . " set markdown = '$content' where folder_id = $page_id;");
+					$url = rebase_path("page/$page_id");
+					error_log($url);
+					header("Location: $url");
+				}
+				break;
 			default:
 				// http://www.learnscape.nl/page/20
 		
@@ -94,8 +105,7 @@ switch ($request[0]) {
 				require_once("lib/models/page.php");
 				
 				// if content is empty, return as-is, otherwise markdown it
-				if($page_contents = Page::markdown($id))
-					$page_contents = Markdown($page_contents);
+				$page_source = Page::markdown($id);
 				
 				echo $twig->render('page.html', array(
 					'page_id' => $page_id,
@@ -112,7 +122,8 @@ switch ($request[0]) {
 					'username' => $name,
 					'uvanetid' => $uvanetid,
 					'admin' => isAdmin($uvanetid),
-					'info' => $page_contents,
+					'page_source' => $page_source,
+					'info' => Markdown($page_source),
 					'comments' => Comments::for_page($id, $uvanetid)
 				));
 				return;

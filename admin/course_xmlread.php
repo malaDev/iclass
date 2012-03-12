@@ -117,6 +117,7 @@ if($action=='update'){
 	elem_id INT NOT NULL AUTO_INCREMENT,
 	PRIMARY KEY(elem_id),
 	weight INT,
+	markdown TEXT,
 	folder INT,
 	type BINARY,
 	innerhtml TEXT,

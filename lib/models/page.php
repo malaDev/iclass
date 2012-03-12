@@ -84,12 +84,12 @@ class Page
 	// general info about current episode
 	public static function markdown($id)
 	{
-		$sql = "SELECT * FROM " . DB_COURSE_ITEMS . " WHERE folder=" . $id . " AND type=2 ORDER BY weight";
+		$sql = "SELECT markdown FROM " . DB_COURSE_FOLDERS . " WHERE folder_id=" . $id;
 		$result = mysql_query($sql) or die(mysql_error());
 	
 		if (mysql_num_rows($result) > 0) {
 			while ($row = mysql_fetch_array($result)) {
-				return $row['innerhtml'];
+				return $row['markdown'];
 			}
 		}
 		return NULL;
