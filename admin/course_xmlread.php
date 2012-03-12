@@ -117,7 +117,6 @@ if($action=='update'){
 	elem_id INT NOT NULL AUTO_INCREMENT,
 	PRIMARY KEY(elem_id),
 	weight INT,
-	markdown TEXT,
 	folder INT,
 	type BINARY,
 	innerhtml TEXT,
@@ -127,6 +126,7 @@ if($action=='update'){
 	PRIMARY KEY(folder_id),
 	weight INT,
 	parent INT,
+	markdown TEXT,
 	title VARCHAR(200))");
 	}
   if ($real_xml)
