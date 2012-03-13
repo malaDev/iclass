@@ -10,18 +10,17 @@ switch ($request[0]) {
 		if (DB_COURSE_FOLDERS && DB_COURSE_ITEMS && isset($page_links)) {
 			reset($page_links);
 
-			
 			$result = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=1 ORDER BY weight");
 			while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 				$episode_title = $row['title'];
 				$resultsub = mysql_query("SELECT parent, " . DB_COURSE_FOLDERS . ".folder_id, weight, title, (progress.id=" . 18 . ") as done FROM " . DB_COURSE_FOLDERS . " left outer join progress on " . DB_COURSE_FOLDERS . ".folder_id = progress.folder_id having  " . DB_COURSE_FOLDERS . ".parent=" . $row['folder_id'] . " ORDER BY weight");
+				$subarray = array();
 				while ($rowsub = mysql_fetch_array($resultsub, MYSQL_ASSOC)) {
 					$subitemTitle = $rowsub['title'];
 					$subitemFolder = $rowsub['folder_id'];
 					$subarray[$subitemTitle] = array('page/' . $subitemFolder, $rowsub['done']);
 				}
 				$page_done_links[$episode_title] = $subarray;
-				unset($subarray);
 			}
 			
 			echo $twig->render('start.html', array(
@@ -106,6 +105,8 @@ switch ($request[0]) {
 				
 				// if content is empty, return as-is, otherwise markdown it
 				$page_source = Page::markdown($id);
+				
+				//var_dump(Page::items($id));
 				
 				echo $twig->render('page.html', array(
 					'page_id' => $page_id,

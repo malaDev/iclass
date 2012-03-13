@@ -5,46 +5,61 @@
 	<h1>Edit sections</h1>
 
 	{% for section, pages in sections %}
-	<table class="table admin-section-editor">
+	<table class="table table-condensed table-bordered admin-section-editor">
 		<tr>
 			<th>
-				<a class="btn"><i class="icon-remove"></i></a>
-				<a class="btn disabled"><i class="icon-arrow-up"></i></a>
-				<a class="btn"><i class="icon-arrow-down"></i></a>
+				<form action="{{ url('admin/sections/remove') }}" method="post">
+					<input type="hidden" name="id" value="{{ pages[0] }}">
+					<button type="submit" class="btn"><i class="icon-remove"></i></button>
+				</form>
+				<!-- <a class="btn disabled"><i class="icon-arrow-up"></i></a>
+				<a class="btn"><i class="icon-arrow-down"></i></a> -->
 			</th>
 			<th>
-				<input type="text" value="{{ section }}" style="font-weight:bold;">
-				<a class="btn"><i class="icon-pencil"></i></a>
+				<form action="{{ url('admin/sections/edit') }}" method="post">
+				<input type="text" name="name" value="{{ section }}">
+				<input type="hidden" name="id" value="{{ pages[0] }}">
+				<button type="submit" class="btn"><i class="icon-pencil"></i></button>
+				</form>
 			</th>
 		</tr>
-		{% for page, link in pages %}
+		{% for page, link in pages[1] %}
 		<tr>
 			<td>
-				<a class="btn"><i class="icon-remove"></i></a>
-				<a class="btn disabled"><i class="icon-arrow-up"></i></a>
-				<a class="btn"><i class="icon-arrow-down"></i></a>
+				<form action="{{ url('admin/sections/remove') }}" method="post">
+					<input type="hidden" name="id" value="{{ link[0] }}">
+					<button type="submit" class="btn"><i class="icon-remove"></i></button>
+				</form>
+				<!-- <a class="btn disabled"><i class="icon-arrow-up"></i></a>
+				<a class="btn"><i class="icon-arrow-down"></i></a> -->
 			</td>
 			<td>
-				<input type="text" value="{{ page }}">
-				<a class="btn"><i class="icon-pencil"></i></a>
+				<form action="{{ url('admin/sections/edit') }}" method="post">
+					<input type="text" name="name" value="{{ page }}">
+					<input type="hidden" name="id" value="{{ link[0] }}">
+					<button type="submit" class="btn"><i class="icon-pencil"></i></button>
+				</form>
 			</td>
 		</tr>
 		{% endfor %}
 		<tr>
 			<td></td>
 			<td>
-				<input type="text" placeholder="Add a page">
-				<a class="btn"><i class="icon-plus"></i></a>
+				<form action="{{ url('admin/sections/add') }}" method="post">
+					<input type="text" placeholder="Add a page" name="name">
+					<input type="hidden" name="parent" value="{{ pages[0] }}">
+					<button type="submit" class="btn"><i class="icon-plus"></i></button>
+				</form>
 			</td>
 		</tr>
 	</table>
 	{% endfor %}
 
-	<table class="table admin-section-editor">
+	<table class="table table-condensed table-bordered admin-section-editor">
 		<tr>
 			<th></th>
 			<th>
-				<form action="{{ url('admin/sections/add') }}">
+				<form action="{{ url('admin/sections/add') }}" method="post">
 				<input type="text" placeholder="Add a section" name="name">
 				<input type="hidden" name="parent" value="1">
 				<button type="submit" class="btn"><i class="icon-plus"></i></button>

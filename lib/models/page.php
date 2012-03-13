@@ -41,7 +41,8 @@ class Page
 		$result = mysql_query($sql) or die(mysql_error());
 		
 		$items = array();
-		$items['Other'] = Page::files($id);
+		$other = Page::files($id);
+		if(count($other) > 0) $items['Other'] = $other;
 		
 		while ($item = mysql_fetch_array($result))
 		{
@@ -80,7 +81,7 @@ class Page
 				$items[$item['innerhtml']] = $item['attr'];
 			}
 		}
-		
+	
 		return $items;
 	}
 	

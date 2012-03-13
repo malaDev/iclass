@@ -45,18 +45,23 @@ if (count($required) > 0) {
         die();
 }
 
-// These are the pages and sections in our course
-$result = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=1 ORDER BY weight");
-while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-	$episode_title = $row['title'];
-	$resultsub = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=" . $row['folder_id'] . " ORDER BY weight");
-	while ($rowsub = mysql_fetch_array($resultsub, MYSQL_ASSOC)) {
-		$subitemTitle = $rowsub['title'];
-		$subitemFolder = $rowsub['folder_id'];
-		$subarray[$subitemTitle] = 'page/' . $subitemFolder;
+function course_sections()
+{
+	// These are the pages and sections in our course
+	$result = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=1 ORDER BY weight");
+	while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+		$episode_title = $row['title'];
+		$resultsub = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=" . $row['folder_id'] . " ORDER BY weight");
+		$subarray = array();
+		while ($rowsub = mysql_fetch_array($resultsub, MYSQL_ASSOC)) {
+			$subitemTitle = $rowsub['title'];
+			$subitemFolder = $rowsub['folder_id'];
+			$subarray[$subitemTitle] = 'page/' . $subitemFolder;
+		}
+		$page_links[$episode_title] = $subarray;
+		unset($subarray);
 	}
-	$page_links[$episode_title] = $subarray;
-	unset($subarray);
+	return $page_links;
 }
 
-?>
+$page_links = course_sections();

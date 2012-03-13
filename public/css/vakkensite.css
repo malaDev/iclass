@@ -473,9 +473,15 @@ footer small
     width:116px;
 }
 
-.admin-section-editor th
+.admin-section-editor th input[type=text]
 {
-    background-color: #2775BD;
+    font-weight:bold;
+}
+
+.admin-section-editor form
+{
+    display:inline;
+    margin-bottom:0;
 }
 
 #done
