@@ -1,7 +1,8 @@
 <?php
 
-	// title will be displayed to users
-	define("TITLE", "LearnScape");
+	// Title will be displayed to users
+	define("SITE_NAME", "MSE");
+	define("SITE_TITLE", "Mobile Software Engineering");
 
 	// database configuration - mysql is required
 	define("DB_SERVER", "localhost");
