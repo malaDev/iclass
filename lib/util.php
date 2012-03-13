@@ -79,11 +79,28 @@ function parse_request()
 function icon_from_text($text)
 {
 	switch ($text) {
+		case 'Info':
+			return 'icon-home';
+		case 'Demos':
+			return 'icon-play';
+		case 'Music':
+			return 'icon-music';
+		case 'Galleries':
+			return 'icon-star';
+		case 'Hacker Edition':
+			return 'icon-fire';
+		case 'Notes':
+			return 'icon-list-alt';
+		case 'Transcripts':
+			return 'icon-align-left';
 		case 'MP3':
 			return 'icon-headphones';
 		case 'MP4':
 			return 'icon-film';
+		case 'Review Session':
+			return 'icon-facetime-video';
 		case 'standard edition':
+			return 'icon-cog';
 		case 'Source Code':
 			return 'icon-folder-open';
 		case 'Subtitles':

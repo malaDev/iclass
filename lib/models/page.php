@@ -44,7 +44,7 @@ class Page
 		if($main)
 		{
 			$other = Page::files($id);
-			if(count($other) > 0) $items['Other'] = $other;
+			if(count($other) > 0) $items['Info'] = $other;
 		}
 		
 		while ($item = mysql_fetch_array($result))
