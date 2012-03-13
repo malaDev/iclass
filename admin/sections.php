@@ -26,16 +26,11 @@ switch ($request[2])
 			'page_items' => $page_items,
 			'logged_in' => $loggedIn,
 			'progress' => percentage($uvanetid),
-			//'url' => urlencode($url),
 			'username' => $name,
 			'type' => $user_type,
 			'admin' => isAdmin($uvanetid),
 			'email' => $email,
-			'new' => $new,
 			'uvanetid' => $uvanetid,
-			'courses' => $courses,
-			'message' => $message,
-			'sections' => $page_done_links
 		));
 		break;
 	case "add":

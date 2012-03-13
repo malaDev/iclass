@@ -31,7 +31,6 @@ switch ($request[0]) {
 				'page_items' => array(),
 				'logged_in' => $loggedIn,
 				'progress' => percentage($uvanetid),
-				'url' => urlencode($url),
 				'username' => $name,
 				'admin' => isAdmin($uvanetid)
 			));
@@ -43,7 +42,6 @@ switch ($request[0]) {
 				'page_items' => array(),
 				'logged_in' => $loggedIn,
 				'progress' => percentage($uvanetid),
-				'url' => urlencode($url),
 				'username' => $name,
 				'admin' => isAdmin($uvanetid)
 			));
@@ -88,7 +86,6 @@ switch ($request[0]) {
 					$page_id = mysql_real_escape_string($_POST['page']);
 					mysql_query("UPDATE " . DB_COURSE_FOLDERS . " set markdown = '$content' where folder_id = $page_id;");
 					$url = rebase_path("page/$page_id");
-					error_log($url);
 					header("Location: $url");
 				}
 				break;
@@ -119,7 +116,6 @@ switch ($request[0]) {
 					'page_items' => Page::items($id),
 					'logged_in' => $loggedIn,
 					'progress' => percentage($uvanetid),
-					'url' => urlencode($url),
 					'username' => $name,
 					'uvanetid' => $uvanetid,
 					'admin' => isAdmin($uvanetid),

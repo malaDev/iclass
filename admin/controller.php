@@ -39,15 +39,11 @@ switch ($request[1]) {
 			'page_items' => $page_items,
 			'logged_in' => $loggedIn,
 			'progress' => percentage($uvanetid),
-			//'url' => urlencode($url),
 			'username' => $name,
 			'type' => $user_type,
 			'admin' => isAdmin($uvanetid),
 			'email' => $email,
-			'new' => $new,
 			'uvanetid' => $uvanetid,
-			'courses' => $courses,
-			'message' => $message
 		));
 		return;
 	case "settings":
@@ -60,15 +56,11 @@ switch ($request[1]) {
 			'page_items' => $page_items,
 			'logged_in' => $loggedIn,
 			'progress' => percentage($uvanetid),
-			//'url' => urlencode($url),
 			'username' => $name,
 			'type' => $user_type,
 			'admin' => isAdmin($uvanetid),
 			'email' => $email,
-			'new' => $new,
 			'uvanetid' => $uvanetid,
-			'courses' => $courses,
-			'message' => $message
 		));
 		return;
 	case "sections":
@@ -89,16 +81,12 @@ switch ($request[1]) {
 			'page_items' => $page_items,
 			'logged_in' => $loggedIn,
 			'progress' => percentage($uvanetid),
-			//'url' => urlencode($url),
 			'username' => $name,
 			'type' => $user_type,
 			'admin' => isAdmin($uvanetid),
 			'users' => $users,
 			'email' => $email,
-			'new' => $new,
 			'uvanetid' => $uvanetid,
-			'courses' => $courses,
-			'message' => $message
 		));
 		return;
 	case "createdb":
