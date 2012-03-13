@@ -41,8 +41,11 @@ class Page
 		$result = mysql_query($sql) or die(mysql_error());
 		
 		$items = array();
-		$other = Page::files($id);
-		if(count($other) > 0) $items['Other'] = $other;
+		if($main)
+		{
+			$other = Page::files($id);
+			if(count($other) > 0) $items['Other'] = $other;
+		}
 		
 		while ($item = mysql_fetch_array($result))
 		{
