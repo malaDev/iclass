@@ -41,13 +41,16 @@ class Page
 		$result = mysql_query($sql) or die(mysql_error());
 		
 		$items = array();
+		$items['Other'] = Page::files($id);
 		
 		while ($item = mysql_fetch_array($result))
 		{
+			// top level menus
 			if($main)
 			{
 				$items[$item['title']] = array_merge(Page::files($item['folder_id']), Page::items($item['folder_id'], false));
 			}
+			// subfolders if any
 			else
 			{
 				$items[$item['title']] = "SUBFOLDER";
@@ -55,7 +58,7 @@ class Page
 				$items = array_merge($items, Page::files($item['folder_id']));
 			}
 		}
-				
+
 		return $items;
 	}
 	
