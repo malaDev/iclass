@@ -52,23 +52,7 @@ switch ($request[1]) {
 		return;
 	case "settings":
 	case "sections":
-		echo $twig->render($request[1] . '.html', array(
-			'page_name' => $request[1],
-			'page_title' => TITLE,
-			'page_links' => $page_links,
-			'page_items' => $page_items,
-			'logged_in' => $loggedIn,
-			'progress' => percentage($uvanetid),
-			'url' => urlencode($url),
-			'username' => $name,
-			'type' => $user_type,
-			'admin' => isAdmin($uvanetid),
-			'email' => $email,
-			'new' => $new,
-			'uvanetid' => $uvanetid,
-			'courses' => $courses,
-			'message' => $message
-		));
+		require 'sections.php';
 		return;
 	case "users":
 		mysql_query("SET lc_time_names=nl_NL");

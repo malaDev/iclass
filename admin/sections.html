@@ -4,6 +4,7 @@
 <section id="content" class="markdown">
 	<h1>Edit sections</h1>
 
+	{% for section, pages in sections %}
 	<table class="table admin-section-editor">
 		<tr>
 			<th>
@@ -12,10 +13,11 @@
 				<a class="btn"><i class="icon-arrow-down"></i></a>
 			</th>
 			<th>
-				<input type="text" value="Problem sets" style="font-weight:bold;">
+				<input type="text" value="{{ section }}" style="font-weight:bold;">
 				<a class="btn"><i class="icon-pencil"></i></a>
 			</th>
 		</tr>
+		{% for page, link in pages %}
 		<tr>
 			<td>
 				<a class="btn"><i class="icon-remove"></i></a>
@@ -23,32 +25,11 @@
 				<a class="btn"><i class="icon-arrow-down"></i></a>
 			</td>
 			<td>
-				<input type="text" value="Problem set 6: Mispellings">
+				<input type="text" value="{{ page }}">
 				<a class="btn"><i class="icon-pencil"></i></a>
 			</td>
 		</tr>
-		<tr>
-			<td>
-				<a class="btn"><i class="icon-remove"></i></a>
-				<a class="btn"><i class="icon-arrow-up"></i></a>
-				<a class="btn"><i class="icon-arrow-down"></i></a>
-			</td>
-			<td>
-				<input type="text" value="Problem set 7: C$50 Finance">
-				<a class="btn"><i class="icon-pencil"></i></a>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<a class="btn"><i class="icon-remove"></i></a>
-				<a class="btn"><i class="icon-arrow-up"></i></a>
-				<a class="btn disabled"><i class="icon-arrow-down"></i></a>
-			</td>
-			<td>
-				<input type="text" value="Problem set 8: CS50 Shuttle">
-				<a class="btn"><i class="icon-pencil"></i></a>
-			</td>
-		</tr>
+		{% endfor %}
 		<tr>
 			<td></td>
 			<td>
@@ -57,67 +38,17 @@
 			</td>
 		</tr>
 	</table>
-
-	<table class="table admin-section-editor">
-		<tr>
-			<th>
-				<a class="btn"><i class="icon-remove"></i></a>
-				<a class="btn"><i class="icon-arrow-up"></i></a>
-				<a class="btn disabled"><i class="icon-arrow-down"></i></a>
-			</th>
-			<th>
-				<input type="text" value="Lectures" style="font-weight:bold;">
-				<a class="btn"><i class="icon-plus"></i></a>
-			</th>
-		</tr>
-		<tr>
-			<td>
-				<a class="btn"><i class="icon-remove"></i></a>
-				<a class="btn disabled"><i class="icon-arrow-up"></i></a>
-				<a class="btn"><i class="icon-arrow-down"></i></a>
-			</td>
-			<td>
-				<input type="text" value="Lecture 0">
-				<a class="btn"><i class="icon-plus"></i></a>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<a class="btn"><i class="icon-remove"></i></a>
-				<a class="btn"><i class="icon-arrow-up"></i></a>
-				<a class="btn"><i class="icon-arrow-down"></i></a>
-			</td>
-			<td>
-				<input type="text" value="Lecture 1">
-				<a class="btn"><i class="icon-plus"></i></a>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<a class="btn"><i class="icon-remove"></i></a>
-				<a class="btn"><i class="icon-arrow-up"></i></a>
-				<a class="btn disabled"><i class="icon-arrow-down"></i></a>
-			</td>
-			<td>
-				<input type="text" value="Lecture 2">
-				<a class="btn"><i class="icon-plus"></i></a>
-			</td>
-		</tr>
-		<tr>
-			<td></td>
-			<td>
-				<input type="text" placeholder="Add a page">
-				<a class="btn"><i class="icon-plus"></i></a>
-			</td>
-		</tr>
-	</table>
+	{% endfor %}
 
 	<table class="table admin-section-editor">
 		<tr>
 			<th></th>
 			<th>
-				<input type="text" placeholder="Add a section">
-				<a class="btn"><i class="icon-plus"></i></a>
+				<form action="{{ url('admin/sections/add') }}">
+				<input type="text" placeholder="Add a section" name="name">
+				<input type="hidden" name="parent" value="1">
+				<button type="submit" class="btn"><i class="icon-plus"></i></button>
+				</form>
 			</th>
 		</tr>
 	</table>
