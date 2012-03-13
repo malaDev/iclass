@@ -1,17 +1,7 @@
 {% extends "base.html" %}
 {% block contents %}
 <section id="content" class="markdown">
-	<h1>{{page_slogan}}</h1>
-	{% if not logged_in %}
-	<div class="alert fade in">
-		<a class="close" data-dismiss="alert" href="#">&times;</a>
-		<h4 class="alert-heading">Not logged in!</h4>
-		<p>In order to see and post comments and keep track of your progress and other extra functions, you have to be logged in with your UvAnetID</p>
-		<p>
-			<a class="btn" href="#">Sign in</a>
-		</p>
-	</div>
-	{% endif %}
+	<h1>{{ page_title }}</h1>
 	{% for section, pages in page_done_links %}
 	<h2>{{ section }}</h2>
 	<table class="course-items table table-bordered table-striped">

@@ -26,7 +26,7 @@ switch ($request[2])
 			'page_items' => $page_items,
 			'logged_in' => $loggedIn,
 			'progress' => percentage($uvanetid),
-			'url' => urlencode($url),
+			//'url' => urlencode($url),
 			'username' => $name,
 			'type' => $user_type,
 			'admin' => isAdmin($uvanetid),

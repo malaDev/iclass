@@ -14,6 +14,8 @@ if (isAdmin($uvanetid))
 		'Import course pack' => rebase_path('admin/import'),
 		'Student progress' => rebase_path('admin/users')
 	);
+
+/*
 else
 	$page_items = null;
 
@@ -23,6 +25,7 @@ if (!isset($page_links))
 	$page_links = null;
 if (!isset($new))
 	$new = null;
+*/
 
 switch ($request[1]) {
 	// all four pages share common information so we group them early on
@@ -36,7 +39,7 @@ switch ($request[1]) {
 			'page_items' => $page_items,
 			'logged_in' => $loggedIn,
 			'progress' => percentage($uvanetid),
-			'url' => urlencode($url),
+			//'url' => urlencode($url),
 			'username' => $name,
 			'type' => $user_type,
 			'admin' => isAdmin($uvanetid),
@@ -47,10 +50,27 @@ switch ($request[1]) {
 			'message' => $message
 		));
 		return;
-	case "change_settings":
-		require 'php/change_settings.php';
-		return;
 	case "settings":
+	case "change_settings":
+		require 'change_settings.php';
+		echo $twig->render($request[1] . '.html', array(
+			'page_name' => $request[1],
+			'page_title' => TITLE,
+			'page_links' => $page_links,
+			'page_items' => $page_items,
+			'logged_in' => $loggedIn,
+			'progress' => percentage($uvanetid),
+			//'url' => urlencode($url),
+			'username' => $name,
+			'type' => $user_type,
+			'admin' => isAdmin($uvanetid),
+			'email' => $email,
+			'new' => $new,
+			'uvanetid' => $uvanetid,
+			'courses' => $courses,
+			'message' => $message
+		));
+		return;
 	case "sections":
 		require 'sections.php';
 		return;
@@ -69,7 +89,7 @@ switch ($request[1]) {
 			'page_items' => $page_items,
 			'logged_in' => $loggedIn,
 			'progress' => percentage($uvanetid),
-			'url' => urlencode($url),
+			//'url' => urlencode($url),
 			'username' => $name,
 			'type' => $user_type,
 			'admin' => isAdmin($uvanetid),
@@ -80,6 +100,9 @@ switch ($request[1]) {
 			'courses' => $courses,
 			'message' => $message
 		));
+		return;
+	case "createdb":
+		require "create_db.php";
 		return;
 	default:
 		header("Status: 404 Not Found");

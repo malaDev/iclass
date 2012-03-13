@@ -92,7 +92,7 @@ if ($case == 'database_connect'){
 <p><b>Deze website is nog niet juist geconfigureerd!</b></p><br />
 <p>Er is wel connectie met de database, maar de database '<?php echo DB_NAME; ?>' bestaat niet.</p>
 <p>Open het bestand in /include/config.php en vul daar de juiste naam in van de database, of maak database '<?php echo DB_NAME; ?>' inclusief bijbehorende tabellen door op onderstaande knop te klikken:</p>
-<div class="center"><a class="button" href="<?php echo rebase_path('create'); ?>">Maak Database</a></div>
+<div class="center"><a class="button" href="?create_db">Maak Database</a></div>
 <?php
 } else if ($case == 'database_tables'){
 ?>
@@ -103,7 +103,7 @@ foreach($required as $key => $table){
 }
 ?></b>
 <p>Deze tabellen kunnen automatisch aangemaakt worden, wanneer u op onderstaande knop drukt. U wordt vervolgens automatisch doorverwezen naar de dan werkende site.</p>
-<div class="center"><a class="button" href="<?php echo rebase_path('create'); ?>">Maak Tabellen</a></div>
+<div class="center"><a class="button" href="?create_db">Maak Tabellen</a></div>
 <?php
 } else if ($case == 'base'){
 ?>

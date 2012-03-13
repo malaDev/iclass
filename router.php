@@ -1,14 +1,14 @@
 <?php
 
 include('lib/config.php');     // base configuration settings
-include('lib/util.php');       // utility functions
+require('lib/util.php');       // utility functions
+require('lib/database.php');   // basic database connection setup
+require('lib/course.php');     // base site info from database
+require('lib/session.php');    // user session setup handling
 
 // Find out the page type per the first URL segment and pass everything
 // to the selected controller. $request will again be available there.
 $request = parse_request();
-
-require('lib/session.php');    // user session setup handling
-require('lib/process.php');    // base site info from database
 
 switch($request[0])
 {
