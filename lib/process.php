@@ -49,6 +49,7 @@ function course_sections()
 {
 	// These are the pages and sections in our course
 	$result = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=1 ORDER BY weight");
+	$page_links = array();
 	while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 		$episode_title = $row['title'];
 		$resultsub = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=" . $row['folder_id'] . " ORDER BY weight");
@@ -59,7 +60,6 @@ function course_sections()
 			$subarray[$subitemTitle] = 'page/' . $subitemFolder;
 		}
 		$page_links[$episode_title] = $subarray;
-		unset($subarray);
 	}
 	return $page_links;
 }

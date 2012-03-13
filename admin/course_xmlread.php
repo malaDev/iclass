@@ -23,7 +23,7 @@ function sub_xml($xml,$parent,$course_dbname,&$updatecount,$cur_weight){
 	}
   }
   if(!isset($title)){$title='NULL';}
-  
+
   $eval_row = mysql_query("SELECT folder_id FROM {$course_dbname}_folders WHERE parent={$parent} AND title='{$title}'");  
   $row = mysql_fetch_array($eval_row);
   if(isset($row[0])){
@@ -37,6 +37,15 @@ function sub_xml($xml,$parent,$course_dbname,&$updatecount,$cur_weight){
 	$updatecount['folders']++;
 	$cur_folder=mysql_insert_id();
   }	
+
+	// combine title and description to default text
+	// desc has to be cast from CDATA to string
+	// desc is not nice yet as it may contain superfluous spaces annoying the markdown
+	$markdown = '# ' . $xml->title . '\n\n' . (string)$xml->desc;
+	mysql_query("UPDATE {$course_dbname}_folders SET markdown='{$markdown}' WHERE folder_id={$cur_folder}");
+
+
+
   
   foreach($xml as $type => $content){
 	// these have different types (folder content)
@@ -81,10 +90,10 @@ function create_course($course_name,$xml,$paste,$action,$teacher_id,$course_id){
 global $message;
 $real_xml = false;
 if (!$paste){
-	if (@$xmltree = simplexml_load_file($xml))
+	if (@$xmltree = simplexml_load_file($xml, 'SimpleXMLElement', LIBXML_NOCDATA))
 		$real_xml = true;
 } else {
-	if (@$xmltree = simplexml_load_string($xml))
+	if (@$xmltree = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA))
 		$real_xml = true;
 	$fh = fopen('assets/xml/xml.txt', 'w') or die("can't create xml file");
 	fwrite($fh, $xml);
