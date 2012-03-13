@@ -1,7 +1,5 @@
 <?php
 
-$twig = start_twig('admin');
-
 if (!DB_COURSE_FOLDERS || !DB_COURSE_ITEMS) {
 	$users = null;
 	$page_links = null;
@@ -15,52 +13,23 @@ if (isAdmin($uvanetid))
 		'Student progress' => rebase_path('admin/users')
 	);
 
-/*
-else
-	$page_items = null;
-
-	$courses = null;
-	$message = null;
-if (!isset($page_links))
-	$page_links = null;
-if (!isset($new))
-	$new = null;
-*/
-
 switch ($request[1]) {
 	// all four pages share common information so we group them early on
 	// http://www.learnscape.nl/admin/*
 	case "import":
 		require 'admin_import.php';
-		echo $twig->render($request[1] . '.html', array(
+		render('admin', $request[1] . '.html', array(
 			'page_name' => $request[1],
-			'page_title' => TITLE,
-			'page_links' => $page_links,
 			'page_items' => $page_items,
-			'logged_in' => $loggedIn,
-			'progress' => percentage($uvanetid),
-			'username' => $name,
-			'type' => $user_type,
-			'admin' => isAdmin($uvanetid),
-			'email' => $email,
-			'uvanetid' => $uvanetid,
+			'courses' => $courses
 		));
 		return;
 	case "settings":
 	case "change_settings":
 		require 'change_settings.php';
-		echo $twig->render($request[1] . '.html', array(
+		render('admin', $request[1] . '.html', array(
 			'page_name' => $request[1],
-			'page_title' => TITLE,
-			'page_links' => $page_links,
-			'page_items' => $page_items,
-			'logged_in' => $loggedIn,
-			'progress' => percentage($uvanetid),
-			'username' => $name,
-			'type' => $user_type,
-			'admin' => isAdmin($uvanetid),
-			'email' => $email,
-			'uvanetid' => $uvanetid,
+			'page_items' => $page_items
 		));
 		return;
 	case "sections":
@@ -74,19 +43,10 @@ switch ($request[1]) {
 			$users[$user['uvanetid']] = array($user['firstname'], $user['lastname'], $user['type'], percentage($user['uvanetid']), $user['last_login']);
 		}
 		
-		echo $twig->render($request[1] . '.html', array(
+		render('admin', $request[1] . '.html', array(
 			'page_name' => $request[1],
-			'page_title' => TITLE,
-			'page_links' => $page_links,
 			'page_items' => $page_items,
-			'logged_in' => $loggedIn,
-			'progress' => percentage($uvanetid),
-			'username' => $name,
-			'type' => $user_type,
-			'admin' => isAdmin($uvanetid),
-			'users' => $users,
-			'email' => $email,
-			'uvanetid' => $uvanetid,
+			'users' => $users
 		));
 		return;
 	case "createdb":

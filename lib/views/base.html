@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>{{ page_name }} - {{ 'Mobile software engineering' }}</title>
+	<title>{% if page_name %}{{ "#{page_name} - " }}{% endif %}{{ site_title }}</title>
 	<link rel="stylesheet" href="{{ url('public/css/bootstrap.css') }}">
 	<link rel="stylesheet" href="{{ url('public/css/vakkensite.css') }}">
 	<script type="text/javascript" charset="utf-8" src="{{ url('public/js/jquery-1.7.1.min.js') }}"></script>

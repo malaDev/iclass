@@ -179,6 +179,23 @@ function start_twig($folder)
 	return $twig;
 }
 
+function render($folder, $template, $context)
+{
+	global $site_links, $loggedIn, $uvanetid, $name;
+	
+	$twig = start_twig($folder);
+	echo $twig->render($template, array_merge($context, array(
+			'site_name'  => SITE_NAME,
+			'site_title' => SITE_TITLE,
+			'site_links' => $site_links,
+			'logged_in' => $loggedIn,
+			'progress' => percentage($uvanetid),
+			'username' => $name,
+			'admin' => isAdmin($uvanetid),
+			'uvanetid' => $uvanetid
+		)));
+}
+
 /* progress of user */
 function percentage($uvanetid) {
 	if ($uvanetid == '' || (!DB_COURSE_FOLDERS || !DB_COURSE_ITEMS))

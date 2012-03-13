@@ -2,8 +2,6 @@
 
 switch ($request[2])
 {
-	// all four pages share common information so we group them early on
-	// http://www.learnscape.nl/admin/*
 	case "":
 		$result = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=1 ORDER BY weight");
 		while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
@@ -19,18 +17,10 @@ switch ($request[2])
 			unset($subaarray);
 		}
 
-		echo $twig->render($request[1] . '.html', array(
+		render('admin', 'sections.html', array(
 			'page_name' => $request[1],
-			'page_title' => TITLE,
-			'page_links' => $page_links,
 			'page_items' => $page_items,
-			'logged_in' => $loggedIn,
-			'progress' => percentage($uvanetid),
-			'username' => $name,
-			'type' => $user_type,
-			'admin' => isAdmin($uvanetid),
-			'email' => $email,
-			'uvanetid' => $uvanetid,
+			'sections' => $page_done_links
 		));
 		break;
 	case "add":

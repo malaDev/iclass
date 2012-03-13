@@ -41,8 +41,7 @@ switch ($request[1])
 	case "logout":
 		// redirect to CAS logout and return here
 		session_destroy();
-		$twig = start_twig('auth');
-		echo $twig->render('logout.html', array(
+		render('auth', 'logout.html', array(
 			'redirect' => rebase_path(''),
 			'cas_logout_url' => ''
 		));

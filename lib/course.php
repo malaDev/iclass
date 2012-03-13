@@ -49,4 +49,4 @@ function course_sections()
 }
 
 course_load();
-$page_links = course_sections();
+$site_links = course_sections();

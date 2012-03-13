@@ -8,11 +8,11 @@
 	    hljs.initHighlightingOnLoad();
 	</script>
 
-		<section id="content" class="markdown">
-	{% if info %}
-			{{ info | raw }}
+	<section id="content" class="markdown">
+	{% if page_info %}
+			{{ page_info | raw }}
 	{% endif %}
-		</section>
+	</section>
 
 	{% if logged_in %}
 		{% include "_comments.html" %}
