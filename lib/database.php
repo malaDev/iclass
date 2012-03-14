@@ -61,6 +61,7 @@ function create_database()
 	mysql_query("CREATE TABLE IF NOT EXISTS `comments` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `user_id` int(11) NOT NULL,
+	  `public` BOOL,
 	  `folder_id` int(11) NOT NULL,
 	  `file` varchar(128) NOT NULL,
 	  `body` text NOT NULL,

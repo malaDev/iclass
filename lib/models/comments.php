@@ -5,35 +5,41 @@ class Comments
 	public static function for_page($folderid, $uvanetid)
 	{
 		// Select the comments linked to the folder_id (episode)
-		$query = "SELECT * FROM comments WHERE folder_id = $folderid order by latest_update desc";
-		$result = mysql_query($query);
-		$comments = null;
+		if(isAdmin($uvanetid))
+			$result = mysql_query("SELECT *, comments.id as comment_id FROM comments INNER JOIN users ON comments.user_id = users.id WHERE folder_id = $folderid ORDER BY latest_update desc");
+		else
+			$result = mysql_query("SELECT *, comments.id as comment_id FROM comments INNER JOIN users ON comments.user_id = users.id WHERE folder_id = $folderid AND (public = 1 OR uvanetid = '$uvanetid') ORDER BY latest_update desc");
+		$comments = array();
 		while ($comment = mysql_fetch_array($result)) {
-			$id = $comment['id'];
+			$id = $comment['comment_id'];
 	
 			$body = $comment['body'];
 			$body = wordwrap($body,60,"\n",TRUE);
-	
 		 	$date = strtotime($comment['timestamp']);
-	
+			$public = $comment['public'];
+
 			// Get info of the poster of the comment (name and type)
-			$user_id = $comment['user_id'];
-			$query2 = "SELECT * FROM users WHERE id = $user_id";
-			$result2 = mysql_query($query2);
-			$poster = mysql_fetch_array($result2);
-			$name_poster = $poster['firstname'] . " " . $poster['lastname'];
-			$uvanetid_poster = $poster['uvanetid'];
-			$type_poster = $poster['type'];
-	
+//			$user_id = $comment['user_id'];
+//			$query2 = "SELECT * FROM users WHERE id = $user_id";
+//			$result2 = mysql_query($query2);
+//			$poster = mysql_fetch_array($result2);
+//			$name_poster = $poster['firstname'] . " " . $poster['lastname'];
+//			$uvanetid_poster = $poster['uvanetid'];
+//			$type_poster = $poster['type'];
+
+			$name_poster = $comment['firstname'] . " " . $comment['lastname'];
+			$uvanetid_poster = $comment['uvanetid'];
+			$type_poster = $comment['type'];
+			
 			$query_type = mysql_query("SELECT type FROM users WHERE uvanetid = '$uvanetid'");
 			$type_self = mysql_fetch_array($query_type);
 	
 			// If type of the replier equals "Docent" or if reply is of urself, show delete link
-			if ($uvanetid_poster == $uvanetid || $type_self['type'] == "Docent") {
+			if ($uvanetid_poster == $uvanetid || $comment['type'] == "Docent")
 				$delete = true;
-			} else {
+			else
 				$delete = false;
-			}
+			
 			// Show link to file if file was added to the comment
 			if ($comment['file'] != "") {
 				$file = $comment['file'];
@@ -52,11 +58,14 @@ class Comments
 				}
 				$fileOrgineel .= ".".$ext;
 				$attachement = array($file, $fileOrgineel);
-			} else {
+			}
+			else
+			{
 				$attachement = null;
 			}
+			
 			$replies = Comments::replies_for_comment($id, $uvanetid);
-			$comments[$id] = array($body, $date, array($name_poster, $uvanetid_poster, $type_poster), $attachement, $delete, $replies);
+			$comments[$id] = array($body, $date, array($name_poster, $uvanetid_poster, $type_poster), $attachement, $delete, $replies, $public);
 		}
 		
 		return $comments;
@@ -89,11 +98,10 @@ class Comments
 			$type_self_r = mysql_fetch_array($query_type_r);
 	
 			// If type of the replier equals "Docent" or if reply is of urself, show delete link
-			if ($uvanetid_replier == $uvanetid || $type_self_r['type'] == "Docent") {
+			if ($uvanetid_replier == $uvanetid || $type_self_r['type'] == "Docent")
 				$delete_reply = true;
-			} else {
+			else
 				$delete_reply = false;
-			}
 			$replies[$id_reply] = array($body_reply, $date_reply, array($name_replier, $uvanetid_replier, $type_replier), $delete_reply);
 		}
 		return $replies;
