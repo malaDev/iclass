@@ -30,7 +30,7 @@ function check_database()
 	
 	/* Define required tables */
 	$tables = mysql_query("SHOW TABLES FROM " . DB_NAME);
-	$required = Array('comments', 'courses', 'progress', 'replies', 'users');
+	$required = Array('comments', 'courses', 'progress', 'replies', 'users', 'items', 'folders');
 	while ($table = mysql_fetch_row($tables)) {
 	        $key = array_search($table[0], $required);
 	        if (is_numeric($key)) {
@@ -102,7 +102,26 @@ function create_database()
 	  `email` varchar(100) NOT NULL,
 	  `last_login` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	  PRIMARY KEY (`id`)
-	) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17");
+	) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=17");
+
+	mysql_query("CREATE TABLE IF NOT EXISTS items (
+		elem_id INT NOT NULL AUTO_INCREMENT,
+		PRIMARY KEY(elem_id),
+		weight INT,
+		folder INT,
+		type BINARY,
+		innerhtml TEXT,
+		attr VARCHAR(200)
+	) ENGINE=MyISAM DEFAULT CHARSET=latin1");
+		
+	mysql_query("CREATE TABLE IF NOT EXISTS folders (
+		folder_id INT NOT NULL AUTO_INCREMENT,
+		PRIMARY KEY(folder_id),
+		weight INT,
+		parent INT,
+		markdown TEXT,
+		title VARCHAR(200)
+	) ENGINE=MyISAM DEFAULT CHARSET=latin1");
 	
 	//echo "Database was created.";
 }

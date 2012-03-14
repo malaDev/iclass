@@ -4,21 +4,21 @@
 
 function course_load()
 {
-	$query_course = mysql_query("SELECT course_id, course_name FROM courses ORDER BY update_date DESC");
-	if (mysql_num_rows($query_course) > 0) {
-		$row_course = mysql_fetch_row($query_course);
-		$slogan = $row_course[1];
-		$course_folders = "course__" . $row_course[0] . "_folders";
-		$course_items = "course__" . $row_course[0] . "_items";
-	} else {
-		$slogan = "No course initialized yet.";
-		$course_folders = false;
-		$course_items = false;
-	}
+	// $query_course = mysql_query("SELECT course_id, course_name FROM courses ORDER BY update_date DESC");
+	// if (mysql_num_rows($query_course) > 0) {
+	// 	$row_course = mysql_fetch_row($query_course);
+	// 	$course_folders = "course__" . $row_course[0] . "_folders";
+	// 	$course_items = "course__" . $row_course[0] . "_items";
+	// } else {
+	// 	$course_folders = false;
+	// 	$course_items = false;
+	// }
+	// define("DB_COURSE_FOLDERS", $course_folders);
+	// define("DB_COURSE_ITEMS", $course_items);
 	
-	define("SLOGAN", $slogan);
-	define("DB_COURSE_FOLDERS", $course_folders);
-	define("DB_COURSE_ITEMS", $course_items);
+	// hardcoded course tables
+	define("DB_COURSE_FOLDERS", "folders");
+	define("DB_COURSE_ITEMS", "items");
 }
 
 /*
