@@ -37,13 +37,19 @@ switch ($request[1]) {
 		return;
 	case "users":
 		mysql_query("SET lc_time_names=nl_NL");
-		$query_users = "SELECT *, DATE_FORMAT(last_login, '%H:%i, %W %d %M %Y') AS last_login FROM users;";
+		$query_users = "SELECT * FROM users;";
 		$result = mysql_query($query_users);
-		while ($user = mysql_fetch_array($result)) {
-			$users[$user['uvanetid']] = array($user['firstname'], $user['lastname'], $user['type'], percentage($user['uvanetid']), $user['last_login']);
+		while ($user = mysql_fetch_array($result))
+		{
+			$users[$user['uvanetid']] = array(
+				'first_name' => $user['firstname'],
+				'last_name' => $user['lastname'],
+				'type' => $user['type'],
+				'progress' => percentage($user['uvanetid']),
+				'last_login' => strtotime($user['last_login'])
+			);
 		}
-		
-		render('admin', $request[1] . '.html', array(
+		render('admin', 'users.html', array(
 			'page_name' => $request[1],
 			'page_items' => $page_items,
 			'users' => $users

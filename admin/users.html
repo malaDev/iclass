@@ -14,16 +14,14 @@
 			<th><b>Last login</b></th>
 		</tr>
 		{% for list_uvanetid, user in users|sort %}
-		{% if list_uvanetid != "flow" %}
 		<tr>
 			<td>{{ list_uvanetid }} {% if uvanetid == list_uvanetid %}*{% endif %}</td>
-			<td>{{ user[0] }}</td>
-			<td>{{ user[1] }}</td>
-			<td>{{ user[2] }}</td>
-			<td><div class="progress"><div class="bar" style="width: {{ user[3] }}%;"></div></div></td>
-			<td>{{ user[4] }}</td>
+			<td>{{ user['first_name'] }}</td>
+			<td>{{ user['last_name'] }}</td>
+			<td>{{ user['type'] }}</td>
+			<td><div class="progress"><div class="bar" style="width: {{ user['progress'] }}%;"></div></div></td>
+			<td>{{ user['last_login'] | ago }}</td>
 		</tr>
-		{% endif %}
 		{% endfor %}
 	</table>
 </section>
