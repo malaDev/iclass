@@ -6,9 +6,7 @@ switch ($request[1])
 {
 	case "login":
 		// redirect to CAS server specified in config
-		// TODO deze regel terugzetten voor CAS
-		// header("Location: " . CAS_LOGIN_URL . urlencode($cas_path));
-		header("Location: " . $cas_path . "?ticket=huh");
+		header("Location: " . CAS_LOGIN_URL . urlencode($cas_path));
 		return;
 	case "validate":
 		// check ticket provided and enter user session
@@ -16,7 +14,7 @@ switch ($request[1])
 		{
 			$ticket = $_GET["ticket"];
 			$validateURL = CAS_VALIDATE_URL . $ticket . "&service=" . urlencode($cas_path);
-			// make sure extension=php_openssl.dll is added to php.ini in order to make this work
+			
 			if(defined('USER_OVERRIDE'))
 			{
 				error_log('USERNAME OVERRIDE ACTIVE!');
@@ -25,6 +23,7 @@ switch ($request[1])
 			}
 			else
 			{
+				// make sure extension=php_openssl.dll is added to php.ini in order to make this work
 				$file = file_get_contents($validateURL);
 				if(preg_match('/<cas:user>([^<]+)<\/cas:user>/', $file, $match))
 				{
