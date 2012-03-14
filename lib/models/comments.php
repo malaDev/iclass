@@ -9,23 +9,16 @@ class Comments
 			$result = mysql_query("SELECT *, comments.id as comment_id FROM comments INNER JOIN users ON comments.user_id = users.id WHERE folder_id = $folderid ORDER BY latest_update desc");
 		else
 			$result = mysql_query("SELECT *, comments.id as comment_id FROM comments INNER JOIN users ON comments.user_id = users.id WHERE folder_id = $folderid AND (public = 1 OR uvanetid = '$uvanetid') ORDER BY latest_update desc");
+
 		$comments = array();
-		while ($comment = mysql_fetch_array($result)) {
+		while ($comment = mysql_fetch_array($result))
+		{
 			$id = $comment['comment_id'];
 	
 			$body = $comment['body'];
 			$body = wordwrap($body,60,"\n",TRUE);
 		 	$date = strtotime($comment['timestamp']);
 			$public = $comment['public'];
-
-			// Get info of the poster of the comment (name and type)
-//			$user_id = $comment['user_id'];
-//			$query2 = "SELECT * FROM users WHERE id = $user_id";
-//			$result2 = mysql_query($query2);
-//			$poster = mysql_fetch_array($result2);
-//			$name_poster = $poster['firstname'] . " " . $poster['lastname'];
-//			$uvanetid_poster = $poster['uvanetid'];
-//			$type_poster = $poster['type'];
 
 			$name_poster = $comment['firstname'] . " " . $comment['lastname'];
 			$uvanetid_poster = $comment['uvanetid'];
@@ -80,9 +73,7 @@ class Comments
 		while ($reply = mysql_fetch_array($result_selectreplies)) {
 			$body_reply = $reply['body'];
 			$body_reply = wordwrap($body_reply, 60, "\n", TRUE);
-	
 			$id_reply = $reply['id'];
-	
 		 	$date_reply = strtotime($reply['timestamp']);
 	
 			// Get info of the replier (name and type and uvanetid)
