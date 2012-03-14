@@ -81,3 +81,4 @@ function change_progress(id, folderid, done)
 $(document).ready(function(){
 	$('#comments textarea').autosize();    
 });
+
