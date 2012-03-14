@@ -8,12 +8,12 @@
 			<a href="#delete_comment" data-toggle="modal" onclick="commentID='{{id}}'" class="close">&times;</a> 
 		</div>					
 		<strong>{{ comment[2][0] }}</strong><br>
-		{% if not comment[3] == '' %}
-		<a href="{{ download_link(comment[3][0]) }}"><i class="icon-file"></i> {{comment[3][1]}}</a>
-		{% endif %}
 		<div class="markdown">
 			<p>{{ comment[0] | raw }}</p>
 		</div>
+		{% if not comment[3] == '' %}
+		<p><a href="{{ download_link(comment[3][0]) }}"><i class="icon-file"></i> {{comment[3][1]}}</a></p>
+		{% endif %}
 		<small>{{ comment[1] | ago }}</small>
 		<div class='comments'>
 		<div id="0{{id}}">

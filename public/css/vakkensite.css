@@ -314,6 +314,12 @@ footer small
     max-height:50px;
 }
 
+#posts .span8 .pull-right
+{
+	/* this is the delete button on a comment */
+	margin-right:5px;
+}
+
 #posts h4
 {
 	margin-top:2px;
@@ -374,13 +380,37 @@ footer small
  *
 */
 
+input, textarea {
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-box-shadow:none;
+  -moz-box-shadow:none;
+  box-shadow:none;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+
+input:focus, textarea:focus {
+  border:none;
+  -webkit-box-shadow:none;
+  -moz-box-shadow:none;
+  box-shadow:none;
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+
+}
+
 .comment-form
 {
 	padding:0px;
 	margin: 0 0 9px;
 	font-size: 12px;
 	line-height: 18px;
-	background-color: #f5f5f5;
 	border: 1px solid #ccc;
 	border: 1px solid rgba(0, 0, 0, 0.15);
 }
@@ -407,18 +437,25 @@ footer small
 	border:0;
 }
 
+.comment-form textarea
+{
+	border-bottom:1px dotted #ccc;
+	border-bottom:1px dotted rgba(0, 0, 0, 0.15);
+}
+
 .comment-form .submit
 {
+	background-color: #f5f5f5;
 	color:gray;
-	margin:2px 7px;
+	padding:2px 7px;
 	line-height:30px;
 	overflow:auto;
 	display:none;
 }
 
-.comment-form .submit input[type=file]
+.comment-form input[type=file]
 {
-	margin-bottom: 0;
+	margin:2px 5px 2px 40px;
 }
 
 .comment-form .submit input[type=submit]
