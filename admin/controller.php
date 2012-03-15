@@ -29,7 +29,12 @@ switch ($request[1]) {
 		require 'change_settings.php';
 		render('admin', $request[1] . '.html', array(
 			'page_name' => $request[1],
-			'page_items' => $page_items
+			'page_items' => $page_items,
+			'email' => $email,
+			'type' => $user_type,
+			'user_avatar' => $user_avatar,
+			'message_user' => $message_user,
+			'message_avatar' => $message_avatar
 		));
 		return;
 	case "sections":

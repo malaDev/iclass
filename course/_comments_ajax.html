@@ -1,7 +1,7 @@
 {% for id, comment in page_comments %}
 <div class="row">
 	<div class="span2">
-		<img src="{{ url('public/img/no-avatar.gif') }}">
+		<img src="{{ url(comment['user_avatar']) }}">
 	</div>
 	<div class="span8">
 		<div class="pull-right">

@@ -97,9 +97,10 @@ function create_database()
 	mysql_query("CREATE TABLE IF NOT EXISTS `users` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT,
 	  `uvanetid` varchar(15) NOT NULL,
+	  `avatar` varchar(255) NOT NULL,
 	  `type` varchar(7) NOT NULL,
-	  `firstname` varchar(18) NOT NULL,
-	  `lastname` varchar(18) NOT NULL,
+	  `firstname` varchar(20) NOT NULL,
+	  `lastname` varchar(30) NOT NULL,
 	  `email` varchar(100) NOT NULL,
 	  `last_login` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	  PRIMARY KEY (`id`)

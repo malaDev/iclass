@@ -2,4 +2,6 @@ lib/config.php
 .DS_Store
 public/uploads/*
 !public/uploads/README
+public/avatars/*
+!public/avatars/README
 

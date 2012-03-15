@@ -19,6 +19,7 @@ class Comments
 			$body = wordwrap($body,60,"\n",TRUE);
 		 	$date = strtotime($comment['timestamp']);
 			$public = $comment['public'];
+			$avatar = 'public/avatars/' . $comment['avatar'];
 
 			$name_poster = $comment['firstname'] . " " . $comment['lastname'];
 			$uvanetid_poster = $comment['uvanetid'];
@@ -58,7 +59,7 @@ class Comments
 			}
 			
 			$replies = Comments::replies_for_comment($id, $uvanetid);
-			$comments[$id] = array($body, $date, array($name_poster, $uvanetid_poster, $type_poster), $attachement, $delete, $replies, $public);
+			$comments[$id] = array($body, $date, array($name_poster, $uvanetid_poster, $type_poster), $attachement, $delete, $replies, $public, 'user_avatar' => $avatar);
 		}
 		
 		return $comments;
@@ -84,6 +85,7 @@ class Comments
 			$name_replier = $replier['firstname'] . " " . $replier['lastname'];
 			$uvanetid_replier = $replier['uvanetid'];
 			$type_replier = $replier['type'];
+			$avatar = 'public/avatars/' . $replier['avatar'];
 	
 			$query_type_r = mysql_query("SELECT type FROM users WHERE uvanetid = '$uvanetid'");
 			$type_self_r = mysql_fetch_array($query_type_r);
@@ -93,7 +95,8 @@ class Comments
 				$delete_reply = true;
 			else
 				$delete_reply = false;
-			$replies[$id_reply] = array($body_reply, $date_reply, array($name_replier, $uvanetid_replier, $type_replier), $delete_reply);
+				
+			$replies[$id_reply] = array($body_reply, $date_reply, array($name_replier, $uvanetid_replier, $type_replier), $delete_reply, 'user_avatar' => $avatar);
 		}
 		return $replies;
 	}
