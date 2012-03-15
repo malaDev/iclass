@@ -298,6 +298,11 @@ footer small
  *
 */
 
+#posts
+{
+	font-family: Helvetica, Arial;
+}
+
 #posts .span2
 {
 	text-align:right;
@@ -311,6 +316,7 @@ footer small
 #posts .span2 img, #posts .comments .span8 img
 {
     width:50px;
+    margin-top:3px;
 }
 
 #posts .span8 .pull-right
@@ -324,7 +330,7 @@ footer small
 	margin-top:2px;
 }
 
-#posts > .span12 > .row + .row
+#posts > .span12 > .row + .row, #posts > .span12 > .row + #comments_ajax
 {
 	margin-top:20px;
 }
@@ -332,7 +338,8 @@ footer small
 #posts .comments
 {
 	background-color:#EBF4FB;
-	margin-bottom:9px;
+	smargin-bottom:9px;
+	margin-top:9px;
 }
 
 #posts .comments .form
@@ -353,10 +360,10 @@ footer small
 
 #posts .comments .comment:first-child
 {
-	padding-top:10px;
+	padding-top:5px;
 }
 
-#posts .comments .comment hr
+#posts .comments hr
 {
 	height: 0px;
 	margin: 0px;
@@ -365,13 +372,35 @@ footer small
 	font-size: 1px;
 
 	margin:0;
-	margin-left:20px;
-	margin-bottom:10px;
+	margin-left:-20px;
+	margin-bottom:0px;
 }
 
 #posts .comments .comment:last-child hr
 {
     margin-bottom:0;
+}
+
+#posts .reply .span2
+{
+	width:42px;
+	padding-left:8px;
+}
+
+#posts p
+{
+	margin-bottom:0;
+}
+
+#posts p + p
+{
+	margin-bottom:0.5em;
+}
+
+#posts small
+{
+	font-size:80%;
+	color:gray;
 }
 
 /****************************************************************************

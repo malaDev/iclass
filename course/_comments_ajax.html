@@ -8,7 +8,7 @@
 			<a href="#delete_comment" data-toggle="modal" onclick="commentID='{{id}}'" class="close">&times;</a> 
 		</div>					
 		<strong>{{ comment[2][0] }}</strong><br>
-		<div class="markdown">
+		<div class="smarkdown">
 			<p>{{ comment[0] | raw }}</p>
 		</div>
 		{% if not comment[3] == '' %}

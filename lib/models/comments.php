@@ -1,5 +1,7 @@
 <?php
 
+require_once("lib/markdown/markdown.php");
+
 class Comments
 {
 	public static function for_page($folderid, $uvanetid)
@@ -15,7 +17,8 @@ class Comments
 		{
 			$id = $comment['comment_id'];
 	
-			$body = $comment['body'];
+			error_log($comment['body']);
+			$body = Markdown($comment['body']);
 			$body = wordwrap($body,60,"\n",TRUE);
 		 	$date = strtotime($comment['timestamp']);
 			$public = $comment['public'];

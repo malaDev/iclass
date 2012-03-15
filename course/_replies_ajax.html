@@ -1,6 +1,6 @@
 {% for reply_id, reply in comment[5] %}
-<div class="row comment">
-	<div class="span2" style="width:50px;">
+<div class="row comment reply">
+	<div class="span2" style="">
 		<img src="{{ url(reply['user_avatar']) }}">
 	</div>
 	<div class="span6">
@@ -8,7 +8,7 @@
 			<a href="#delete_reply" data-toggle="modal" onclick="commentID='{{id}}'; replyID='{{reply_id}}'" class="close">&times;</a> 
 		</div>	
 		<strong>{{ reply[2][0] }}</strong><br>
-		<div class="markdown">
+		<div class="masrkdown">
 			<p>{{ reply[0] | raw }}</p>
 		</div>
 		<small>{{ reply[1] | ago }}</small>
