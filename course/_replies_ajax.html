@@ -1,18 +1,14 @@
 {% for reply_id, reply in comment[5] %}
-<div class="row comment reply">
-	<div class="span2" style="">
-		<img src="{{ url(reply['user_avatar']) }}">
-	</div>
-	<div class="span6">
-		<div class="pull-right">
-			<a href="#delete_reply" data-toggle="modal" onclick="commentID='{{id}}'; replyID='{{reply_id}}'" class="close">&times;</a> 
-		</div>	
-		<strong>{{ reply[2][0] }}</strong><br>
-		<div class="masrkdown">
-			<p>{{ reply[0] | raw }}</p>
-		</div>
-		<small>{{ reply[1] | ago }}</small>
-	</div>
+<div class="reply">
+
+	<img class="avatar" src="{{ url(reply['user_avatar']) }}">
+	
+	<div class="pull-right"><a href="#delete_reply" data-toggle="modal" onclick="comment_id='{{id}}'; reply_id='{{reply_id}}'" class="close">&times;</a></div>
+	
+	<p><strong>{{ reply[2][0] }}</strong></p>
+	
+	<p>{{ reply[0] | raw }}</p>
+	
+	<small>{{ reply[1] | ago }}</small>
 </div>
-<hr />
 {% endfor %}

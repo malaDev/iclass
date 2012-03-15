@@ -294,97 +294,19 @@ footer small
 }
 
 /****************************************************************************
- *  commenting section
+ *  commenting section font & formatting
  *
-*/
+ */
 
 #posts
 {
 	font-family: Helvetica, Arial;
 }
 
-#posts .span2
-{
-	text-align:right;
-}
-
-#posts .span2 small
-{
-	font-size: x-small;
-}
-
-#posts .span2 img, #posts .comments .span8 img
-{
-    width:50px;
-    margin-top:3px;
-}
-
-#posts .span8 .pull-right
-{
-	/* this is the delete button on a comment */
-	margin-right:5px;
-}
-
-#posts h4
-{
-	margin-top:2px;
-}
-
-#posts > .span12 > .row + .row, #posts > .span12 > .row + #comments_ajax
-{
-	margin-top:20px;
-}
-
-#posts .comments
-{
-	background-color:#EBF4FB;
-	smargin-bottom:9px;
-	margin-top:9px;
-}
-
-#posts .comments .form
-{
-	position:relative;
-}
-
-#posts .comments .comment pre
+#posts pre
 {
     padding:5px;
     background-color:white;
-}
-
-#posts .comments .comment .span6
-{
-    width:440px;
-}
-
-#posts .comments .comment:first-child
-{
-	padding-top:5px;
-}
-
-#posts .comments hr
-{
-	height: 0px;
-	margin: 0px;
-	border:none;
-	border-top:1px solid white;
-	font-size: 1px;
-
-	margin:0;
-	margin-left:-20px;
-	margin-bottom:0px;
-}
-
-#posts .comments .comment:last-child hr
-{
-    margin-bottom:0;
-}
-
-#posts .reply .span2
-{
-	width:42px;
-	padding-left:8px;
 }
 
 #posts p
@@ -401,6 +323,47 @@ footer small
 {
 	font-size:80%;
 	color:gray;
+}
+
+/****************************************************************************
+ *  commenting section posts + replies
+ *
+ */
+
+#posts .post
+{
+	margin-top:20px;
+}
+
+#posts .post .avatar
+{
+	float:left;
+	width:50px;
+    margin-tsop:3px;
+    margin-left:-58px;
+
+}
+
+/* this is the delete button on a comment */
+#posts .post .pull-right
+{
+	margin-right:5px;
+}
+
+#posts .replies
+{
+	margin-top:9px;
+}
+
+#posts .replies .reply, .post .comment-answer-form
+{
+	background-color:#EBF4FB;
+}
+
+#posts .replies .reply
+{
+	padding:5px 5px 5px 65px;
+	overflow:hidden;
 }
 
 /****************************************************************************
@@ -429,8 +392,6 @@ footer small
   box-shadow:none;
   outline: 0;
   outline: thin dotted \9;
-  /* IE6-9 */
-
 }
 
 .comment-form
@@ -445,7 +406,7 @@ footer small
 
 .comment-answer-form
 {
-	margin:4px;
+	padding:4px;
 }
 
 .comment-form form, .comment-form textarea

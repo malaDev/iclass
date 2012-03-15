@@ -1,38 +1,35 @@
 {% for id, comment in page_comments %}
-<div class="row">
-	<div class="span2">
-		<img src="{{ url(comment['user_avatar']) }}">
+<div class="post">
+
+	<img class="avatar" src="{{ url(comment['user_avatar']) }}">
+	
+	<div class="pull-right"><a href="#delete_comment" data-toggle="modal" onclick="commentID='{{id}}'" class="close">&times;</a></div>
+	
+	<p><strong>{{ comment[2][0] }}</strong></p>
+	
+	{{ comment[0] | raw }}
+	
+	{% if not comment[3] == '' %}
+	<p><a href="{{ download_link(comment[3][0]) }}"><i class="icon-file"></i> {{comment[3][1]}}</a></p>
+	{% endif %}
+	
+	<small>{{ comment[1] | ago }}</small>
+	
+	<div class="replies" id="replies0{{id}}">
+	
+		{% include "_replies_ajax.html" %}
+		
 	</div>
-	<div class="span8">
-		<div class="pull-right">
-			<a href="#delete_comment" data-toggle="modal" onclick="commentID='{{id}}'" class="close">&times;</a> 
-		</div>					
-		<strong>{{ comment[2][0] }}</strong><br>
-		<div class="smarkdown">
-			<p>{{ comment[0] | raw }}</p>
-		</div>
-		{% if not comment[3] == '' %}
-		<p><a href="{{ download_link(comment[3][0]) }}"><i class="icon-file"></i> {{comment[3][1]}}</a></p>
-		{% endif %}
-		<small>{{ comment[1] | ago }}</small>
-		<div class='comments'>
-		<div id="0{{id}}">
-			{% include "_replies_ajax.html" %}
-		</div>
-			<div class="row form">
-				<div class="span8">
-					<div class="comment-form comment-answer-form">
-						<form action="/replies/new">
-						<textarea id="new-reply{{id}}" rows="1" onfocus="$('#submit{{id}}').show();" placeholder="Post a new reply"></textarea>
-						<div class="submit" id="submit{{id}}">
-							<input class="btn btn-primary btn-mini pull-right" type="submit" onclick="newReply(this, {{id}}, document.getElementById('new-reply{{id}}').value); return(false);" value="Reply" />
-						</div>
-						</form>
-					</div>
-				</div>
+
+	<div class="form comment-form comment-answer-form">
+		<form id="reply{{id}}" action="/replies/new" onsubmit="newReply(this, {{id}}); return(false);">
+			<textarea name="body" rows="1" onfocus="$('#submit{{id}}').show();" placeholder="Post a new reply"></textarea>
+			<input type="hidden" name="comment_id" value="{{ id }}">
+			<div class="submit" id="submit{{id}}">
+				<input class="btn btn-primary btn-mini pull-right" type="submit" onclick="" value="Reply">
 			</div>
-			</div>
-		</div>
-</div>
-<hr />
+		</form>
+	</div>
+
+</div>	
 {% endfor %}
