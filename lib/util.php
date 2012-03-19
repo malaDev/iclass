@@ -142,6 +142,11 @@ function rebase_path($path)
 	return $base . $path;
 }
 
+function page_path($id)
+{
+	return rebase_path('page/' . $id);
+}
+
 function checked($string)
 {
 	if($string != '')
@@ -174,6 +179,7 @@ function start_twig($folder)
 	$twig->addFilter('checked', new Twig_Filter_Function('checked'));
 	$twig->addFilter('ago', new Twig_Filter_Function('time_elapsed_string'));
 	$twig->addFunction('url', new Twig_Function_Function('rebase_path'));
+	$twig->addFunction('page_url', new Twig_Function_Function('page_path'));
 	$twig->addFunction('download_link', new Twig_Function_Function('download_link'));
 
 	return $twig;

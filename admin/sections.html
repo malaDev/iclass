@@ -4,12 +4,12 @@
 <section id="content" class="markdown">
 	<h1>Edit sections</h1>
 
-	{% for section, pages in sections %}
+	{% for folder in site_links %}
 	<table class="table table-condensed table-bordered admin-section-editor">
 		<tr>
 			<th>
 				<form action="{{ url('admin/sections/remove') }}" method="post">
-					<input type="hidden" name="id" value="{{ pages[0] }}">
+					<input type="hidden" name="id" value="{{ folder.id }}">
 					<button type="submit" class="btn"><i class="icon-remove"></i></button>
 				</form>
 				<!-- <a class="btn disabled"><i class="icon-arrow-up"></i></a>
@@ -17,17 +17,17 @@
 			</th>
 			<th>
 				<form action="{{ url('admin/sections/edit') }}" method="post">
-				<input type="text" name="name" value="{{ section }}">
-				<input type="hidden" name="id" value="{{ pages[0] }}">
+				<input type="text" name="name" value="{{ folder.name }}">
+				<input type="hidden" name="id" value="{{ folder.id }}">
 				<button type="submit" class="btn"><i class="icon-pencil"></i></button>
 				</form>
 			</th>
 		</tr>
-		{% for page, link in pages[1] %}
+		{% for page in folder.pages %}
 		<tr>
 			<td>
 				<form action="{{ url('admin/sections/remove') }}" method="post">
-					<input type="hidden" name="id" value="{{ link[0] }}">
+					<input type="hidden" name="id" value="{{ page.id }}">
 					<button type="submit" class="btn"><i class="icon-remove"></i></button>
 				</form>
 				<!-- <a class="btn disabled"><i class="icon-arrow-up"></i></a>
@@ -35,8 +35,8 @@
 			</td>
 			<td>
 				<form action="{{ url('admin/sections/edit') }}" method="post">
-					<input type="text" name="name" value="{{ page }}">
-					<input type="hidden" name="id" value="{{ link[0] }}">
+					<input type="text" name="name" value="{{ page.name }}">
+					<input type="hidden" name="id" value="{{ page.id }}">
 					<button type="submit" class="btn"><i class="icon-pencil"></i></button>
 				</form>
 			</td>
@@ -47,7 +47,7 @@
 			<td>
 				<form action="{{ url('admin/sections/add') }}" method="post">
 					<input type="text" placeholder="Add a page" name="name">
-					<input type="hidden" name="parent" value="{{ pages[0] }}">
+					<input type="hidden" name="parent" value="{{ folder.id }}">
 					<button type="submit" class="btn"><i class="icon-plus"></i></button>
 				</form>
 			</td>

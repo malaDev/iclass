@@ -3,24 +3,11 @@
 switch ($request[2])
 {
 	case "":
-		$result = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=1 ORDER BY weight");
-		while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-			$episode_title = $row['title'];
-			$resultsub = mysql_query("SELECT parent, " . DB_COURSE_FOLDERS . ".folder_id, weight, title, (progress.id=" . 18 . ") as done FROM " . DB_COURSE_FOLDERS . " left outer join progress on " . DB_COURSE_FOLDERS . ".folder_id = progress.folder_id having  " . DB_COURSE_FOLDERS . ".parent=" . $row['folder_id'] . " ORDER BY weight");
-			$subaarray = array();
-			while ($rowsub = mysql_fetch_array($resultsub, MYSQL_ASSOC)) {
-				$subitemTitle = $rowsub['title'];
-				$subitemFolder = $rowsub['folder_id'];
-				$subaarray[$subitemTitle] = array($subitemFolder, $rowsub['done']);
-			}
-			$page_done_links[$episode_title] = array($row['folder_id'], $subaarray);
-			unset($subaarray);
-		}
-
+		//print_r($page_items) and die();
 		render('admin', 'sections.html', array(
 			'page_name' => $request[1],
-			'page_items' => $page_items,
-			'sections' => $page_done_links
+			'page_items' => $page_items
+			//'sections' => $page_done_links
 		));
 		break;
 	case "add":
