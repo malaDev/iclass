@@ -88,7 +88,6 @@ class Page
 		return $items;
 	}
 	
-	// general info about current episode
 	public static function markdown($id)
 	{
 		$sql = "SELECT markdown FROM " . DB_COURSE_FOLDERS . " WHERE folder_id=" . $id;
