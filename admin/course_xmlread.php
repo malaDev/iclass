@@ -22,17 +22,16 @@ function sub_xml($xml,$parent,&$updatecount,$cur_weight)
 	}
 	else
 	{
+		// combine title and description to default text
+		// desc has to be cast from CDATA to string
+		// TODO desc is not well-formed yet as it may contain superfluous spaces disrupting the markdown
+		$markdown = '# ' . $xml->title . '\n\n' . (string)$xml->desc;
+
 		// insert folder
-		mysql_query("INSERT INTO folders (weight,parent,title) VALUES ({$cur_weight},{$parent},'{$title}')");
+		mysql_query("INSERT INTO folders (weight,parent,title,markdown) VALUES ({$cur_weight},{$parent},'{$title}','{$markdown}')");
 		$updatecount['folders']++;
 		$cur_folder = mysql_insert_id();
 	}	
-
-	// combine title and description to default text
-	// desc has to be cast from CDATA to string
-	// TODO desc is not well-formed yet as it may contain superfluous spaces disrupting the markdown
-	$markdown = '# ' . $xml->title . '\n\n' . (string)$xml->desc;
-	mysql_query("UPDATE folders SET markdown='{$markdown}' WHERE folder_id={$cur_folder}");
 
 	foreach($xml as $type => $content)
 	{
