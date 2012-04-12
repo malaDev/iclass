@@ -42,7 +42,7 @@ switch ($request[1])
 		session_destroy();
 		render('auth', 'logout.html', array(
 			'redirect' => rebase_path(''),
-			'cas_logout_url' => ''
+			'cas_logout_url' => CAS_LOGOUT_URL
 		));
 		return;
 }
