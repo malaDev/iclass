@@ -84,6 +84,7 @@ switch ($request[0])
 				$id = $request[1];
 		
 				require_once("lib/markdown/markdown.php");
+				require_once("lib/smartypants/smartypants.php");
 				require_once("lib/models/comments.php");
 				require_once("lib/models/page.php");
 				
@@ -96,7 +97,7 @@ switch ($request[0])
 					'page_done' => Page::done_by_user($id, $uvanetid),
 					'page_items' => Page::items($id),
 					'page_source' => $page_source,
-					'page_info' => Markdown($page_source),
+					'page_info' => SmartyPants(Markdown($page_source)),
 					'page_comments' => Comments::for_page($id, $uvanetid)
 				));
 				return;
