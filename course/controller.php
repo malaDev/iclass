@@ -4,11 +4,22 @@
 switch ($request[0])
 {
 	case "":
-		// http://www.learnscape.nl/
+		// course home
+		$user = mysql_query("select id from users where uvanetid = '" . $uvanetid . "'");
+		$user_id = mysql_fetch_array($user, MYSQL_ASSOC);
+		$user_id = $user_id["id"];
+
 		$result = mysql_query("SELECT * FROM " . DB_COURSE_FOLDERS . " WHERE parent=1 ORDER BY weight");
 		while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 			$episode_title = $row['title'];
-			$resultsub = mysql_query("SELECT parent, " . DB_COURSE_FOLDERS . ".folder_id, weight, title, (progress.id=" . 18 . ") as done FROM " . DB_COURSE_FOLDERS . " left outer join progress on " . DB_COURSE_FOLDERS . ".folder_id = progress.folder_id having  " . DB_COURSE_FOLDERS . ".parent=" . $row['folder_id'] . " ORDER BY weight");
+			if ($user_id)
+			{
+				$resultsub = mysql_query("SELECT parent, folders.folder_id, weight, title, (progress.id) as done FROM folders left outer join progress on folders.folder_id = progress.folder_id and progress.id = " . $user_id . " having folders.parent=" . $row['folder_id'] . " ORDER BY weight");
+			}
+			else
+			{
+				$resultsub = mysql_query("SELECT parent, folders.folder_id, weight, title FROM folders WHERE folders.parent=" . $row['folder_id'] . " ORDER BY weight");
+			}
 			$subarray = array();
 			while ($rowsub = mysql_fetch_array($resultsub, MYSQL_ASSOC)) {
 				$subitemTitle = $rowsub['title'];
